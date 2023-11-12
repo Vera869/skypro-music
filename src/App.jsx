@@ -739,7 +739,12 @@ function App() {
         <footer className="footer"></footer>
       </div>
     </div>
-    </div>)
+    
+   
+
+
+    </div>
+  )
 }
 
 export default App
