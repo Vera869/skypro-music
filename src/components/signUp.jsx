@@ -1,5 +1,6 @@
+import './components/CSS/signUp.css'
 
-export function App() {
+function signUp() {
    return (
       <div className="wrapper">
       <div className="container-signup">
@@ -36,4 +37,5 @@ export function App() {
       </div>
       </div>
    )
-   }
+}
+export default signUp

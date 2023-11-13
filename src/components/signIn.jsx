@@ -1,6 +1,6 @@
+import './components/CSS/signIn.css'
 
-
-export function App() {
+function signIn () {
    return (
       
      <div className="wrapper">
@@ -35,3 +35,5 @@ export function App() {
      </div>
    </div>
    )}
+
+export default signIn
