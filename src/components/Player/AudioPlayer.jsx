@@ -1,4 +1,4 @@
-import "./AudioPlayer.css"
+import "./Audioplayer.css"
 
 function AudioPlayer () {
    return (
