@@ -1,5 +1,8 @@
 import "./CenterBlock.css"
 import TrackList from "../TrackList/TrackList"
+import SearchByYear from "../searchBy/searchByYear.jsx"
+import SearchByAuthor from "../searchBy/searchByAuthor.jsx"
+import SearchByGenre from "../searchBy/searchByGenre.jsx"
 
 function CenterBlock () {
    return (
@@ -17,15 +20,12 @@ function CenterBlock () {
       </div>
       <h2 className="centerblock__h2">Треки</h2>
       <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по:</div>
-        <div className="filter__button button-author _btn-text">
-          исполнителю
+        <div className="filter__title">Искать по:
         </div>
-        <div className="filter__button button-year _btn-text">
-          году выпуска
+          <SearchByAuthor />
+          <SearchByYear />
+          <SearchByGenre />
         </div>
-        <div className="filter__button button-genre _btn-text">жанру</div>
-      </div>
       <div className="centerblock__content">
         <div className="content__title playlist-title">
           <div className="playlist-title__col col01">Трек</div>
