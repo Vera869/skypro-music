@@ -1,8 +1,8 @@
 import "./CenterBlock.css"
 import TrackList from "../TrackList/TrackList"
-import SearchByYear from "../searchBy/searchByYear.jsx"
-import SearchByAuthor from "../searchBy/searchByAuthor.jsx"
-import SearchByGenre from "../searchBy/searchByGenre.jsx"
+import SearchByYear from "../FilterBy/FilterByYear.jsx"
+import SearchByAuthor from "../FilterBy/FilterByAuthor.jsx"
+import SearchByGenre from "../FilterBy/FilterByGenre.jsx"
 
 function CenterBlock () {
    return (

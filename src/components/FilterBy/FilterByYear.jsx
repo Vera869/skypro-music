@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 function SearchByYear () {
   return <div className="filter__button button-year _btn-text">
           году выпуска
