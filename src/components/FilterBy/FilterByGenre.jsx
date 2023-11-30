@@ -1,12 +1,16 @@
 import { useState } from "react";
 
-function SearchByGenre () {
-  const [visibleFilter, setVisibleFilter] = useState(null);
+function FilterByGenre ({onClick}) {
+  const [isActive, setIsActive] = useState(false);
+  const handleButtonClick = () => {
+    setIsActive(!isActive);
+    onClick(); 
+  };
 
-  const toggleVisibleFilter = (filter) => {
-    setVisibleFilter(visibleFilter === filter ? null : filter);
-  }
-   return <div className="filter__button button-genre _btn-text">жанру</div>
-   
+    return (<>
+      <div onClick={onClick} className="filter__button filter-genre _btn-text">жанру</div>
+      <div onClick={handleButtonClick} className = {`filter__button button-author ${isActive ? '_btn-text_active _btn-icon_active' : ''}`}>жанру</div>
+      </>
+    );
  }
- export default SearchByGenre
+ export default FilterByGenre
