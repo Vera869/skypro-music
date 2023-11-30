@@ -700,7 +700,7 @@ function TrackList () {
                 </div>
               </div>
               <div className="track__author">
-              <div className="track__author">
+              
                   {isLoading ? (<Skeleton
                                     width={270}
                                     baseColor="#202020"
@@ -945,7 +945,6 @@ function TrackList () {
             </div>
           </div>
           </div>
-        </div>
     
    )
 }
