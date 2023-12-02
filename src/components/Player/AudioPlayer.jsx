@@ -47,9 +47,15 @@ function AudioPlayer () {
             <div className="player__track-play track-play">
               <div className="track-play__contain">
                 <div className="track-play__image">
+                {isLoading ? (<Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />) : (
                   <svg className="track-play__svg" alt="music">
                     <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                  </svg>
+                  </svg>)}
                 </div>
                 <div className="track-play__author">
                 {isLoading ? (<Skeleton
@@ -69,6 +75,12 @@ function AudioPlayer () {
               </div>
 
               <div className="track-play__like-dis">
+              {isLoading ? (<Skeleton
+                                    width={55}
+                                    height={55}
+                                    baseColor="#202020"
+                                    highlightColor="#444"
+                                />) : (<>
                 <div className="track-play__like _btn-icon">
                   <svg className="track-play__like-svg" alt="like">
                     <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
@@ -80,7 +92,7 @@ function AudioPlayer () {
                       xlinkHref="img/icon/sprite.svg#icon-dislike"
                     ></use>
                   </svg>
-                </div>
+                </div></>)}
               </div>
             </div>
           </div>
