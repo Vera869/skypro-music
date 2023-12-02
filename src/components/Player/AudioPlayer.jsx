@@ -1,6 +1,15 @@
 import "./Audioplayer.css"
+import {useEffect, useState } from "react"
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
 
 function AudioPlayer () {
+  const [isLoading, setIsLoading] = useState(true)
+  useEffect(() => {
+      setTimeout(() => {
+          setIsLoading(false)
+      }, 5000)
+  }, [])
    return (
       <div className="bar">
       <div className="bar__content">
@@ -43,12 +52,19 @@ function AudioPlayer () {
                   </svg>
                 </div>
                 <div className="track-play__author">
-                  <a className="track-play__author-link" href="http://"
-                    >Ты та...</a
-                  >
+                {isLoading ? (<Skeleton
+                                        width={270}
+                                        baseColor="#202020"
+                                        highlightColor="#444"
+                                    />) : (<a className="track-play__author-link" href="http://"
+                                           >Ты та...</a>)}
                 </div>
                 <div className="track-play__album">
-                  <a className="track-play__album-link" href="http://">Баста</a>
+                 {isLoading ? (<Skeleton
+                                        width={270}
+                                        baseColor="#202020"
+                                        highlightColor="#444"
+                                    />) : (<a className="track-play__album-link" href="http://">Баста</a>)}
                 </div>
               </div>
 

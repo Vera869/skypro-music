@@ -890,79 +890,9 @@ function TrackList () {
               </div>
             </div>
           </div>
-
-          <div className="playlist__item">
-            <div className="playlist__track track">
-              <div className="track__title">
-                <div className="track__title-image">
-                {isLoading ? (<Skeleton
-                                        width={55}
-                                        height={55}
-                                        baseColor="#202020"
-                                        highlightColor="#444"
-                                    />) : ( <svg className="track__title-svg" alt="music">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                                    </svg>)}
-                </div>
-                <div className="track__title-text">
-                {isLoading ? (<Skeleton
-                                        width={270}
-                                        baseColor="#202020"
-                                        highlightColor="#444"
-                                    />) : (<a className="track__title-link" href="http://">
-                                        Lost
-                                        <span className="track__title-span"></span>
-                                    </a>)}
-                </div>
-              </div>
-              <div className="track__author">
-              {isLoading ? (<Skeleton
-                                    width={270}
-                                    baseColor="#202020"
-                                    highlightColor="#444"
-                                />) : (<a className="track__author-link" href="https://">
-                                    Linkin Park
-                                </a>)}
-              </div>
-              <div className="track__album">
-              {isLoading ? (<Skeleton
-                                    width={315}
-                                    baseColor="#202020"
-                                    highlightColor="#444"
-                                />) : (<a className="track__album-link" href="http://">
-                                    Meteora
-                                </a>)}
-              </div>
-              <div className="track__time">
-              {isLoading ? (<Skeleton
-                                    width={60}
-                                    baseColor="#202020"
-                                    highlightColor="#444"
-                                />) : (<><svg className="track__time-svg" alt="time">
-                                          <use xlinkHref="img/icon/sprite.svg#icon-like"></use></svg>
-                                          <span className="track__time-text"></span></>)}
-              </div>
-            </div>
-          </div>
           </div>
     
    )
 }
 
-{/* const Tracks = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 5000);
-  }, []);
-  
-  
-  return (
-    <div>
-      {isLoading ? <div>Skeleton</div> : <div>{TrackList}</div>}
-    </div>
-  )
-} */}
 export default TrackList
