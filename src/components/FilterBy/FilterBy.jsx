@@ -1,5 +1,5 @@
 import "./FilterBy.css"
-//import { useState } from "reac"
+//import { useState } from "react"
 
 //function 
 

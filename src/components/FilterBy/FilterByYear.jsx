@@ -1,23 +1,36 @@
+import { useState } from "react";
 
 
+function FilterByYear () {
 
-function SearchByYear () {
-  const listYear = () => {
+  let yearList = () => {
     return (
-      <div className="years">
-        <ul>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        </ul>
-        
-      </div>
+      <div className="list">
+      <ul className="years">
+        <li>2001</li>
+        <li>1969</li>
+        <li>1987</li>
+        <li>2014</li>
+        <li>2022</li>
+      </ul>
+    </div>
     )
   }
-  return <div className="filter__button button-year _btn-text">
-          году выпуска
+ 
+  const [open, setOpen] = useState(false);
+
+    function toggleOpen () {
+      console.log("Hello");
+      setOpen(open);
+      return (<><div className="filter__button button-year _btn-text" onClick={toggleOpen}>
+            году выпуска 
+          </div> {open ? <yearList/> : ""}
+          </>
+      )
+    };
+ 
+  return <div className="filter__button button-year _btn-text" onClick={toggleOpen}>
+          году выпуска 
         </div>
 }
-export default SearchByYear
+export default FilterByYear
