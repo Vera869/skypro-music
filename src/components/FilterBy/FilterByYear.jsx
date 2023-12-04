@@ -1,3 +1,4 @@
+import "./FilterBy.css"
 import { useState } from "react";
 
 
@@ -20,17 +21,14 @@ function FilterByYear () {
   const [open, setOpen] = useState(false);
 
     function toggleOpen () {
-      console.log("Hello");
-      setOpen(open);
-      return (<><div className="filter__button button-year _btn-text" onClick={toggleOpen}>
-            году выпуска 
-          </div> {open ? <yearList/> : ""}
-          </>
-      )
+      console.log("Year");
+      setOpen(!open);
     };
  
-  return <div className="filter__button button-year _btn-text" onClick={toggleOpen}>
+  return (<><div className="filter__button button-year _btn-text" onClick={toggleOpen}>
           году выпуска 
         </div>
+        {open && yearList()}
+        </>)
 }
 export default FilterByYear

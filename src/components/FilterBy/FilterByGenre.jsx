@@ -1,3 +1,4 @@
+import "./FilterBy.css"
 import { useState } from "react";
 
 function FilterByGenre () {
@@ -19,15 +20,10 @@ function FilterByGenre () {
   const [open, setOpen] = useState(false);
 
     function toggleOpen () {
-      console.log("Hello");
+      console.log("Genre");
       setOpen(!open);
-      return (<><div className="filter__button button-genre _btn-text" onClick={toggleOpen}>
-            жанру 
-          </div> {open ? <genreList/> : ""}
-          </>
-      )
     };
-   return <div className="filter__button button-genre _btn-text" onClick={toggleOpen}> жанру</div>
-   
+   return (<><div className="filter__button button-genre _btn-text" onClick={toggleOpen}> жанру</div>
+          {open && genreList()}</>)
  }
  export default FilterByGenre
