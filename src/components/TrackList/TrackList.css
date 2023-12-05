@@ -8,7 +8,11 @@
    flex-direction: column;
    overflow-y: auto;
  }
- 
+ .playlist__item {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+}
  .playlist-title__col {
    font-style: normal;
    font-weight: 400;
@@ -76,7 +80,6 @@
    -webkit-box-align: center;
    -ms-flex-align: center;
    align-items: center;
-   width: 447px;
  }
  
  .track__title-image {
@@ -95,7 +98,9 @@
    justify-content: center;
    margin-right: 17px;
  }
- 
+ .track__title-text {
+  width: 395px;
+ }
  .track__title-svg {
    width: 18px;
    height: 17px;
@@ -166,4 +171,6 @@
    text-align: right;
    color: #696969;
  }
- 
+ ::-webkit-scrollbar {
+  display: none;
+ }

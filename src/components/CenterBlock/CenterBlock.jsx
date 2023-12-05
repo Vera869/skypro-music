@@ -1,5 +1,6 @@
 import "./CenterBlock.css"
-import TrackList from "../TrackList/TrackList"
+import Tracks from "../TrackList/TrackList.jsx"
+// import TrackList from "../TrackList/TrackList"
 // import FilterByYear from "../FilterBy/FilterByYear.jsx"
 // import FilterByAuthor from "../FilterBy/FilterByAuthor.jsx"
 // import FilterByGenre from "../FilterBy/FilterByGenre.jsx"
@@ -39,7 +40,7 @@ function CenterBlock () {
             </svg>
           </div>
         </div>
-       <TrackList />
+       <Tracks/>
       </div>
     </div>
 
