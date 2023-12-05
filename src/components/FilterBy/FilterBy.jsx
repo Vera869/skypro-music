@@ -1,47 +1,11 @@
 import "./FilterBy.css"
 import { useState } from "react"
+import {genreList} from "../FilterBy/ListGenre.jsx"
+import {yearList} from "../FilterBy/ListYear.jsx"
+import {authorList} from "../FilterBy/listAuthor.jsx"
 
 function FilterBy () {
 
-   let authorList = () => {
-      return (
-        <div className="list">
-        <ul className="list-author">
-          <li className="list-el">Michel Jackson</li>
-          <li className="list-el">Frank Sinstra</li>
-          <li className="list-el">Calvin Harris</li>
-          <li className="list-el">Zhu</li>
-          <li className="list-el">Arctic Monke</li>
-        </ul>
-      </div>
-      )
-    }
-   let yearList = () => {
-      return (
-        <div className="list">
-        <ul className="list-year">
-          <li className="list-el">2001</li>
-          <li className="list-el">1969</li>
-          <li className="list-el">1987</li>
-          <li className="list-el">2014</li>
-          <li className="list-el">2022</li>
-        </ul>
-      </div>
-      )
-    }
-   let genreList = () => {
-      return (
-        <div className="list">
-        <ul className="list-genre">
-          <li className="list-el">Rock</li>
-          <li className="list-el">Jazz</li>
-          <li className="list-el">Disco</li>
-          <li className="list-el">Indi</li>
-          <li className="list-el">Classic</li>
-        </ul>
-      </div>
-      )
-    }
    const [openAuthor, setOpenAuthor] = useState(false);
    const [openYear, setOpenYear] = useState(false);
    const [openGenre, setOpenGenre] = useState(false);

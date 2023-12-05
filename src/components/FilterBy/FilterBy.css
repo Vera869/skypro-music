@@ -55,7 +55,7 @@
  .list-author,
  ::-webkit-scrollbar:vertical{
   overflow:scroll;
-  /* color: #d9b6ff; */
+  color: #d9b6ff;
  }
  .list-el:hover {
   border-color: #d9b6ff;
