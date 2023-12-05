@@ -32,12 +32,16 @@
  .filter_button-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  position: relative
  }
- .list {
+ .filter_button-list ul {
+  position: absolute;
   display: flex;
   flex-direction: column;
   row-gap: 3px;
+  width: 150px;
+  height: 100px;
+  background-color: #383838;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -46,8 +50,12 @@
   border-radius: 10px;
   padding: 5px;
  }
- ::-webkit-scrollbar{
+ .list-genre,
+ .list-year,
+ .list-author,
+ ::-webkit-scrollbar:vertical{
   overflow:scroll;
+  /* color: #d9b6ff; */
  }
  .list-el:hover {
   border-color: #d9b6ff;
