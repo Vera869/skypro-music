@@ -1,8 +1,8 @@
-import "./FilterBy.css"
 import { useState } from "react"
 import {genreList} from "../FilterBy/ListGenre.jsx"
 import {yearList} from "../FilterBy/ListYear.jsx"
 import {authorList} from "../FilterBy/listAuthor.jsx"
+import * as Sty from "../FilterBy/StyledFilter.js"
 
 function FilterBy () {
 
@@ -28,22 +28,23 @@ function FilterBy () {
          setOpenYear(false);
          setOpenAuthor(false);
        }
-   return (<><div className="filter_button-list">
-               <div className="filter__button button-author _btn-text" onClick={toggleOpenAuthor}>
+   return (<><Sty.FilterButtonList>
+               <Sty.FilterButton className="_btn-text" onClick={toggleOpenAuthor}>
                      исполнителю
-                  </div>
+                  </Sty.FilterButton>
                   {openAuthor && authorList()}
-            </div>
-            <div className="filter_button-list">
-               <div className="filter__button button-year _btn-text" onClick={toggleOpenYear}>
+            </Sty.FilterButtonList>
+            <Sty.FilterButtonList>
+               <Sty.FilterButton className="_btn-text" onClick={toggleOpenYear}>
                   году выпуска 
-               </div>
+               </Sty.FilterButton>
                {openYear && yearList()}
-            </div>
-            <div className="filter_button-list">
-               <div className="filter__button button-genre _btn-text" onClick={toggleOpenGenre}> жанру</div>
+            </Sty.FilterButtonList>
+            <Sty.FilterButtonList>
+               <Sty.FilterButton className="_btn-text" onClick={toggleOpenGenre}>
+                   жанру</Sty.FilterButton>
                 {openGenre && genreList()}
-            </div>
+            </Sty.FilterButtonList>
           </>
    )
 }

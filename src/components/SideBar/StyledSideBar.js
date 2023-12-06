@@ -77,21 +77,3 @@ export const SideBarImage = styled.img`
 width: 100%;
 height: auto;
 `
-// export const SideBarPersonal = styled.div`
-
-// `
-// export const SideBarPersonal = styled.div`
-
-// `
-// export const SideBarPersonal = styled.div`
-
-// `
-// export const SideBarPersonal = styled.div`
-
-// `
-// export const SideBarPersonal = styled.div`
-
-// `
-// export const SideBarPersonal = styled.div`
-
-// `
