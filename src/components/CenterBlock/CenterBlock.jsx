@@ -1,41 +1,40 @@
-import "./CenterBlock.css"
 import Tracks from "../TrackList/TrackList.jsx"
 import FilterBy from "../FilterBy/FilterBy.jsx" 
+import * as S from "../CenterBlock/StyledCenterBlock.js"
 
 function CenterBlock () {
    return (
-      <div className="main__centerblock centerblock">
-      <div className="centerblock__search search">
-        <svg className="search__svg">
+      <S.MainCenterBlock>
+      <S.CenterBlockSearch>
+        <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-        </svg>
-        <input
-          className="search__text"
+        </S.SearchSvg>
+        <S.SearchText
           type="search"
           placeholder="Поиск"
           name="search"
         />
-      </div>
-      <h2 className="centerblock__h2">Треки</h2>
-      <div className="centerblock__filter filter">
-        <div className="filter__title">Искать по:
-        </div>
+      </S.CenterBlockSearch>
+      <S.CenterBlockH2>Треки</S.CenterBlockH2>
+      <S.CenterBlockFilter>
+        <S.CenterBlockFilterTitle>Искать по:
+        </S.CenterBlockFilterTitle>
           <FilterBy/>
-      </div>
-      <div className="centerblock__content">
-        <div className="content__title playlist-title">
-          <div className="playlist-title__col col01">Трек</div>
-          <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>
-          <div className="playlist-title__col col03">АЛЬБОМ</div>
-          <div className="playlist-title__col col04">
-            <svg className="playlist-title__svg" alt="time">
+      </S.CenterBlockFilter>
+      <S.CenterBlockContent>
+        <S.ContentTitle>
+          <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
+          <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
+          <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
+          <S.PlaylistTitleC0l04>
+            <S.PlaylistTitleSvg alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-            </svg>
-          </div>
-        </div>
+            </S.PlaylistTitleSvg>
+          </S.PlaylistTitleC0l04>
+        </S.ContentTitle>
         <Tracks/>
-      </div>
-    </div>
+      </S.CenterBlockContent>
+    </S.MainCenterBlock>
 
    )
 }
