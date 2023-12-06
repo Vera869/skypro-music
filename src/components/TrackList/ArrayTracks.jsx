@@ -94,4 +94,3 @@ export const arrayTracks = [
      year: 2023,
    },
  ];
-//  export default arrayTracks

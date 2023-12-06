@@ -1,9 +1,8 @@
-import "./TrackList.css"
 import {useEffect, useState } from "react"
 import {arrayTracks} from "./ArrayTracks"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-
+import * as S from "../TrackList/StyledTrackList.js"
 
 function Tracks() {
    const [isLoading, setIsLoading] = useState(true)
@@ -15,60 +14,61 @@ function Tracks() {
 
 
    const trackItems = arrayTracks.map((track) => (
-     <li key={track.id} className="playlist__item">
-         <div className="playlist__track track">
-               <div className="track__title">
-                  <div className="track__title-image">
-                     <svg className="track__title-svg" alt="music">
+     <S.PlaylistItem key={track.id}>
+         <S.PlaylistTreck>
+               <S.TreckTitle>
+                  <S.TreckTitleImage>
+                     <S.TreckTitleSvg alt="music">
                         <use xlinkHref="img/icon/sprite.svg#icon-note" />
-                     </svg>
-                  </div>
-                  <div className="track__title-text">
+                     </S.TreckTitleSvg>
+                  </S.TreckTitleImage>
+                  <S.TreckTitleText>
                      {isLoading ? (<Skeleton width={270}
                                              baseColor="#202020"
                                              highlightColor="#444"
                                           />):(
-                                             <a className="track__title-link" href="http://">
+                                          <S.TreckTitleLink href="http://">
                                              {track.trackName}
                                              {track.remix ? (
-                                             <span className="track__title-span">({track.remix})</span>
+                                             <S.TreckTitleSpan className="track__title-span">({track.remix})
+                                             </S.TreckTitleSpan>
                                              ) : ("")}
-                                          </a>)}
-                  </div>
-                  <div className="track__author col02">
+                                          </S.TreckTitleLink>)}
+                  </S.TreckTitleText>
+                  <S.TreckAuthor>
                      {isLoading ? (<Skeleton
                                              width={270}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : (<a className="track__author-link" href="http://">
+                                       />) : (<S.TreckAuthorLink href="http://">
                                        {track.trackAuthor}
-                                       </a>)}
-                  </div>
-                  <div className="track__album col03">
+                                       </S.TreckAuthorLink>)}
+                  </S.TreckAuthor>
+                  <S.TreckAlbum>
                      {isLoading ? (<Skeleton
                                              width={315}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : ( <a className="track__album-link" href="http://">
+                                       />) : ( <S.TreckAlbumLink href="http://">
                                        {track.album}
-                                       </a>)}
-                  </div>
-                  <div className="track__time col04">
+                                       </S.TreckAlbumLink>)}
+                  </S.TreckAlbum>
+                  <div>
                      {isLoading ? (<Skeleton
                                              width={60}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : (<><svg className="track__time-svg" alt="time">
+                                       />) : (<><S.TreckTimeSvg className="track__time-svg" alt="time">
                                        <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                                       </svg>
-                                       <span className="track__time-text"> {track.trackTime}</span>
+                                       </S.TreckTimeSvg>
+                                       <S.TreckTimeText> {track.trackTime}</S.TreckTimeText>
                                        </>)}
                   </div>
-               </div>
-         </div>
-     </li>
+               </S.TreckTitle>
+         </S.PlaylistTreck>
+     </S.PlaylistItem>
    ));
  
-   return <ul className="content__playlist playlist">{trackItems}</ul>;
+   return <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>;
  }
  export default Tracks

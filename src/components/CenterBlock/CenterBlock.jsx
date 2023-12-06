@@ -21,7 +21,7 @@ function CenterBlock () {
         <div className="filter__title">Искать по:
         </div>
           <FilterBy/>
-        </div>
+      </div>
       <div className="centerblock__content">
         <div className="content__title playlist-title">
           <div className="playlist-title__col col01">Трек</div>
@@ -33,7 +33,7 @@ function CenterBlock () {
             </svg>
           </div>
         </div>
-       <Tracks/>
+        <Tracks/>
       </div>
     </div>
 
