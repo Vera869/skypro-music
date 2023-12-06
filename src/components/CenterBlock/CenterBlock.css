@@ -1,3 +1,18 @@
+
+.main__centerblock {
+  width: auto;
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+  padding: 20px 40px 20px 111px;
+}
+
+.main__sidebar {
+  max-width: 418px;
+  padding: 20px 90px 20px 78px;
+}
+
+
 .centerblock__search {
    width: 100%;
    border-bottom: 1px solid #4e4e4e;
