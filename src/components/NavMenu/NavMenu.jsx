@@ -1,11 +1,6 @@
 import {useState} from "react"
 import * as Styled from "../NavMenu/StyledNavMenu.js"
 
-
-//const StyledNavMenu = styled.div`
-//const StyledNavMenu = styled.div`
-//const StyledNavMenu = styled.div`
-
 function NavMenu () {
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
