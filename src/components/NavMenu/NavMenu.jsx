@@ -1,35 +1,35 @@
 import {useState} from "react"
-import * as Styled from "../NavMenu/StyledNavMenu.js"
+import * as S from "../NavMenu/StyledNavMenu.js"
 
 function NavMenu () {
   const [visible, setVisible] = useState(false);
   const toggleVisibility = () => setVisible(!visible);
 
    return (
-   <Styled.MainNav >
-      <Styled.NavLogo>
-      <Styled.LogoImage src="img/logo.png" alt="logo" />
-      </Styled.NavLogo>
-      <Styled.NavBurger onClick={toggleVisibility}>
-      <Styled.BurgerLine ></Styled.BurgerLine>
-      <Styled.BurgerLine ></Styled.BurgerLine>
-      <Styled.BurgerLine ></Styled.BurgerLine>
-      </Styled.NavBurger>
-      {visible && <  Styled.NavMenu>
-        <Styled.MenuList>
-          <Styled.MenuItem>
-            <Styled.MenuLink href="#">Главное</Styled.MenuLink>
-          </Styled.MenuItem>
-          <Styled.MenuItem>
-            <Styled.MenuLink href="#">Мой плейлист</Styled.MenuLink>
-          </Styled.MenuItem>
-          <Styled.MenuItem>
-            <Styled.MenuLink href="../signin.html">Войти</Styled.MenuLink>
-          </Styled.MenuItem>
-        </Styled.MenuList>
-      </Styled.NavMenu>}
+   <S.MainNav >
+      <S.NavLogo>
+      <S.LogoImage src="img/logo.png" alt="logo" />
+      </S.NavLogo>
+      <S.NavBurger onClick={toggleVisibility}>
+      <S.BurgerLine ></S.BurgerLine>
+      <S.BurgerLine ></S.BurgerLine>
+      <S.BurgerLine ></S.BurgerLine>
+      </S.NavBurger>
+      {visible && <  S.NavMenu>
+        <S.MenuList>
+          <S.MenuItem>
+            <S.MenuLink href="#">Главное</S.MenuLink>
+          </S.MenuItem>
+          <S.MenuItem>
+            <S.MenuLink href="#">Мой плейлист</S.MenuLink>
+          </S.MenuItem>
+          <S.MenuItem>
+            <S.MenuLink href="../signin.html">Войти</S.MenuLink>
+          </S.MenuItem>
+        </S.MenuList>
+      </S.NavMenu>}
 
-    </Styled.MainNav>
+    </S.MainNav>
    )
 }
 export default NavMenu

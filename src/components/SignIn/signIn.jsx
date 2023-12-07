@@ -1,9 +1,10 @@
 import './components/CSS/signIn.css'
+import * as S from "../SignIn/StyledSignIn.js"
 
 function signIn () {
    return (
       
-     <div className="wrapper">
+     <S.Wrapper className="wrapper">
      <div className="container-enter">
        <div className="modal__block">
          <form className="modal__form-login" action="#">
@@ -33,7 +34,7 @@ function signIn () {
          </form>
        </div>
      </div>
-   </div>
+   </S.Wrapper>
    )}
 
 export default signIn
