@@ -27,9 +27,3 @@ flex-wrap: wrap;
 justify-content: space-between;
 flex-wrap: nowrap;
 `
-// export const CenterBlock = styled.div`
-
-// `
-// export const CenterBlock = styled.div`
-
-// `
