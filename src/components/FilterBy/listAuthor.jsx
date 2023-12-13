@@ -1,15 +1,15 @@
-import * as Sty from "../FilterBy/StyledFilter.js"
+import * as S from "../FilterBy/StyledFilter.js"
 
 export  let authorList = () => {
    return (
      <div>
-     <Sty.List>
-       <Sty.ListEl>Michel Jackson</Sty.ListEl>
-       <Sty.ListEl>Frank Sinstra</Sty.ListEl>
-       <Sty.ListEl>Calvin Harris</Sty.ListEl>
-       <Sty.ListEl>Zhu</Sty.ListEl>
-       <Sty.ListEl>Arctic Monke</Sty.ListEl>
-     </Sty.List >
+     <S.List>
+       <S.ListEl>Michel Jackson</S.ListEl>
+       <S.ListEl>Frank Sinstra</S.ListEl>
+       <S.ListEl>Calvin Harris</S.ListEl>
+       <S.ListEl>Zhu</S.ListEl>
+       <S.ListEl>Arctic Monke</S.ListEl>
+     </S.List >
    </div>
    )
  }
