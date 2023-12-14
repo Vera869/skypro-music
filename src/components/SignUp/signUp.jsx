@@ -1,4 +1,5 @@
 import '../SignUp/signUp.css'
+import {Link} from 'react-router-dom'
 
 export const SignUp = () => {
    return (
@@ -30,7 +31,7 @@ export const SignUp = () => {
             placeholder="Повторите пароль"
             />
             <button className="modal__btn-signup-ent">
-            <a href="../index.html">Зарегистрироваться</a>
+            <Link to="/">Зарегистрироваться</Link>
             </button>
          </form>
       </div>
@@ -38,4 +39,3 @@ export const SignUp = () => {
       </div>
    )
 }
-// export default SignUp

@@ -1,5 +1,6 @@
 import {useState} from "react"
 import * as S from "../NavMenu/StyledNavMenu.js"
+import {Link} from 'react-router-dom'
 
 function NavMenu () {
   const [visible, setVisible] = useState(false);
@@ -18,13 +19,21 @@ function NavMenu () {
       {visible && <  S.NavMenu>
         <S.MenuList>
           <S.MenuItem>
-            <S.MenuLink href="/">Главное</S.MenuLink>
+            <Link to="/">
+              <S.MenuLink>
+                Главное
+              </S.MenuLink>
+            </Link>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink href="/favorites">Мой плейлист</S.MenuLink>
+          <Link to="/favorites">
+            <S.MenuLink>Мой плейлист</S.MenuLink>
+          </Link>
           </S.MenuItem>
           <S.MenuItem>
-            <S.MenuLink href="/login">Войти</S.MenuLink>
+          <Link to="/login">
+            <S.MenuLink>Войти</S.MenuLink>
+          </Link>
           </S.MenuItem>
         </S.MenuList>
       </S.NavMenu>}
