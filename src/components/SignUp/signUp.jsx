@@ -1,6 +1,6 @@
-import './components/CSS/signUp.css'
+import '../SignUp/signUp.css'
 
-function signUp() {
+export const SignUp = () => {
    return (
       <div className="wrapper">
       <div className="container-signup">
@@ -38,4 +38,4 @@ function signUp() {
       </div>
    )
 }
-export default signUp
+// export default SignUp
