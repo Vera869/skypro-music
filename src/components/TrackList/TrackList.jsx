@@ -9,7 +9,7 @@ function Tracks() {
     useEffect(() => {
       setTimeout(() => {
           setIsLoading(false)
-      }, 5000)
+      }, 3000)
   }, [])
 
 

@@ -1,12 +1,13 @@
-import {CategoryPlayLists} from '../../components/SideBar/CategoryArray'
+import {arrayCategorys} from '../../components/SideBar/ArrayCategory'
 import { useParams } from "react-router-dom";
 
-export const PlayListCategory = ({CategoryPlayLists}) => {
+export const PlayListCategory = ({arrayCategorys}) => {
    const params = useParams();
-   const CategoryPlayList = CategoryPlayLists.find((uCategoryPlayList) => CategoryPlayList.id === Number(params.id));
+   
+   const arrayCategory = arrayCategorys.find((arrayCategory) => arrayCategory.id === Number(params.id));
    return (
       <div>
-         <img src={CategoryPlayList.src} alt={CategoryPlayList.alt}/>
+         <img src={arrayCategory.src} alt={arrayCategory.alt}/>
          <h1>
            Плейлист дня
          </h1>
