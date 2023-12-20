@@ -5,7 +5,8 @@ import NavMenu from '../../components/NavMenu/NavMenu.jsx'
 import * as S from "../../StyledApp.js"
 import GlobalStyle  from "../../GlobalStyled.js"
 
-export const Main = () => {
+export const Main = ({setUser}) => {
+  
   return (
     <>
     <GlobalStyle/>
@@ -15,7 +16,7 @@ export const Main = () => {
           <S.Main>
             <NavMenu />
             <CenterBlock />
-            <SideBar />
+            <SideBar setUser={setUser} />
           </S.Main>
           <footer>
           <AudioPlayer />

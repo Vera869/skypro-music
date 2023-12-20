@@ -19,7 +19,7 @@ export const AppRoutes = () => {
          <Route path="/registration" element={<Reg />} />
          <Route element={<ProtectedRoute isAllowed={Boolean(user)}/>}>
             <Route path="*" element={<NotFound />} />
-            <Route path="/" element={<App />} />
+            <Route path="/" element={<App setUser={setUser} />} />
             <Route path="/category/:id" element={<PlayListCategory arrayCategorys={arrayCategorys} />} />
             <Route path="/favorites" element={<Favorites />} />
          </Route>

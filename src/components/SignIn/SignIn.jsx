@@ -3,11 +3,11 @@ import {Link, useNavigate} from 'react-router-dom'
 
 export const SignIn = ({setUser}) => {
   const navigate = useNavigate();
-  const login = () => {
-    localStorage.setItem("user", "true") 
-    setUser("user")
-    navigate("/")
 
+  const login = () => {
+    localStorage.setItem("user", "true");
+    setUser("user");
+    navigate("/");
   }
 
    return (
