@@ -17,7 +17,7 @@ export const CategoryPlayLists = () => {
    return (
       <>
          {arrayCategorys.map((arrayCategory) => (
-            <S.SideBarItem key='arrayCategory.id' >
+            <S.SideBarItem key={arrayCategory.id} >
               {isLoading ? (<Skeleton
                             width={250}
                             height={150}

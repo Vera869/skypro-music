@@ -31,7 +31,7 @@ export const SignUp = () => {
             placeholder="Повторите пароль"
             />
             <button className="modal__btn-signup-ent">
-            <Link to="/">Зарегистрироваться</Link>
+            <Link to="/login">Зарегистрироваться</Link>
             </button>
          </form>
       </div>

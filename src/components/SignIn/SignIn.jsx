@@ -1,7 +1,15 @@
 import '../SignIn/SignIn.css'
-import {Link} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
-export const SignIn = () => {
+export const SignIn = ({setUser}) => {
+  const navigate = useNavigate();
+  const login = () => {
+    localStorage.setItem("user", "true") 
+    setUser("user")
+    navigate("/")
+
+  }
+
    return (
       <div className="wrapper">
       <div className="container-enter">
@@ -24,8 +32,8 @@ export const SignIn = () => {
               name="password"
               placeholder="Пароль"
             />
-            <button className="modal__btn-enter">
-              <Link to="/">Войти</Link>
+            <button className="modal__btn-enter" onClick={login}>
+              Войти
             </button>
             <button className="modal__btn-signup">
               <Link to="/registration">Зарегистрироваться</Link>

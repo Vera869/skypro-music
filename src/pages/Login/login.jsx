@@ -1,9 +1,10 @@
 import {SignIn} from '../../components/SignIn/SignIn'
 
-export const Login = () => {
+export const Login = ({setUser}) => {
+
    return (
      <>
-      <SignIn />
+      <SignIn setUser={setUser} />
      </>
    )
 }
