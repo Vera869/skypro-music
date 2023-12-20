@@ -3,6 +3,7 @@ import {arrayTracks} from "./ArrayTracks"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from "../TrackList/StyledTrackList.js"
+import {Link} from 'react-router-dom'
 
 function Tracks() {
    const [isLoading, setIsLoading] = useState(true)
@@ -26,39 +27,44 @@ function Tracks() {
                      {isLoading ? (<Skeleton width={270}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                          />):(
-                                          <S.TreckTitleLink href="http://">
+                                          />):(<Link to="/trackName">
+                                          <S.TreckTitleLink>
                                              {track.trackName}
                                              {track.remix ? (
-                                             <S.TreckTitleSpan className="track__title-span">({track.remix})
+                                             <S.TreckTitleSpan>({track.remix})
                                              </S.TreckTitleSpan>
                                              ) : ("")}
-                                          </S.TreckTitleLink>)}
+                                          </S.TreckTitleLink>
+                                          </Link>)}
                   </S.TreckTitleText>
                   <S.TreckAuthor>
                      {isLoading ? (<Skeleton
                                              width={270}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : (<S.TreckAuthorLink href="http://">
+                                       />) : (<Link to="/TrackAuthtor">
+                                       <S.TreckAuthorLink>
                                        {track.trackAuthor}
-                                       </S.TreckAuthorLink>)}
+                                       </S.TreckAuthorLink>
+                                       </Link>)}
                   </S.TreckAuthor>
                   <S.TreckAlbum>
                      {isLoading ? (<Skeleton
                                              width={315}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : ( <S.TreckAlbumLink href="http://">
+                                       />) : ( <Link to="/TrackAlbum">
+                                       <S.TreckAlbumLink>
                                        {track.album}
-                                       </S.TreckAlbumLink>)}
+                                       </S.TreckAlbumLink>
+                                       </Link>)}
                   </S.TreckAlbum>
                   <div>
                      {isLoading ? (<Skeleton
                                              width={60}
                                              baseColor="#202020"
                                              highlightColor="#444"
-                                       />) : (<><S.TreckTimeSvg className="track__time-svg" alt="time">
+                                       />) : (<><S.TreckTimeSvg alt="time">
                                        <use xlinkHref="img/icon/sprite.svg#icon-like" />
                                        </S.TreckTimeSvg>
                                        <S.TreckTimeText> {track.trackTime}</S.TreckTimeText>
