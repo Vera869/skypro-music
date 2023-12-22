@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 export const PlayListCategory = ({arrayCategorys}) => {
 
    const params = useParams();
-   console.log(arrayCategorys);
    
    const arrayCategory = arrayCategorys.find((arrayCategory) => arrayCategory.id === Number(params.id));
    return (
