@@ -52,33 +52,14 @@ body {
   font-family: 'StratosSkyeng', sans-serif;
   color: #ffffff;
 }
-// добавлено из StyledApp wrapper, container, main, new-page
-.wrapper {
-  width: 100%;
-  min-height: 100%;
-  overflow: hidden;
-  background-color: #383838;
-}
+// добавлено из StyledMain: container
+// добавлено new-page, App
 .container {
   max-width: 1920px;
   height: 100vh;
   margin: 0 auto;
   position: relative;
   background-color: #181818;
-}
-.main {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  flex-wrap: nowrap;
 }
 .new-page {
   display: flex;

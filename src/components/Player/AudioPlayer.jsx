@@ -2,7 +2,6 @@ import {useEffect, useState } from "react"
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from "../Player/StyledAudioPleer.js"
-import {Link} from 'react-router-dom'
 
 function AudioPlayer () {
   const [isLoading, setIsLoading] = useState(true)
@@ -63,19 +62,18 @@ function AudioPlayer () {
                                         width={270}
                                         baseColor="#202020"
                                         highlightColor="#444"
-                                    />) : (<Link to="/TrackAuthor">
-                                            <S.TrackPlayAuthorLink>
-                                            Баста</S.TrackPlayAuthorLink>
-                                          </Link>)}
+                                    />) : (<S.TrackPlayAuthorLink>
+                                            Баста
+                                          </S.TrackPlayAuthorLink>)}
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
                   {isLoading ? (<Skeleton
                                         width={270}
                                         baseColor="#202020"
                                         highlightColor="#444"
-                                    />) : (<Link to="/TrackAlmum">
-                                    <S.TrackPlayAlbumLink>Ты та...</S.TrackPlayAlbumLink>
-                                    </Link>)}
+                                    />) : (<S.TrackPlayAlbumLink>
+                                      Ты та...
+                                      </S.TrackPlayAlbumLink>)}
                 </S.TrackPlayAlbum>
               </S.TrackPlayContain>
 

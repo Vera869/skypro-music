@@ -1,7 +1,6 @@
 import {useState} from "react"
 import { useNavigate} from 'react-router-dom'
 import * as S from "../NavMenu/StyledNavMenu.js"
-import {Link} from 'react-router-dom'
 
 function NavMenu ({setUser}) {
   const [visible, setVisible] = useState(false);
@@ -28,19 +27,19 @@ function NavMenu ({setUser}) {
       {visible && <  S.NavMenu>
         <S.MenuList>
           <S.MenuItem>
-            <Link to="/">
-              <S.MenuLink>
+              <S.MenuLink to="/">
                 Главное
               </S.MenuLink>
-            </Link>
           </S.MenuItem>
           <S.MenuItem>
-          <Link to="/favorites">
-            <S.MenuLink>Мой плейлист</S.MenuLink>
-          </Link>
+            <S.MenuLink to="/favorites">
+              Мой плейлист
+            </S.MenuLink>
           </S.MenuItem>
           <S.MenuItem>
-          <S.MenuLink onClick={logout} >Выйти</S.MenuLink>
+          <S.MenuLink to="/login" onClick={logout}>
+            Выйти
+          </S.MenuLink>
           </S.MenuItem>
         </S.MenuList>
       </S.NavMenu>}

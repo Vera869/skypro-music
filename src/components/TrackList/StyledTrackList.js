@@ -1,4 +1,5 @@
 import  styled  from 'styled-components'
+import {Link} from 'react-router-dom'
 
 export const PlaylistItem = styled.li`
 width: 100%;
@@ -57,7 +58,7 @@ height: 17px;
 fill: transparent;
 stroke: #4e4e4e;
 `
-export const TreckTitleLink = styled.a`
+export const TreckTitleLink = styled(Link)`
 font-style: normal;
 font-weight: 400;
 font-size: 16px;
@@ -80,7 +81,7 @@ display: flex;
 -ms-flex-pack: start;
 justify-content: flex-start;
 `
-export const TreckAuthorLink = styled.a`
+export const TreckAuthorLink = styled(Link)`
 font-style: normal;
 font-weight: 400;
 font-size: 16px;

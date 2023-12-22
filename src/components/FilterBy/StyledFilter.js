@@ -40,7 +40,7 @@ line-height: 24px;
 border: 1px solid #ffffff;
 border-radius: 60px;
 padding: 6px 20px;
-&:not(:last-child) {
-   margin-right: 10px;
- }
+// &:not(:last-child) {
+//    margin-right: 10px;
+//  }
 `

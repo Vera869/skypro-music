@@ -23,14 +23,13 @@ export const CategoryPlayLists = () => {
                             height={150}
                             baseColor="#202020"
                             highlightColor="#444"
-                         />) : (<> <Link to={`category/${arrayCategory.id}`}>
-                                       <S.SideBarLink>
+                         />) : (<> <S.SideBarLink to={`category/${arrayCategory.id}`}>
                                           <S.SideBarImage
                                              src={arrayCategory.src}
                                              alt={arrayCategory.alt}
                                           />
                                        </S.SideBarLink>
-                                   </Link></>)}
+                                   </>)}
             </S.SideBarItem>
          ))}
       </>
