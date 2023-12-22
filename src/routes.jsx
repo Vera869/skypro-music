@@ -1,4 +1,7 @@
 import {Routes, Route} from "react-router-dom"
+import { ProtectedRoute } from "./ProtectedRoute"
+import { useState } from "react"
+
 import {App} from '../src/App'
 import { NotFound } from "./pages/not-found/not-foundPage"
 import {Favorites} from "./pages/Favorites/favorites"
@@ -6,8 +9,7 @@ import {Login} from "./pages/Login/login"
 import {Reg} from './pages/Registration/registration'
 import {PlayListCategory} from '../src/pages/Category/category'
 import {arrayCategorys} from '../src/components/SideBar/ArrayCategory'
-import { ProtectedRoute } from "./ProtectedRoute"
-import { useState } from "react"
+
 
 export const AppRoutes = () => {
    const [user, setUser] = useState(localStorage.getItem("user"))

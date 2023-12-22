@@ -14,7 +14,7 @@ export const Main = ({setUser}) => {
       <S.Wrapper>
         <S.Container>
           <S.Main>
-            <NavMenu />
+            <NavMenu setUser={setUser} />
             <CenterBlock />
             <SideBar setUser={setUser} />
           </S.Main>

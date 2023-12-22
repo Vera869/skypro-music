@@ -2,6 +2,7 @@ import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
 import { useNavigate} from 'react-router-dom'
 
+
 function SideBar({setUser}) {
   const navigate = useNavigate();
 
