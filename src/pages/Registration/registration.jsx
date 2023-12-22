@@ -1,10 +1,9 @@
-// import '../../components/SignUp/signUp.css'
-import {SignUp} from "../../components/SignUp/signUp.jsx"
-export const Reg = () => {
+import { SignUp } from '../../components/SignUp/signUp.jsx'
 
-   return (
-      <>
-      <SignUp/>
-      </>
-   )
+export const Reg = () => {
+  return (
+    <>
+      <SignUp />
+    </>
+  )
 }

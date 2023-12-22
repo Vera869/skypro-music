@@ -1,25 +1,20 @@
-import Tracks from "../TrackList/TrackList.jsx"
-import FilterBy from "../FilterBy/FilterBy.jsx" 
-import * as S from "../CenterBlock/StyledCenterBlock.js"
+import Tracks from '../TrackList/TrackList.jsx'
+import FilterBy from '../FilterBy/FilterBy.jsx'
+import * as S from '../CenterBlock/StyledCenterBlock.js'
 
-function CenterBlock () {
-   return (
-      <S.MainCenterBlock>
+function CenterBlock() {
+  return (
+    <S.MainCenterBlock>
       <S.CenterBlockSearch>
         <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
         </S.SearchSvg>
-        <S.SearchText
-          type="search"
-          placeholder="Поиск"
-          name="search"
-        />
+        <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterBlockSearch>
       <S.CenterBlockH2>Треки</S.CenterBlockH2>
       <S.CenterBlockFilter>
-        <S.CenterBlockFilterTitle>Искать по:
-        </S.CenterBlockFilterTitle>
-          <FilterBy/>
+        <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
+        <FilterBy />
       </S.CenterBlockFilter>
       <S.CenterBlockContent>
         <S.ContentTitle>
@@ -32,10 +27,9 @@ function CenterBlock () {
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        <Tracks/>
+        <Tracks />
       </S.CenterBlockContent>
     </S.MainCenterBlock>
-
-   )
+  )
 }
 export default CenterBlock

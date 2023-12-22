@@ -1,41 +1,38 @@
-import '../SignUp/signUp.css'
-import {Link} from 'react-router-dom'
+import * as S from '../SignUp/StyledSignUp'
 
 export const SignUp = () => {
-   return (
-      <div className="wrapper">
-      <div className="container-signup">
-      <div className="modal__block">
-         <form className="modal__form-login">
+  return (
+    <S.Wrapper>
+      <S.ContainerSignUp>
+        <S.ModalBlock>
+          <S.ModalFormLogin>
             <a href="../">
-            <div className="modal__logo">
-               <img src="../img/logo_modal.png" alt="logo" />
-            </div>
+              <S.ModalLogo>
+                <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
+              </S.ModalLogo>
             </a>
-            <input
-            className="modal__input login"
-            type="text"
-            name="login"
-            placeholder="Почта"
+            <S.ModalInput
+              className="login"
+              type="text"
+              name="login"
+              placeholder="Почта"
             />
-            <input
-            className="modal__input password-first"
-            type="password"
-            name="password"
-            placeholder="Пароль"
+            <S.ModalInput
+              className="password-first"
+              type="password"
+              name="password"
+              placeholder="Пароль"
             />
-            <input
-            className="modal__input password-double"
-            type="password"
-            name="password"
-            placeholder="Повторите пароль"
+            <S.ModalInput
+              className="password-double"
+              type="password"
+              name="password"
+              placeholder="Повторите пароль"
             />
-            <button className="modal__btn-signup-ent">
-            <Link to="/login">Зарегистрироваться</Link>
-            </button>
-         </form>
-      </div>
-      </div>
-      </div>
-   )
+            <S.ModalBtnSignUp to="/login">Зарегистрироваться</S.ModalBtnSignUp>
+          </S.ModalFormLogin>
+        </S.ModalBlock>
+      </S.ContainerSignUp>
+    </S.Wrapper>
+  )
 }

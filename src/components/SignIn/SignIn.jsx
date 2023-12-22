@@ -1,46 +1,38 @@
-import '../SignIn/SignIn.css'
-import {Link, useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import * as S from '../SignIn/StyledSignIn'
 
-export const SignIn = ({setUser}) => {
-  const navigate = useNavigate();
+export const SignIn = ({ setUser }) => {
+  const navigate = useNavigate()
 
   const login = () => {
-    localStorage.setItem("user", "true");
-    setUser("user");
-    navigate("/");
+    localStorage.setItem('user', 'true')
+    setUser('user')
+    navigate('/')
   }
 
-   return (
-      <div className="wrapper">
-      <div className="container-enter">
-        <div className="modal__block">
-          <form className="modal__form-login" action="#">
+  return (
+    <S.wrapper>
+      <S.ContainerEnter>
+        <S.ModalBlock>
+          <S.ModalFormLogin action="#">
             <a href="../">
-              <div className="modal__logo">
-                <img src="../img/logo_modal.png" alt="logo" />
-              </div>
+              <S.ModalLogo>
+                <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
+              </S.ModalLogo>
             </a>
-            <input
-              className="modal__input login"
-              type="text"
-              name="login"
-              placeholder="Почта"
-            />
-            <input
-              className="modal__input password"
+            <S.ModaInputLogin type="text" name="login" placeholder="Почта" />
+            <S.ModaInputPassword
               type="password"
               name="password"
               placeholder="Пароль"
             />
-            <button className="modal__btn-enter" onClick={login}>
-              Войти
-            </button>
-            <button className="modal__btn-signup">
+            <S.ModalBtnEnter onClick={login}>Войти</S.ModalBtnEnter>
+            <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-   )
-} 
+            </S.ModalBtnSignup>
+          </S.ModalFormLogin>
+        </S.ModalBlock>
+      </S.ContainerEnter>
+    </S.wrapper>
+  )
+}

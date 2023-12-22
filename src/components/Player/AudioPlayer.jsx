@@ -1,17 +1,17 @@
-import {useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import * as S from "../Player/StyledAudioPleer.js"
+import * as S from '../Player/StyledAudioPleer.js'
 
-function AudioPlayer () {
+function AudioPlayer() {
   const [isLoading, setIsLoading] = useState(true)
   useEffect(() => {
-      setTimeout(() => {
-          setIsLoading(false)
-      }, 3000)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 3000)
   }, [])
-   return (
-      < S.Bar>
+  return (
+    <S.Bar>
       <S.BarContent>
         <S.BarPlayerProgress></S.BarPlayerProgress>
         <S.BarPleerBlock>
@@ -47,55 +47,65 @@ function AudioPlayer () {
             <S.PlayerTrackPlay>
               <S.TrackPlayContain>
                 <S.TrackPlayImage>
-                  {isLoading ? (<Skeleton
-                                    width={55}
-                                    height={55}
-                                    baseColor="#202020"
-                                    highlightColor="#444"
-                                />) : (
-                  <S.TrackPlaySvg alt="music">
-                    <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                  </S.TrackPlaySvg>)}
+                  {isLoading ? (
+                    <Skeleton
+                      width={55}
+                      height={55}
+                      baseColor="#202020"
+                      highlightColor="#444"
+                    />
+                  ) : (
+                    <S.TrackPlaySvg alt="music">
+                      <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    </S.TrackPlaySvg>
+                  )}
                 </S.TrackPlayImage>
                 <S.TrackPlayAuthor>
-                   {isLoading ? (<Skeleton
-                                        width={270}
-                                        baseColor="#202020"
-                                        highlightColor="#444"
-                                    />) : (<S.TrackPlayAuthorLink>
-                                            Баста
-                                          </S.TrackPlayAuthorLink>)}
+                  {isLoading ? (
+                    <Skeleton
+                      width={270}
+                      baseColor="#202020"
+                      highlightColor="#444"
+                    />
+                  ) : (
+                    <S.TrackPlayAuthorLink>Баста</S.TrackPlayAuthorLink>
+                  )}
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
-                  {isLoading ? (<Skeleton
-                                        width={270}
-                                        baseColor="#202020"
-                                        highlightColor="#444"
-                                    />) : (<S.TrackPlayAlbumLink>
-                                      Ты та...
-                                      </S.TrackPlayAlbumLink>)}
+                  {isLoading ? (
+                    <Skeleton
+                      width={270}
+                      baseColor="#202020"
+                      highlightColor="#444"
+                    />
+                  ) : (
+                    <S.TrackPlayAlbumLink>Ты та...</S.TrackPlayAlbumLink>
+                  )}
                 </S.TrackPlayAlbum>
               </S.TrackPlayContain>
 
               <S.TrackPlayLikeDis>
-              {isLoading ? (<Skeleton
-                                    width={55}
-                                    height={55}
-                                    baseColor="#202020"
-                                    highlightColor="#444"
-                                />) : (<>
-                <S.TrackPlayLike className="_btn-icon">
-                  <S.TrackPlayLikeSvg alt="like">
-                    <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                  </S.TrackPlayLikeSvg>
-                </S.TrackPlayLike>
-                <S.TrackPlayDislike className="_btn-icon">
-                  <S.TrackPlayDislikeSvg alt="dislike">
-                    <use
-                      xlinkHref="img/icon/sprite.svg#icon-dislike"
-                    ></use>
-                  </S.TrackPlayDislikeSvg>
-                </S.TrackPlayDislike></>)}
+                {isLoading ? (
+                  <Skeleton
+                    width={55}
+                    height={55}
+                    baseColor="#202020"
+                    highlightColor="#444"
+                  />
+                ) : (
+                  <>
+                    <S.TrackPlayLike className="_btn-icon">
+                      <S.TrackPlayLikeSvg alt="like">
+                        <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      </S.TrackPlayLikeSvg>
+                    </S.TrackPlayLike>
+                    <S.TrackPlayDislike className="_btn-icon">
+                      <S.TrackPlayDislikeSvg alt="dislike">
+                        <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                      </S.TrackPlayDislikeSvg>
+                    </S.TrackPlayDislike>
+                  </>
+                )}
               </S.TrackPlayLikeDis>
             </S.PlayerTrackPlay>
           </S.BarPleer>
@@ -117,7 +127,7 @@ function AudioPlayer () {
           </S.BarVolumeBlock>
         </S.BarPleerBlock>
       </S.BarContent>
-      </S.Bar>
-   )
+    </S.Bar>
+  )
 }
 export default AudioPlayer
