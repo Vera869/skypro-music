@@ -51,7 +51,6 @@ body {
   height: 100%;
   font-family: 'StratosSkyeng', sans-serif;
   color: #ffffff;
-  
 }
 // добавлено из StyledApp wrapper, container, main, new-page
 .wrapper {
@@ -88,6 +87,9 @@ body {
   justify-content: center;
   align-items: center;
   padding: 5px, 5px, 5px, 5px;
+}
+.App {
+  background-color: rgb(56, 56, 56);
 }
 
 ._btn-text:hover {

@@ -8,7 +8,7 @@ export const Main = ({setUser}) => {
   
   return (
     <>
-    <div className="App">
+    <div>
       <S.Wrapper>
         <S.Container>
           <S.Main>

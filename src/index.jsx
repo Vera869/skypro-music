@@ -10,7 +10,9 @@ root.render(
   <GlobalStyle/>
   <React.StrictMode>
     <BrowserRouter>
+    <div className="App">
       <AppRoutes/>
+    </div>
     </BrowserRouter>
   </React.StrictMode>
   </>
