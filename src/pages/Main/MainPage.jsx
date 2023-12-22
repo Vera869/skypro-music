@@ -2,14 +2,12 @@ import SideBar from '../../components/SideBar/Sidebar.jsx'
 import CenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
 import AudioPlayer from '../../components/Player/AudioPlayer.jsx'
 import NavMenu from '../../components/NavMenu/NavMenu.jsx'
-import * as S from "../../StyledApp.js"
-import GlobalStyle  from "../../GlobalStyled.js"
+import * as S from "../../StyledMain.js"
 
 export const Main = ({setUser}) => {
   
   return (
     <>
-    <GlobalStyle/>
     <div className="App">
       <S.Wrapper>
         <S.Container>

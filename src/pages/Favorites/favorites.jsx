@@ -1,6 +1,6 @@
 export const Favorites = () => {
    return (
-      <div>
+      <div  className="container new-page">
          <h1>
             Мой плейлист
          </h1>

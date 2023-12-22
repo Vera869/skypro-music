@@ -2,7 +2,7 @@
 
 export const NotFound = () => {
    return (
-   <div>
+   <div className="container new-page">
       <h1>
          Данная страница не обнаружена.
       </h1>

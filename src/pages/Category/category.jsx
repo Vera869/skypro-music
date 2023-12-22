@@ -7,7 +7,7 @@ export const PlayListCategory = ({arrayCategorys}) => {
    
    const arrayCategory = arrayCategorys.find((arrayCategory) => arrayCategory.id === Number(params.id));
    return (
-      <div>
+      <div className="container new-page">
          <img src={"/"+arrayCategory.src} alt={arrayCategory.alt}/>
          <h1>
            Плейлист  {arrayCategory.alt}
