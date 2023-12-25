@@ -3,15 +3,21 @@ import { arrayTracks } from './ArrayTracks'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../TrackList/StyledTrackList.js'
+// import {getAllTracks} from '../../Api.jsx'
 
 function Tracks() {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true);
+  // const [tracks, setTracks] = useState();
+
   useEffect(() => {
+    // getAllTracks().then((tracks) => console.log(tracks))
+
     setTimeout(() => {
       setIsLoading(false)
     }, 3000)
   }, [])
-
+ 
+  
   const trackItems = arrayTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
