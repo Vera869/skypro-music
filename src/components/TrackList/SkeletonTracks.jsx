@@ -2,7 +2,8 @@ import * as S from '../TrackList/StyledTrackList.js'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
-export const skeletonTracks = () => {
+export const SkeletonTracks = () => {
+   return(
    <S.PlaylistTreck>
    <S.TreckTitle>
      <S.TreckTitleImage>
@@ -24,5 +25,6 @@ export const skeletonTracks = () => {
      </div>
    </S.TreckTitle>
  </S.PlaylistTreck>
+   )
 }
 

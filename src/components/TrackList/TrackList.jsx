@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import * as S from '../TrackList/StyledTrackList.js'
 import {getAllTracks} from '../../Api.jsx'
-import {skeletonTracks} from './SkeletonTracks.jsx'
+import {SkeletonTracks} from './SkeletonTracks.jsx'
 
 function Tracks() {
   const [isLoading, setIsLoading] = useState(true);
@@ -58,11 +58,7 @@ function Tracks() {
      
     </S.PlaylistItem>
   ))
-  // const loadingTracks = () => {
-  //   {isLoading ? <skeletonTracks /> : trackItems}
-  // }
-
   return <S.ContentPlaylist>{errorGetTracks ? (<p>К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста, попробуйте позже.</p>) : ""}
-  {isLoading ? <skeletonTracks /> : trackItems}</S.ContentPlaylist>
+  {isLoading ? <SkeletonTracks /> : trackItems}</S.ContentPlaylist>
 }
 export default Tracks
