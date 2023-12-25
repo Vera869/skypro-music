@@ -4,21 +4,22 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../TrackList/StyledTrackList.js'
 import {getAllTracks} from '../../Api.jsx'
+import {skeletonTracks} from './SkeletonTracks.jsx'
 
 function Tracks() {
   const [isLoading, setIsLoading] = useState(true);
   const [allTracks, setAllTracks] = useState([]);
+  const [errorGetTracks, setErrorGetTracks] = useState(null);
 
   useEffect(() => {
     getAllTracks().then((arrayTracks) => {
       console.log(arrayTracks);
       setAllTracks(arrayTracks);
       setIsLoading(false);
+    }).catch((error) => {
+      alert("error.message")
+      setErrorGetTracks(error.message);
     })
-
-    // setTimeout(() => {
-    //   setIsLoading(false)
-    // }, 3000)
   }, [])
  
   
@@ -69,7 +70,7 @@ function Tracks() {
                 <S.TreckTimeSvg alt="time">
                   <use xlinkHref="img/icon/sprite.svg#icon-like" />
                 </S.TreckTimeSvg>
-                <S.TreckTimeText> {track.duration_in_seconds}</S.TreckTimeText>
+                <S.TreckTimeText>{track.duration_in_seconds}</S.TreckTimeText>
               </>
             )}
           </div>
@@ -78,6 +79,6 @@ function Tracks() {
     </S.PlaylistItem>
   ))
 
-  return <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
+  return <S.ContentPlaylist>{errorGetTracks ? (<p>К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста, попробуйте позже.</p>) : trackItems}</S.ContentPlaylist>
 }
 export default Tracks
