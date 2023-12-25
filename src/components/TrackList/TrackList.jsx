@@ -1,24 +1,28 @@
 import { useEffect, useState } from 'react'
-import { arrayTracks } from './ArrayTracks'
+// import { arrayTracks } from './ArrayTracks'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../TrackList/StyledTrackList.js'
-// import {getAllTracks} from '../../Api.jsx'
+import {getAllTracks} from '../../Api.jsx'
 
 function Tracks() {
   const [isLoading, setIsLoading] = useState(true);
-  // const [tracks, setTracks] = useState();
+  const [allTracks, setAllTracks] = useState([]);
 
   useEffect(() => {
-    // getAllTracks().then((tracks) => console.log(tracks))
+    getAllTracks().then((arrayTracks) => {
+      console.log(arrayTracks);
+      setAllTracks(arrayTracks);
+      setIsLoading(false);
+    })
 
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
+    // setTimeout(() => {
+    //   setIsLoading(false)
+    // }, 3000)
   }, [])
  
   
-  const trackItems = arrayTracks.map((track) => (
+  const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
@@ -32,7 +36,7 @@ function Tracks() {
               <Skeleton width={270} baseColor="#202020" highlightColor="#444" />
             ) : (
               <S.TreckTitleLink to="/Trak">
-                {track.trackName}
+                {track.name}
                 {track.remix ? (
                   <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
                 ) : (
@@ -46,7 +50,7 @@ function Tracks() {
               <Skeleton width={270} baseColor="#202020" highlightColor="#444" />
             ) : (
               <S.TreckAuthorLink to="/AuthorList">
-                {track.trackAuthor}
+                {track.author}
               </S.TreckAuthorLink>
             )}
           </S.TreckAuthor>
@@ -65,7 +69,7 @@ function Tracks() {
                 <S.TreckTimeSvg alt="time">
                   <use xlinkHref="img/icon/sprite.svg#icon-like" />
                 </S.TreckTimeSvg>
-                <S.TreckTimeText> {track.trackTime}</S.TreckTimeText>
+                <S.TreckTimeText> {track.duration_in_seconds}</S.TreckTimeText>
               </>
             )}
           </div>
