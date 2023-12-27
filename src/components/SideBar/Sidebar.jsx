@@ -2,7 +2,10 @@ import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
 import { useNavigate } from 'react-router-dom'
 
-function SideBar({ setUser }) {
+function SideBar({ 
+  setUser,
+  isLoading,
+  setIsLoading }) {
   const navigate = useNavigate()
 
   const logout = () => {
@@ -24,7 +27,9 @@ function SideBar({ setUser }) {
       </S.SideBarPersonal>
       <S.SideBarBlock>
         <S.SideBarList>
-          <CategoryPlayLists />
+          <CategoryPlayLists setUser={setUser}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading} />
         </S.SideBarList>
       </S.SideBarBlock>
     </S.MineSideBar>

@@ -1,15 +1,14 @@
-import { useEffect, useState } from 'react'
+
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 
-function AudioPlayer() {
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-  }, [])
+function AudioPlayer({
+  isVisiblePlayer,
+  setVisiblePlayer,
+  isLoading,
+}) {
+ 
   return (
     <S.Bar>
       <S.BarContent>

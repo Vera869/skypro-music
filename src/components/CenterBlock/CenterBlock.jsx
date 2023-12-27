@@ -2,7 +2,11 @@ import GetTracks from '../TrackList/TrackList.jsx'
 import FilterBy from '../FilterBy/FilterBy.jsx'
 import * as S from '../CenterBlock/StyledCenterBlock.js'
 
-function CenterBlock() {
+function CenterBlock({
+  isLoading,
+  allTracks,
+  errorGetTracks
+}) {
   return (
     <S.MainCenterBlock>
       <S.CenterBlockSearch>
@@ -27,7 +31,11 @@ function CenterBlock() {
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        <GetTracks />
+        <GetTracks 
+          isLoading={isLoading}
+          allTracks={allTracks}
+          errorGetTracks={errorGetTracks}
+        />
       </S.CenterBlockContent>
     </S.MainCenterBlock>
   )
