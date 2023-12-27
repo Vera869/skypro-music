@@ -6,6 +6,13 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
   return (
     isVisiblePlayer && (
       <S.Bar>
+        {trackPlayed ? (
+          <audio controls id="player" src={trackPlayed.track_file} autoPlay>
+            Здесь будет звучать Музыка!
+          </audio>
+        ) : (
+          ''
+        )}
         <S.BarContent>
           <S.BarPlayerProgress></S.BarPlayerProgress>
           <S.BarPleerBlock>

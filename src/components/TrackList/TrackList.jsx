@@ -1,5 +1,7 @@
 import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
+// import { useState } from 'react'
+
 
 function GetTracks({
   isLoading,
@@ -26,13 +28,11 @@ function GetTracks({
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
     )
   }
-  // const clickTrack = () => {
-  //   setTrackPlayed(track)
-  //   setVisiblePlayer(true)
-  //   return(
-  //     <p>Я работающая кнопка!!!</p>
-  //   )
-  // }
+  const clickTrack = ({track}) => {
+    setTrackPlayed(track)
+    setVisiblePlayer(true)
+    return
+  }
   const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
@@ -44,10 +44,12 @@ function GetTracks({
           </S.TreckTitleImage>
           <S.TreckTitleText>
             <S.TreckTitleLink
-              onClick={() => {
-                setTrackPlayed(track)
-                setVisiblePlayer(true)
-              }}
+              onClick={() =>{
+                // setTrackPlayed(track)
+                // setVisiblePlayer(true)
+                clickTrack({track})
+              }
+              }
               to="#"
             >
               {track.name}
