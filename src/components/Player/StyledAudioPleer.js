@@ -7,7 +7,7 @@ export const Bar = styled.div`
   left: 0;
   width: 100%;
   background: rgba(28, 28, 28, 0.5);
-  /* display: none; */
+  display: none;
 `
 export const BarContent = styled.div`
   display: -webkit-box;
@@ -209,7 +209,7 @@ export const TrackPlayAuthor = styled.div`
   grid-area: author;
   min-width: 49px;
 `
-export const TrackPlayAuthorLink = styled.a`
+export const TrackPlayAuthorLink = styled(Link)`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -226,7 +226,7 @@ grid-area: album;
 min-width: 49px;
 }
 `
-export const TrackPlayAlbumLink = styled.a`
+export const TrackPlayAlbumLink = styled(Link)`
   font-style: normal;
   font-weight: 400;
   font-size: 13px;
