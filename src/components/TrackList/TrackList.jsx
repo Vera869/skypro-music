@@ -21,24 +21,22 @@ function GetTracks() {
         setErrorGetTracks(error.message)
       })
   }, [])
-  // const toggleErrorContext = () => {
-  //   setIsLoading(false);
-  //   return errorGetTracks ? (
-  //     <S.ErrorMassege>
-  //       К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
-  //       попробуйте позже.
-  //     </S.ErrorMassege>
-  //   ) : (
-  //     '')
-  // }
+  const toggleErrorContext = () => {
+    if(errorGetTracks) return ( <S.ContentPlaylist>
+      <S.ErrorMassege>
+    К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
+    попробуйте позже.
+    </S.ErrorMassege>
+    </S.ContentPlaylist>)
+  return (isLoading ? <S.ContentPlaylist><SkeletonTracks /></S.ContentPlaylist>  : <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>)
+  }
   // const trackTime = (track) => {
-  //   const time = (Number(track.duration_in_seconds)/ 60);
+  //   const time = (Number(track.duration_in_seconds)/ 60).toFixed(2);
   //   console.log(time);
   //   return time
   // }
   // const clickTrack = ({track}) => {
   //   return 
-
   // }
   const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
@@ -71,24 +69,14 @@ function GetTracks() {
             <S.TreckTimeSvg alt="time">
               <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </S.TreckTimeSvg>
-            <S.TreckTimeText>{track.duration_in_seconds}</S.TreckTimeText>
+            <S.TreckTimeText>{(Number(track.duration_in_seconds)/ 60).toFixed(2)}</S.TreckTimeText>
           </div>
         </S.TreckTitle>
       </S.PlaylistTreck>
     </S.PlaylistItem>
   ))
   return ( 
-    <S.ContentPlaylist>
-      {errorGetTracks ? (
-        <S.ErrorMassege>
-          К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
-          попробуйте позже.
-        </S.ErrorMassege>
-      ) : (
-        ''
-      )}
-      {isLoading ? <SkeletonTracks /> : trackItems}
-    </S.ContentPlaylist>
+    toggleErrorContext()
   )
 }
 export default GetTracks
