@@ -1,18 +1,39 @@
-import { useEffect, useState } from 'react'
-import { arrayTracks } from './ArrayTracks'
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
+import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
+// import { useState } from 'react'
 
-function Tracks() {
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-  }, [])
 
-  const trackItems = arrayTracks.map((track) => (
+function GetTracks({
+  isLoading,
+  allTracks,
+  errorGetTracks,
+  setTrackPlayed,
+  setVisiblePlayer,
+}) {
+  const toggleErrorContext = () => {
+    if (errorGetTracks)
+      return (
+        <S.ContentPlaylist>
+          <S.ErrorMassege>
+            К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
+            попробуйте позже.
+          </S.ErrorMassege>
+        </S.ContentPlaylist>
+      )
+    return isLoading ? (
+      <S.ContentPlaylist>
+        <SkeletonTracks />
+      </S.ContentPlaylist>
+    ) : (
+      <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
+    )
+  }
+  const clickTrack = ({track}) => {
+    setTrackPlayed(track)
+    setVisiblePlayer(true)
+    return
+  }
+  const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
@@ -22,52 +43,43 @@ function Tracks() {
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
-            {isLoading ? (
-              <Skeleton width={270} baseColor="#202020" highlightColor="#444" />
-            ) : (
-              <S.TreckTitleLink to="/Trak">
-                {track.trackName}
-                {track.remix ? (
-                  <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
-                ) : (
-                  ''
-                )}
-              </S.TreckTitleLink>
-            )}
+            <S.TreckTitleLink
+              onClick={() =>{
+                // setTrackPlayed(track)
+                // setVisiblePlayer(true)
+                clickTrack({track})
+              }
+              }
+              to="#"
+            >
+              {track.name}
+              {/* {track.remix ? (
+                <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
+              ) : (
+                ''
+              )} */}
+            </S.TreckTitleLink>
           </S.TreckTitleText>
           <S.TreckAuthor>
-            {isLoading ? (
-              <Skeleton width={270} baseColor="#202020" highlightColor="#444" />
-            ) : (
-              <S.TreckAuthorLink to="/AuthorList">
-                {track.trackAuthor}
-              </S.TreckAuthorLink>
-            )}
+            <S.TreckAuthorLink to="/AuthorList">
+              {track.author}
+            </S.TreckAuthorLink>
           </S.TreckAuthor>
           <S.TreckAlbum>
-            {isLoading ? (
-              <Skeleton width={315} baseColor="#202020" highlightColor="#444" />
-            ) : (
-              <S.TreckAlbumLink>{track.album}</S.TreckAlbumLink>
-            )}
+            <S.TreckAlbumLink>{track.album}</S.TreckAlbumLink>
           </S.TreckAlbum>
           <div>
-            {isLoading ? (
-              <Skeleton width={60} baseColor="#202020" highlightColor="#444" />
-            ) : (
-              <>
-                <S.TreckTimeSvg alt="time">
-                  <use xlinkHref="img/icon/sprite.svg#icon-like" />
-                </S.TreckTimeSvg>
-                <S.TreckTimeText> {track.trackTime}</S.TreckTimeText>
-              </>
-            )}
+            <S.TreckTimeSvg alt="time">
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            </S.TreckTimeSvg>
+            <S.TreckTimeText>
+              {(Number(track.duration_in_seconds) / 60).toFixed(2)}
+            </S.TreckTimeText>
           </div>
         </S.TreckTitle>
       </S.PlaylistTreck>
     </S.PlaylistItem>
   ))
-
-  return <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
+  return toggleErrorContext()
 }
-export default Tracks
+export default GetTracks

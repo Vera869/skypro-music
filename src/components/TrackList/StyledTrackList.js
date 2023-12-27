@@ -127,3 +127,11 @@ export const ContentPlaylist = styled.div`
     display: none;
   }
 `
+export const ErrorMassege = styled.p`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  color: #ffffff;
+`
+
+

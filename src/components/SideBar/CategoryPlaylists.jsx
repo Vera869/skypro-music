@@ -1,18 +1,9 @@
 import * as S from './StyledSideBar.js'
-import { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Link } from 'react-router-dom'
 import { arrayCategorys } from './ArrayCategory.jsx'
 
-export const CategoryPlayLists = () => {
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false)
-    }, 3000)
-  }, [])
-
+export const CategoryPlayLists = ({ setUser, isLoading, setIsLoading }) => {
   return (
     <>
       {arrayCategorys.map((arrayCategory) => (
