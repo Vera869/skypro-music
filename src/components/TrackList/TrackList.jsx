@@ -1,9 +1,10 @@
+import { SkeletonTracks } from './SkeletonTracks.jsx'
 import { useEffect, useState } from 'react'
 import * as S from '../TrackList/StyledTrackList.js'
 import { getAllTracks } from '../../Api.jsx'
-import { SkeletonTracks } from './SkeletonTracks.jsx'
 
-function Tracks() {
+
+function GetTracks() {
   const [isLoading, setIsLoading] = useState(true)
   const [allTracks, setAllTracks] = useState([])
   const [errorGetTracks, setErrorGetTracks] = useState(null)
@@ -20,7 +21,25 @@ function Tracks() {
         setErrorGetTracks(error.message)
       })
   }, [])
+  // const toggleErrorContext = () => {
+  //   setIsLoading(false);
+  //   return errorGetTracks ? (
+  //     <S.ErrorMassege>
+  //       К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
+  //       попробуйте позже.
+  //     </S.ErrorMassege>
+  //   ) : (
+  //     '')
+  // }
+  // const trackTime = (track) => {
+  //   const time = (Number(track.duration_in_seconds)/ 60);
+  //   console.log(time);
+  //   return time
+  // }
+  // const clickTrack = ({track}) => {
+  //   return 
 
+  // }
   const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
@@ -31,13 +50,13 @@ function Tracks() {
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
-            <S.TreckTitleLink to="/Trak">
+            <S.TreckTitleLink  onClick={() => {clickTrack()}} to="#">
               {track.name}
-              {track.remix ? (
+              {/* {track.remix ? (
                 <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
               ) : (
                 ''
-              )}
+              )} */}
             </S.TreckTitleLink>
           </S.TreckTitleText>
           <S.TreckAuthor>
@@ -58,13 +77,13 @@ function Tracks() {
       </S.PlaylistTreck>
     </S.PlaylistItem>
   ))
-  return (
+  return ( 
     <S.ContentPlaylist>
       {errorGetTracks ? (
-        <p>
+        <S.ErrorMassege>
           К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
           попробуйте позже.
-        </p>
+        </S.ErrorMassege>
       ) : (
         ''
       )}
@@ -72,4 +91,4 @@ function Tracks() {
     </S.ContentPlaylist>
   )
 }
-export default Tracks
+export default GetTracks

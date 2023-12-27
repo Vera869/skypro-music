@@ -68,7 +68,9 @@ function AudioPlayer() {
                       highlightColor="#444"
                     />
                   ) : (
-                    <S.TrackPlayAuthorLink>Баста</S.TrackPlayAuthorLink>
+                    <S.TrackPlayAuthorLink>
+                      {/* {track.author} */}
+                      </S.TrackPlayAuthorLink>
                   )}
                 </S.TrackPlayAuthor>
                 <S.TrackPlayAlbum>
@@ -79,7 +81,9 @@ function AudioPlayer() {
                       highlightColor="#444"
                     />
                   ) : (
-                    <S.TrackPlayAlbumLink>Ты та...</S.TrackPlayAlbumLink>
+                    <S.TrackPlayAlbumLink>
+                      {/* {track.name} */}
+                      </S.TrackPlayAlbumLink>
                   )}
                 </S.TrackPlayAlbum>
               </S.TrackPlayContain>

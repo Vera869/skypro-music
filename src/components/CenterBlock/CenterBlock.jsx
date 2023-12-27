@@ -1,4 +1,4 @@
-import Tracks from '../TrackList/TrackList.jsx'
+import GetTracks from '../TrackList/TrackList.jsx'
 import FilterBy from '../FilterBy/FilterBy.jsx'
 import * as S from '../CenterBlock/StyledCenterBlock.js'
 
@@ -27,7 +27,7 @@ function CenterBlock() {
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        <Tracks />
+        <GetTracks />
       </S.CenterBlockContent>
     </S.MainCenterBlock>
   )
