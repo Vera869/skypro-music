@@ -208,6 +208,7 @@ export const TrackPlayAuthor = styled.div`
   grid-column: 2;
   grid-area: author;
   min-width: 49px;
+  width: 270px;
 `
 export const TrackPlayAuthorLink = styled(Link)`
   font-style: normal;
@@ -216,6 +217,7 @@ export const TrackPlayAuthorLink = styled(Link)`
   line-height: 24px;
   color: #ffffff;
   white-space: nowrap;
+  width: 270px;
 `
 export const TrackPlayAlbum = styled.div`
 -ms-grid-row: 2;

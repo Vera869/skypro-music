@@ -8,9 +8,11 @@ import { getAllTracks } from '../../Api.jsx'
 
 export const Main = ({ setUser }) => {
   const [isLoading, setIsLoading] = useState(true)
-  const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [allTracks, setAllTracks] = useState([])
   const [errorGetTracks, setErrorGetTracks] = useState(null)
+
+  const [isVisiblePlayer, setVisiblePlayer] = useState(false)
+  const [trackPlayed, setTrackPlayed] = useState([])
 
   useEffect(() => {
     getAllTracks()
@@ -35,6 +37,8 @@ export const Main = ({ setUser }) => {
                 isLoading={isLoading}
                 allTracks={allTracks}
                 errorGetTracks={errorGetTracks}
+                setVisiblePlayer={setVisiblePlayer}
+                setTrackPlayed={setTrackPlayed}
               />
               <SideBar
                 setUser={setUser}
@@ -45,8 +49,8 @@ export const Main = ({ setUser }) => {
             <footer>
               <AudioPlayer
                 isVisiblePlayer={isVisiblePlayer}
-                setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
+                trackPlayed={trackPlayed}
               />
             </footer>
           </S.Container>

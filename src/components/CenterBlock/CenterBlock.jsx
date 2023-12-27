@@ -5,7 +5,9 @@ import * as S from '../CenterBlock/StyledCenterBlock.js'
 function CenterBlock({
   isLoading,
   allTracks,
-  errorGetTracks
+  errorGetTracks,
+  setVisiblePlayer,
+  setTrackPlayed,
 }) {
   return (
     <S.MainCenterBlock>
@@ -31,10 +33,12 @@ function CenterBlock({
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        <GetTracks 
+        <GetTracks
           isLoading={isLoading}
           allTracks={allTracks}
           errorGetTracks={errorGetTracks}
+          setVisiblePlayer={setVisiblePlayer}
+          setTrackPlayed={setTrackPlayed}
         />
       </S.CenterBlockContent>
     </S.MainCenterBlock>

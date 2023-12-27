@@ -1,7 +1,13 @@
 import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
 
-function GetTracks({ isLoading, allTracks, errorGetTracks }) {
+function GetTracks({
+  isLoading,
+  allTracks,
+  errorGetTracks,
+  setTrackPlayed,
+  setVisiblePlayer,
+}) {
   const toggleErrorContext = () => {
     if (errorGetTracks)
       return (
@@ -20,8 +26,12 @@ function GetTracks({ isLoading, allTracks, errorGetTracks }) {
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
     )
   }
-  // const clickTrack = ({track}) => {
-  //   return
+  // const clickTrack = () => {
+  //   setTrackPlayed(track)
+  //   setVisiblePlayer(true)
+  //   return(
+  //     <p>Я работающая кнопка!!!</p>
+  //   )
   // }
   const trackItems = allTracks.map((track) => (
     <S.PlaylistItem key={track.id}>
@@ -35,7 +45,8 @@ function GetTracks({ isLoading, allTracks, errorGetTracks }) {
           <S.TreckTitleText>
             <S.TreckTitleLink
               onClick={() => {
-                clickTrack()
+                setTrackPlayed(track)
+                setVisiblePlayer(true)
               }}
               to="#"
             >
