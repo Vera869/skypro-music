@@ -1,14 +1,33 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
+import { useRef } from 'react';
+import { useState } from 'react';
 
-function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
+function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed, setTrackPlayed }) {
+
+  const [isplay, setIsPlay] = useState(false);
+
+  const audioRef = useRef(null);
+  
+  const handleStart = () => {
+    audioRef.current.play() ;
+    setIsPlay(true);
+  };
+
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlay(false);
+  };
+
+  const togglePlay = isplay ? handleStop : handleStart;
+
   return (
     isVisiblePlayer && (
       <S.Bar>
         {trackPlayed ? (
-          <audio controls id="player" src={trackPlayed.track_file} autoPlay>
-            Здесь будет звучать Музыка!
+          <audio controls id="player" ref={audioRef} >
+           <source src={trackPlayed.track_file} /> Здесь будет звучать Музыка!
           </audio>
         ) : (
           ''
@@ -23,7 +42,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
                 </S.PlayerBtnPrev>
-                <S.PlayerBtnPlay className="_btn">
+                <S.PlayerBtnPlay className="_btn" onClick={togglePlay} >
                   <S.PlayerBtnPlaySvg alt="play">
                     <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                   </S.PlayerBtnPlaySvg>
