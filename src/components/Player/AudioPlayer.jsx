@@ -4,18 +4,20 @@ import * as S from '../Player/StyledAudioPleer.js'
 import { useRef } from 'react';
 import { useState } from 'react';
 
-function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed, setTrackPlayed }) {
+function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
 
-  const [isplay, setIsPlay] = useState(false);
+  const [isplay, setIsPlay] = useState(true);
 
   const audioRef = useRef(null);
   
   const handleStart = () => {
+    console.log("PLAY");
     audioRef.current.play() ;
     setIsPlay(true);
   };
 
   const handleStop = () => {
+    console.log("PAUSE");
     audioRef.current.pause();
     setIsPlay(false);
   };
@@ -26,7 +28,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed, setTrackPlayed }
     isVisiblePlayer && (
       <S.Bar>
         {trackPlayed ? (
-          <audio controls id="player" ref={audioRef} >
+          <audio controls ref={audioRef}  autoPlay>
            <source src={trackPlayed.track_file} /> Здесь будет звучать Музыка!
           </audio>
         ) : (
