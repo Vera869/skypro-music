@@ -5,9 +5,8 @@ import { useRef } from 'react';
 import { useState } from 'react';
 
 function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
-
   const [isplay, setIsPlay] = useState(true);
-
+  const [isLooped, setIsLooped] = useState(false);
   const audioRef = useRef(null);
   
   const handleStart = () => {
@@ -24,6 +23,20 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
 
   const togglePlay = isplay ? handleStop : handleStart;
 
+  
+  const handleIsLoop = () => {
+    audioRef.current.loop = true;
+    setIsLooped(true);
+  };
+
+  const handleUnloop = () => {
+    audioRef.current.loop = false;
+    setIsLooped(false);
+  };
+  const toggleLoop = isLooped ? handleUnloop : handleIsLoop;
+  const buttNotWorking = () => {
+    alert("Еще не реализовано, пожалуйста, попробуйте позже")
+  }
   return (
     isVisiblePlayer && (
       <S.Bar>
@@ -39,7 +52,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
           <S.BarPleerBlock>
             <S.BarPleer>
               <S.PlayerControls>
-                <S.PlayerBtnPrev>
+                <S.PlayerBtnPrev onClick={buttNotWorking} >
                   <S.PlayerBtnPrevSvg alt="prev">
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
@@ -49,17 +62,17 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
                     <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                   </S.PlayerBtnPlaySvg>
                 </S.PlayerBtnPlay>
-                <S.PlayerBtnNext>
+                <S.PlayerBtnNext onClick={buttNotWorking} >
                   <S.PlayerBtnNextSvg alt="next">
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
                 </S.PlayerBtnNext>
-                <S.PlayerBtnRepeat className="_btn-icon">
+                <S.PlayerBtnRepeat className="_btn-icon" onClick={() => {toggleLoop}} >
                   <S.PlayerBtnRepeatSvg alt="repeat">
                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
-                <S.PlayerBtnShuffle className="_btn-icon">
+                <S.PlayerBtnShuffle  onClick={buttNotWorking} className="_btn-icon">
                   <S.PlayerBtnShuffleSvg alt="shuffle">
                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                   </S.PlayerBtnShuffleSvg>

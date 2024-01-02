@@ -10,6 +10,7 @@ function GetTracks({
   setTrackPlayed,
   setVisiblePlayer,
 }) {
+  
   const toggleErrorContext = () => {
     if (errorGetTracks)
       return (
@@ -28,6 +29,7 @@ function GetTracks({
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
     )
   }
+  
   const clickTrack = ({track}) => {
     setTrackPlayed(track)
     setVisiblePlayer(true)
