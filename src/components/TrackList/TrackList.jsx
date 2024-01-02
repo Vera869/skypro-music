@@ -10,7 +10,6 @@ function GetTracks({
   setTrackPlayed,
   setVisiblePlayer,
 }) {
-  
   const toggleErrorContext = () => {
     if (errorGetTracks)
       return (

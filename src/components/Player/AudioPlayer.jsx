@@ -1,16 +1,31 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
-import { useRef } from 'react';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
+  const audioRef = useRef(null);
+
   const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false);
-  const audioRef = useRef(null);
+  const [currentTime, setCurrentTime] = useState(0); //текущее время воспроизведения аудио
+
+  const duration = audioRef.current?.duration || 0//общая длительность трека
+
+ const timeFormat = (time) => {
+    const roundedTime = Math.round(time);
+    const minutes = Math.floor(roundedTime / 60);
+    let seconds = roundedTime % 60;
+    if (seconds < 10) {
+      seconds = "0" + seconds;
+    }
+    
+    return `${minutes}:${seconds}`;
+  };
+  
   
   const handleStart = () => {
-    console.log("PLAY");
+    console.log(duration);
     audioRef.current.play() ;
     setIsPlay(true);
   };
@@ -22,7 +37,32 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
   };
 
   const togglePlay = isplay ? handleStop : handleStart;
+  useEffect(() => {
+    const updateCurrentTime = () => {
+      if (audioRef.current) {
+        setCurrentTime(audioRef.current.currentTime);
+      }
+    };
+    if (audioRef.current) {
+      audioRef.current.addEventListener("timeupdate", updateCurrentTime);
+    }
 
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.removeEventListener("timeupdate", updateCurrentTime);
+      }
+    };
+  }, [audioRef]);
+  useEffect(() => {
+    if (audioRef.current) {
+      setCurrentTime(audioRef.current.currentTime);
+
+      if (audioRef.current.currentTime === audioRef.current.duration) {
+        setCurrentTime(0);
+        setIsPlay(false);
+      }
+    }
+  }, [audioRef.current, audioRef.current?.currentTime]);
   
   const handleIsLoop = () => {
     audioRef.current.loop = true;
@@ -34,45 +74,75 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
     setIsLooped(false);
   };
   const toggleLoop = isLooped ? handleUnloop : handleIsLoop;
-  const buttNotWorking = () => {
+
+  const handleChangeVolume = (el) => {
+    const newVolume = parseFloat(el.target.value);
+    const limitedVolume = Math.max(0, Math.min(1, newVolume));
+
+    if (audioRef.current) {
+      audioRef.current.volume = limitedVolume;
+    }
+  };
+  const ProgressBarClick = () => {
+   console.log("progressbar");
+  };
+  const butnNotWorking = () => {
     alert("Еще не реализовано, пожалуйста, попробуйте позже")
   }
   return (
     isVisiblePlayer && (
       <S.Bar>
         {trackPlayed ? (
-          <audio controls ref={audioRef}  autoPlay>
+          <audio ref={audioRef}  autoPlay>
            <source src={trackPlayed.track_file} /> Здесь будет звучать Музыка!
           </audio>
         ) : (
           ''
         )}
         <S.BarContent>
-          <S.BarPlayerProgress></S.BarPlayerProgress>
+        <S.TrackTime>
+        {timeFormat(currentTime) + " / " + timeFormat(duration)}
+          </S.TrackTime>
+          <S.BarPlayerProgress onClick={ProgressBarClick} >
+          <S.StyledProgressBar
+              type="range"
+              min={0}
+              max={duration}
+              value={currentTime}
+              step={0.01}
+              onChange={(event) => setCurrentTime(event.target.value)}
+              $color="#580EA2"
+            />
+          </S.BarPlayerProgress>
           <S.BarPleerBlock>
             <S.BarPleer>
               <S.PlayerControls>
-                <S.PlayerBtnPrev onClick={buttNotWorking} >
+                <S.PlayerBtnPrev onClick={butnNotWorking} >
                   <S.PlayerBtnPrevSvg alt="prev">
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
                 </S.PlayerBtnPrev>
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay} >
                   <S.PlayerBtnPlaySvg alt="play">
-                    <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                    {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
+                    {isplay ? (
+                      <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
+                    ) : (
+                      <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                    )}
                   </S.PlayerBtnPlaySvg>
                 </S.PlayerBtnPlay>
-                <S.PlayerBtnNext onClick={buttNotWorking} >
+                <S.PlayerBtnNext onClick={butnNotWorking} >
                   <S.PlayerBtnNextSvg alt="next">
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
                 </S.PlayerBtnNext>
-                <S.PlayerBtnRepeat className="_btn-icon" onClick={() => {toggleLoop}} >
-                  <S.PlayerBtnRepeatSvg alt="repeat">
+                <S.PlayerBtnRepeat className="_btn-icon"  >
+                  <S.PlayerBtnRepeatSvg alt="repeat" onClick={toggleLoop} isLooped={isLooped}>
                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
-                <S.PlayerBtnShuffle  onClick={buttNotWorking} className="_btn-icon">
+                <S.PlayerBtnShuffle  onClick={butnNotWorking} className="_btn-icon">
                   <S.PlayerBtnShuffleSvg alt="shuffle">
                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                   </S.PlayerBtnShuffleSvg>
@@ -160,6 +230,10 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
                     className="_btn"
                     type="range"
                     name="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    onChange={(el) => handleChangeVolume(el)}
                   />
                 </S.VolumeProgress>
               </S.VolumeContent>
