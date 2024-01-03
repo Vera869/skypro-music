@@ -115,6 +115,7 @@ export const TreckTimeText = styled.span`
   color: #696969;
 `
 export const ContentPlaylist = styled.div`
+  height: 824px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -122,7 +123,7 @@ export const ContentPlaylist = styled.div`
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  overflow-y: auto;
+  overflow: scroll;
   &::-webkit-scrollbar {
     display: none;
   }

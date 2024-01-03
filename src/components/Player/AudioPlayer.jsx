@@ -5,12 +5,14 @@ import { useState, useEffect, useRef } from 'react';
 
 function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
   const audioRef = useRef(null);
+  const refProgress = useRef();
 
   const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0); //текущее время воспроизведения аудио
+  const [currentTime, setCurrentTime] = useState(0); // стэйт текущего времени воспроизведения
+  const [timeProgress, setTimeProgress] = useState(0); // стэйт прогресс бара
 
-  const duration = audioRef.current?.duration || 0//общая длительность трека
+  const duration = audioRef.current?.duration || 0 //общее время трека
 
  const timeFormat = (time) => {
     const roundedTime = Math.round(time);
@@ -84,8 +86,11 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
     }
   };
   const ProgressBarClick = () => {
-   console.log("progressbar");
-  };
+    console.log("progressbar");
+   };
+   const onChangeProgress = () => {
+    audioRef.current.currentTime = refProgress.current.value;
+   }
   const butnNotWorking = () => {
     alert("Еще не реализовано, пожалуйста, попробуйте позже")
   }
@@ -93,8 +98,9 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
     isVisiblePlayer && (
       <S.Bar>
         {trackPlayed ? (
-          <audio ref={audioRef}  autoPlay>
-           <source src={trackPlayed.track_file} /> Здесь будет звучать Музыка!
+          <audio ref={audioRef} src={trackPlayed.track_file} autoPlay
+          onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}>
+           Здесь будет звучать Музыка!
           </audio>
         ) : (
           ''
@@ -103,14 +109,15 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
         <S.TrackTime>
         {timeFormat(currentTime) + " / " + timeFormat(duration)}
           </S.TrackTime>
-          <S.BarPlayerProgress onClick={ProgressBarClick} >
-          <S.StyledProgressBar
+          <S.BarPlayerProgress >
+          <S.StyledProgressBar onClick={ProgressBarClick} 
+              ref={refProgress}
               type="range"
               min={0}
               max={duration}
-              value={currentTime}
+              value={timeProgress}
               step={0.01}
-              onChange={(event) => setCurrentTime(event.target.value)}
+              onChange={onChangeProgress}
               $color="#580EA2"
             />
           </S.BarPlayerProgress>
