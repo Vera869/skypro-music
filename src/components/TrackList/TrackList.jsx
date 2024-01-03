@@ -28,6 +28,7 @@ function GetTracks({
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
     )
   }
+  
   const clickTrack = ({track}) => {
     setTrackPlayed(track)
     setVisiblePlayer(true)
