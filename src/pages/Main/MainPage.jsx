@@ -51,6 +51,7 @@ export const Main = ({ setUser }) => {
                 isVisiblePlayer={isVisiblePlayer}
                 isLoading={isLoading}
                 trackPlayed={trackPlayed}
+                setTrackPlayed={setTrackPlayed}
               />
             </footer>
           </S.Container>

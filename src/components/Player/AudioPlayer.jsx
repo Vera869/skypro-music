@@ -3,11 +3,10 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react';
 
-function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
+function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed, setTrackPlayed }) {
   const audioRef = useRef(null);
   const refProgress = useRef();
 
-  const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false);
   const [currentTime, setCurrentTime] = useState(0); // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0); // стэйт прогресс бара
@@ -29,16 +28,16 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
   const handleStart = () => {
     console.log(duration);
     audioRef.current.play() ;
-    setIsPlay(true);
+    setTrackPlayed(true);
   };
 
   const handleStop = () => {
     console.log("PAUSE");
     audioRef.current.pause();
-    setIsPlay(false);
+    setTrackPlayed(false);
   };
 
-  const togglePlay = isplay ? handleStop : handleStart;
+  const togglePlay = trackPlayed ? handleStop : handleStart;
   useEffect(() => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
@@ -61,7 +60,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0);
-        setIsPlay(false);
+        setTrackPlayed(false);
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime]);
@@ -129,7 +128,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay} >
                   <S.PlayerBtnPlaySvg alt="play">
                     {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
-                    {isplay ? (
+                    {trackPlayed ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
