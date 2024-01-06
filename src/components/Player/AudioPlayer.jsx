@@ -85,12 +85,9 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
       audioRef.current.volume = limitedVolume;
     }
   };
-  const ProgressBarClick = () => {
-    console.log("progressbar");
-   };
-   const onChangeProgress = () => {
+  const onChangeProgress = () => {
     audioRef.current.currentTime = refProgress.current.value;
-   }
+  }
   const butnNotWorking = () => {
     alert("Еще не реализовано, пожалуйста, попробуйте позже")
   }
@@ -110,7 +107,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, trackPlayed }) {
         {timeFormat(currentTime) + " / " + timeFormat(duration)}
           </S.TrackTime>
           <S.BarPlayerProgress >
-          <S.StyledProgressBar onClick={ProgressBarClick} 
+          <S.StyledProgressBar
               ref={refProgress}
               type="range"
               min={0}
