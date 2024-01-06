@@ -54,14 +54,20 @@ body {
 }
 // добавлено из StyledMain: container
 // добавлено new-page, App
-.container {
+// .container {
+//   max-width: 1920px;
+//   // height: 100vh;
+//   margin: 0 auto;
+//   position: relative;
+//   background-color: #181818;
+// }
+.new-page {
   max-width: 1920px;
-  // height: 100vh;
+  height: 100vh;
   margin: 0 auto;
   position: relative;
   background-color: #181818;
-}
-.new-page {
+  height: 100vh;
   display: flex;
   flex-direction: column;
   gap: 15px;

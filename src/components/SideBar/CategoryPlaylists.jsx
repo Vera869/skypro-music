@@ -3,7 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { arrayCategorys } from './ArrayCategory.jsx'
 
-export const CategoryPlayLists = ({ setUser, isLoading, setIsLoading }) => {
+export const CategoryPlayLists = ({ isLoading }) => {
   return (
     <>
       {arrayCategorys.map((arrayCategory) => (
