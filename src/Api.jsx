@@ -11,16 +11,15 @@ export async function getAllTracks(){
    return data
 }
 
-export async function registrUser(){
-   const response = await fetch(`${host}/user/signup/`, {
+export async function registrUser({ email, password }){
+   const response = await fetch(`${host}user/signup/`, {
       method: "POST",
         body: JSON.stringify({
           email: email,
           password: password,
-          username: username,
+          username: email,
          }),
             headers: {
-              // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
               "content-type": "application/json",
             },
    }) ;
@@ -31,6 +30,24 @@ export async function registrUser(){
    console.log(data);
    return data
 }
+export async function loginUser({ email, password }) {
+   const response = await fetch(`${host}/user/login/`, {
+     method: "POST",
+     body: JSON.stringify({
+       email: email,
+       password: password,
+     }),
+     headers: {
+       "content-type": "application/json",
+     },
+   });
+   if(!response.ok) {
+      throw new Error("Произошла ошибка");
+   } 
+   const data = response.json();
+   console.log(data);
+   return data
+ }
 
 
 // export async function getTrackId(){

@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useNavigate } from 'react-router-dom'
 import { ProtectedRoute } from './ProtectedRoute'
 import { useState } from 'react'
 
@@ -11,16 +11,22 @@ import { arrayCategorys } from '../src/components/SideBar/ArrayCategory'
 import { Main } from '../src/pages/Main/MainPage'
 
 export const AppRoutes = () => {
+  const navigate = useNavigate()
   const [user, setUser] = useState(localStorage.getItem('user'))
 
   console.log(Boolean(localStorage.getItem('user')))
+  const logout = () => {
+    localStorage.removeItem('user')
+    setUser('null')
+    navigate('/login')
+  }
   return (
     <Routes>
       <Route path="/login" element={<Login setUser={setUser} />} />
       <Route path="/registration" element={<Reg />} />
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Main setUser={setUser} />} />
+        <Route path="/" element={<Main setUser={setUser} logout={logout}/>} />
         <Route
           path="/category/:id"
           element={<PlayListCategory arrayCategorys={arrayCategorys} />}
