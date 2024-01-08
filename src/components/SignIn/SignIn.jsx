@@ -11,7 +11,11 @@ export const SignIn = ({ setUser }) => {
   const [password, setPassword] = useState()
 
   const handleClickAuth = () => {
-   
+    const login = () => {
+      localStorage.setItem('user', 'true')
+      setUser('user')
+      navigate('/')
+    }
 
     if (!email) {
       return setError('Укажите почту')
@@ -19,15 +23,12 @@ export const SignIn = ({ setUser }) => {
     if (!password) {
       return setError('Укажите пароль')
     }
-    const login = () => {
-      localStorage.setItem('user', 'true')
-      setUser('user')
-      navigate('/')
-    }
-    login()
-    // if() {
+     // if() {
     //   return setError('Пользователь с таким email или паролем не найден')
     // }
+    else {
+      login()
+    }
   }
 
   // export default function AuthPage({ isLoginMode = false }) {

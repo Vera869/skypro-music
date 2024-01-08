@@ -100,7 +100,7 @@ export const ModalBtnSignUp = styled(Link)`
   border-radius: 6px;
   margin-left: 4px;
   border: none;
-  margin-top: 30px;
+  // margin-top: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -138,11 +138,8 @@ export const ModalBtnSignUp = styled(Link)`
 `
 export const ErrorMasege = styled.p`
   width: 100%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: 1px solid #d0cece;
-  padding: 8px 1px;
+  height: 35px;
+  padding: 0px 1px;
   margin-right: 3px;
   margin-bottom: 3px;
   font-style: normal;
