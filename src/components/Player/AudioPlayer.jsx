@@ -12,6 +12,7 @@ function AudioPlayer({
   const audioRef = useRef(null)
   const refProgress = useRef()
 
+  const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
@@ -33,15 +34,17 @@ function AudioPlayer({
     console.log(duration)
     audioRef.current.play()
     setTrackPlayed(true)
+    setIsPlay(true);
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
     setTrackPlayed(false)
+    setIsPlay(false)
   }
 
-  const togglePlay = trackPlayed ? handleStop : handleStart
+  const togglePlay = isplay ? handleStop : handleStart
   useEffect(() => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
@@ -64,7 +67,8 @@ function AudioPlayer({
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        setTrackPlayed(false)
+        setTrackPlayed(true)
+        setIsPlay(false)
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
@@ -136,7 +140,7 @@ function AudioPlayer({
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay}>
                   <S.PlayerBtnPlaySvg alt="play">
                     {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
-                    {trackPlayed ? (
+                    {isplay ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
