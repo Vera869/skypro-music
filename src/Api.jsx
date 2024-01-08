@@ -11,11 +11,22 @@ export async function getAllTracks(){
    return data
 }
 
+export async function getUse(){
+   const response = await fetch(`${host}/track/all/`);
+   if(!response.ok) {
+      throw new Error("Произошла ошибка");
+   } 
+   const data = response.json();
+
+   return data
+}
+
 // export async function getTrackId(){
 //    const response = await fetch(`${host}/track/<id>`);
 //    const data = response.json();
 //     if(!response.ok) {
-//      throw mew Error("Произошла ошибка")
+//      throw new Error("Произошла ошибка")
 //   }
 //    return data
 // }
+

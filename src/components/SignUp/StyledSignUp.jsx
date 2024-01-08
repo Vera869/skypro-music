@@ -136,3 +136,19 @@ export const ModalBtnSignUp = styled(Link)`
   //            justify-content: center;
   //  }
 `
+export const ErrorMasege = styled.p`
+  width: 100%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid #d0cece;
+  padding: 8px 1px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  color: #580ea2;
+  `
