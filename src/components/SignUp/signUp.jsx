@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import * as S from '../SignUp/StyledSignUp'
 
-
 export const SignUp = () => {
   const [error, setError] = useState(null);
 
@@ -63,7 +62,7 @@ export const SignUp = () => {
             />
             <S.ErrorMasege>{error}</S.ErrorMasege>
             <S.ModalBtnSignUp onClick={handleClickRegistr}
-            // to="/login"
+            to="/login"
             >Зарегистрироваться</S.ModalBtnSignUp>
           </S.ModalFormLogin>
         </S.ModalBlock>
