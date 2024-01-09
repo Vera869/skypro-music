@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
 import { useState } from 'react'
+import {loginUser} from '../../Api'
 
 export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
@@ -11,9 +12,14 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
 
   const handleClickAuth = () => {
     const login = () => {
-      localStorage.setItem('user', 'true')
-      setUser('user')
-      navigate('/')
+      loginUser({ email, password })
+      .then(()=>{
+        // localStorage.setItem('user', 'true')
+        localStorage.setItem("user", JSON.stringify(user));
+        setUser('user')
+        navigate('/')
+      })
+      
     }
 
     if (!email) {

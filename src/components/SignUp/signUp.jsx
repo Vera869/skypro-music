@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import * as S from '../SignUp/StyledSignUp'
 import {registrUser} from '../../Api'
 import {useNavigate } from 'react-router-dom'
-// import {UserContext} from '../../Context/authorization'
+import {UserContext} from '../../Context/authorization'
 
 export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [error, setError] = useState(null);
@@ -11,6 +11,8 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const [errorRegistrApi, setErrorRegistrApi] = useState(null)
+
+  const { changingUserData } = useContext(UserContext);
 
   const navigate = useNavigate()
 

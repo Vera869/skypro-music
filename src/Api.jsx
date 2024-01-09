@@ -57,9 +57,9 @@ export async function loginUser({ email, password }) {
     } else if (response.status === 500) {
       throw new Error("Ошибка сервера");
     }
-   const data = response.json();
-   console.log(data);
-   return data
+   const user = response.json();
+   console.log(user);
+   return user
  }
 
 
