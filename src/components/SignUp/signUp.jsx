@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from '../SignUp/StyledSignUp'
+import {registrUser} from '../../Api'
+import {useNavigate } from 'react-router-dom'
+// import {UserContext} from '../../Context/authorization'
 
-export const SignUp = () => {
+export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [error, setError] = useState(null);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [errorRegistrApi, setErrorRegistrApi] = useState(null)
 
-  const handleClickRegistr = () => {
+  const navigate = useNavigate()
+
+  const handleClickRegistr = async () => {
     if(!email ) {
       return setError('Укажите почту')
     }
@@ -18,8 +24,26 @@ export const SignUp = () => {
     if(password !== repeatPassword) {
       return setError('Пароли не совпадают')
     }
+    try{
+      registrUser({ email, password })
+    .then(() => {
+      localStorage.setItem("user", JSON.stringify(user));
+      changingUserData(user);
+      setUser(user)
+      setIsLoginMode(true);
+      navigate("/login");
+    }).catch((error) => {
+      console.log(error.message)
+      setErrorRegistrApi(error.message)
+    })
+    } finally{
+      setIsLoginMode(false);
+    } 
   }
 
+  useEffect(() => {
+    setError(null);
+  }, [isLoginMode, email, password, repeatPassword]);
   return (
     <S.Wrapper>
       <S.ContainerSignUp>
@@ -61,9 +85,10 @@ export const SignUp = () => {
               }}
             />
             <S.ErrorMasege>{error}</S.ErrorMasege>
+            <S.ErrorMasege>{errorRegistrApi}</S.ErrorMasege>
             <S.ModalBtnSignUp onClick={handleClickRegistr}
-            to="/login"
-            >Зарегистрироваться</S.ModalBtnSignUp>
+             disabled={isLoginMode}
+            >{isLoginMode ? "Регистрация" : "Зарегистрироваться"}</S.ModalBtnSignUp>
           </S.ModalFormLogin>
         </S.ModalBlock>
       </S.ContainerSignUp>

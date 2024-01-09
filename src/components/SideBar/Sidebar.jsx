@@ -1,19 +1,11 @@
 import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
-import { useNavigate } from 'react-router-dom'
 
 function SideBar({ 
   setUser,
   isLoading,
-  setIsLoading }) {
-  const navigate = useNavigate()
-
-  const logout = () => {
-    localStorage.removeItem('user')
-    setUser('null')
-    navigate('/login')
-  }
-
+  setIsLoading,
+  logout, }) {
   return (
     <S.MineSideBar className="sidebar">
       <S.SideBarPersonal>

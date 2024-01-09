@@ -2,11 +2,10 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
 import { useState } from 'react'
 
-export const SignIn = ({ setUser }) => {
+export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
 
   const [error, setError] = useState(null)
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState()
 

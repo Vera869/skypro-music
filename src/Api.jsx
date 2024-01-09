@@ -23,12 +23,18 @@ export async function registrUser({ email, password }){
               "content-type": "application/json",
             },
    }) ;
-   if(!response.ok) {
-      throw new Error("Произошла ошибка");
-   } 
-   const data = response.json();
-   console.log(data);
-   return data
+   // if(!response.ok) {
+   //    throw new Error("Произошла ошибка");
+   // }  
+
+   if (response.status === 400) {
+      throw new Error("Неверный ввод");
+    } else if (response.status === 500) {
+      throw new Error("Внутренняя ошибка сервера");
+    }
+   const user = response.json();
+   console.log(user);
+   return user
 }
 export async function loginUser({ email, password }) {
    const response = await fetch(`${host}/user/login/`, {
@@ -41,9 +47,16 @@ export async function loginUser({ email, password }) {
        "content-type": "application/json",
      },
    });
-   if(!response.ok) {
-      throw new Error("Произошла ошибка");
-   } 
+   // if(!response.ok) {
+   //    throw new Error("Произошла ошибка");
+   // } 
+    if (response.status === 400) {
+      throw new Error("Запрос составлен некорректно");
+    } else if (response.status === 401) {
+      throw new Error("Пользователь с таким email или паролем не найден");
+    } else if (response.status === 500) {
+      throw new Error("Ошибка сервера");
+    }
    const data = response.json();
    console.log(data);
    return data

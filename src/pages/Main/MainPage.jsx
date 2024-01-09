@@ -13,8 +13,7 @@ export const Main = ({ setUser, logout }) => {
 
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [trackPlayed, setTrackPlayed] = useState([])
-
-  // const [isLoginMode, setIsLoginMode] = useState(false);
+  
 
   useEffect(() => {
     getAllTracks()
@@ -46,6 +45,7 @@ export const Main = ({ setUser, logout }) => {
                 setUser={setUser}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                logout={logout}
               />
             </S.Main>
             <footer>
