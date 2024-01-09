@@ -1,6 +1,7 @@
 import * as S from '../SignUp/StyledSignUp'
 
 export const SignUp = () => {
+  
   return (
     <S.Wrapper>
       <S.ContainerSignUp>
