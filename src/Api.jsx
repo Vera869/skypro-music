@@ -33,7 +33,7 @@ export async function registrUser({ email, password }){
    return user
 }
 export async function loginUser({ email, password }) {
-   const response = await fetch(`${host}/user/login/`, {
+   const response = await fetch(`${host}user/login/`, {
      method: "POST",
      body: JSON.stringify({
        email: email,
@@ -54,7 +54,31 @@ export async function loginUser({ email, password }) {
    console.log(user);
    return user
  }
-
+ export async function getToken ({ email, password }) {
+   const response = await fetch(`${host}user/token/`, {
+     method: "POST",
+     body: JSON.stringify({
+       email: email,
+       password: password,
+     }),
+     headers: {
+       "content-type": "application/json",
+     },
+   })
+   return response.json();
+   }
+export async function refrashToken ({refresh}) {
+      const response = await fetch(`${host}user/token/refresh/`, {
+        method: "POST",
+        body: JSON.stringify({
+         refresh
+        }),
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+      return response.json();
+      }
 
 // export async function getTrackId(){
 //    const response = await fetch(`${host}/track/<id>`);

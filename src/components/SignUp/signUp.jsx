@@ -1,51 +1,57 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react'
 import * as S from '../SignUp/StyledSignUp'
-import {registrUser} from '../../Api'
-import {useNavigate } from 'react-router-dom'
-import {UserContext} from '../../Context/authorization'
+import { registrUser } from '../../Api'
+import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../Context/authorization'
 
 export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null)
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
   const [errorRegistrApi, setErrorRegistrApi] = useState(null)
 
-  const { changingUserData } = useContext(UserContext);
+  const { changingUserData } = useContext(UserContext)
 
   const navigate = useNavigate()
 
   const handleClickRegistr = async () => {
-    if(!email ) {
+    if (!email) {
       return setError('Укажите почту')
     }
-    if(!password || !repeatPassword ) {
+    if (!password || !repeatPassword) {
       return setError('Укажите пароль')
     }
-    if(password !== repeatPassword) {
+    if (password !== repeatPassword) {
       return setError('Пароли не совпадают')
     }
-    try{
+    try {
       registrUser({ email, password })
-    .then(() => {
-      localStorage.setItem("user", JSON.stringify(user));
-      changingUserData(user);
-      setUser(user)
-      setIsLoginMode(true);
-      navigate("/login");
-    }).catch((error) => {
-      console.log(error.message)
-      setErrorRegistrApi(error.message)
-    })
-    } finally{
-      setIsLoginMode(false);
-    } 
+        .then((newUser) => {
+          localStorage.setItem('user', JSON.stringify(newUser))
+          changingUserData(newUser)
+          setUser(newUser)
+          getToken({email, password})
+          .then((res) => {
+            localStorage.setItem('accessToken', JSON.stringify(res.access))
+            localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+            setIsLoginMode(true)
+            navigate('/login')
+          })
+        })
+        .catch((error) => {
+          console.log(error.message)
+          setErrorRegistrApi(error.message)
+        })
+    } finally {
+      setIsLoginMode(false)
+    }
   }
 
   useEffect(() => {
-    setError(null);
-  }, [isLoginMode, email, password, repeatPassword]);
+    setError(null)
+  }, [isLoginMode, email, password, repeatPassword])
   return (
     <S.Wrapper>
       <S.ContainerSignUp>
@@ -63,7 +69,7 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               placeholder="Почта"
               value={email}
               onChange={(event) => {
-                setEmail(event.target.value);
+                setEmail(event.target.value)
               }}
             />
             <S.ModalInput
@@ -73,7 +79,7 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               placeholder="Пароль"
               value={password}
               onChange={(event) => {
-                setPassword(event.target.value);
+                setPassword(event.target.value)
               }}
             />
             <S.ModalInput
@@ -83,14 +89,17 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               placeholder="Повторите пароль"
               value={repeatPassword}
               onChange={(event) => {
-                setRepeatPassword(event.target.value);
+                setRepeatPassword(event.target.value)
               }}
             />
             <S.ErrorMasege>{error}</S.ErrorMasege>
             <S.ErrorMasege>{errorRegistrApi}</S.ErrorMasege>
-            <S.ModalBtnSignUp onClick={handleClickRegistr}
-             disabled={isLoginMode}
-            >{isLoginMode ? "Регистрация" : "Зарегистрироваться"}</S.ModalBtnSignUp>
+            <S.ModalBtnSignUp
+              onClick={handleClickRegistr}
+              disabled={isLoginMode}
+            >
+              {isLoginMode ? 'Регистрация' : 'Зарегистрироваться'}
+            </S.ModalBtnSignUp>
           </S.ModalFormLogin>
         </S.ModalBlock>
       </S.ContainerSignUp>

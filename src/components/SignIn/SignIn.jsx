@@ -9,7 +9,7 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState()
-
+  console.log("signIn", user);
   const handleClickAuth = () => {
     const login = () => {
       loginUser({ email, password })
