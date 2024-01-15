@@ -17,7 +17,6 @@ export const Main = ({ setUser }) => {
   useEffect(() => {
     getAllTracks()
       .then((arrayTracks) => {
-        console.log(arrayTracks)
         setAllTracks(arrayTracks)
         setIsLoading(false)
       })
@@ -51,7 +50,6 @@ export const Main = ({ setUser }) => {
                 isVisiblePlayer={isVisiblePlayer}
                 isLoading={isLoading}
                 trackPlayed={trackPlayed}
-                setTrackPlayed={setTrackPlayed}
               />
             </footer>
           </S.Container>
