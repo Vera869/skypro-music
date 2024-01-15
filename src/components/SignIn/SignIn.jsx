@@ -36,28 +36,6 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
     }
   }
 
-  // export default function AuthPage({ isLoginMode = false }) {
-  //   const [error, setError] = useState(null);
-
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [repeatPassword, setRepeatPassword] = useState("");
-
-  //   const handleLogin = async ({ email, password }) => {
-  //     alert(`Выполняется вход: ${email} ${password}`);
-  //     setError("Неизвестная ошибка входа");
-  //   };
-
-  //   const handleRegister = async () => {
-  //     alert(`Выполняется регистрация: ${email} ${password}`);
-  //     setError("Неизвестная ошибка регистрации");
-  //   };
-
-  //   // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
-  //   useEffect(() => {
-  //     setError(null);
-  //   }, [isLoginMode, email, password, repeatPassword]);
-
   return (
     <S.wrapper>
       <S.ContainerEnter>

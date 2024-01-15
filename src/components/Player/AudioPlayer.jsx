@@ -33,14 +33,14 @@ function AudioPlayer({
   const handleStart = () => {
     console.log(duration)
     audioRef.current.play()
-    setTrackPlayed(true)
+    // setTrackPlayed(true)
     setIsPlay(true);
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    setTrackPlayed(false)
+    // setTrackPlayed(false)
     setIsPlay(false)
   }
 
@@ -67,11 +67,16 @@ function AudioPlayer({
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        setTrackPlayed(true)
+        // setTrackPlayed(true)
         setIsPlay(false)
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
+
+
+  useEffect(() => {
+    setIsPlay(true);
+  }, [trackPlayed])
 
   const handleIsLoop = () => {
     audioRef.current.loop = true

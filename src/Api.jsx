@@ -23,10 +23,6 @@ export async function registrUser({ email, password }){
               "content-type": "application/json",
             },
    }) ;
-   // if(!response.ok) {
-   //    throw new Error("Произошла ошибка");
-   // }  
-
    if (response.status === 400) {
       throw new Error("Неверный ввод");
     } else if (response.status === 500) {
@@ -47,9 +43,6 @@ export async function loginUser({ email, password }) {
        "content-type": "application/json",
      },
    });
-   // if(!response.ok) {
-   //    throw new Error("Произошла ошибка");
-   // } 
     if (response.status === 400) {
       throw new Error("Запрос составлен некорректно");
     } else if (response.status === 401) {
