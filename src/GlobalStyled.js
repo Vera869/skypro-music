@@ -56,7 +56,7 @@ body {
 // добавлено new-page, App
 .container {
   max-width: 1920px;
-  height: 100vh;
+  // height: 100vh;
   margin: 0 auto;
   position: relative;
   background-color: #181818;
