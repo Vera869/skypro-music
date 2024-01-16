@@ -65,6 +65,13 @@ export async function loginUser({ email, password }) {
        "content-type": "application/json",
      },
    })
+   if (response.status === 400) {
+      throw new Error("Запрос составлен некорректно");
+    } else if (response.status === 401) {
+      throw new Error("Пользователь с таким email или паролем не найден");
+    } else if (response.status === 500) {
+      throw new Error("Ошибка сервера");
+    }
    return response.json();
    }
 export async function refrashToken ({refresh}) {
@@ -77,6 +84,13 @@ export async function refrashToken ({refresh}) {
           "content-type": "application/json",
         },
       })
+      if (response.status === 400) {
+         throw new Error("В теле запроса не передан refresh токен");
+       } else if (response.status === 401) {
+         throw new Error("Refresh токен невалидный, возвращает объект с ошибкой");
+       } else if (response.status === 500) {
+         throw new Error("Ошибка сервера(Refresh токен)");
+       }
       return response.json();
       }
 

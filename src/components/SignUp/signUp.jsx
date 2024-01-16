@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react'
 import * as S from '../SignUp/StyledSignUp'
 import { getToken, registrUser } from '../../Api'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../../Context/authorization'
+import { UserContext, TokenContext} from '../../Context/authorization'
 
 export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
   const [error, setError] = useState(null)
@@ -13,6 +13,7 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
   const [errorRegistrApi, setErrorRegistrApi] = useState(null)
 
   const { changingUserData } = useContext(UserContext)
+  const { changingTokenData } = useContext(TokenContext)
 
   const navigate = useNavigate()
 
@@ -36,6 +37,7 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
           .then((res) => {
             localStorage.setItem('accessToken', JSON.stringify(res.access))
             localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+            changingTokenData(accessToken)
             setIsLoginMode(true)
             navigate('/login')
           })
