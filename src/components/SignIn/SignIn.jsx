@@ -28,9 +28,6 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
     if (!password) {
       return setError('Укажите пароль')
     }
-     // if() {
-    //   return setError('Пользователь с таким email или паролем не найден')
-    // }
     else {
       login()
     }

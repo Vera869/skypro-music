@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from 'react'
 import * as S from '../SignUp/StyledSignUp'
-import { registrUser } from '../../Api'
+import { getToken, registrUser } from '../../Api'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/authorization'
 
@@ -52,6 +52,7 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   useEffect(() => {
     setError(null)
   }, [isLoginMode, email, password, repeatPassword])
+  
   return (
     <S.Wrapper>
       <S.ContainerSignUp>

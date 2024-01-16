@@ -13,7 +13,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
   // const [user, setUser] = useState(localStorage.getItem('user'))
  
-  console.log(Boolean(localStorage.getItem('user')))
+  console.log(Boolean("user", JSON.stringify(user)))
   const logout = () => {
     localStorage.removeItem('user')
     setUser('null')
