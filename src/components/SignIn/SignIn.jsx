@@ -10,16 +10,21 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState()
   console.log("signIn", user);
+  
   const handleClickAuth = () => {
     const login = () => {
+    try {
       loginUser({ email, password })
       .then(()=>{
         // localStorage.setItem('user', 'true')
         localStorage.setItem("user", JSON.stringify(user));
+        setIsLoginMode(true)
         setUser('user')
         navigate('/')
       })
-      
+    } finally {
+      setIsLoginMode(false)
+    }
     }
 
     if (!email) {
@@ -62,7 +67,7 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               }}
             />
             <S.ErrorMasege>{error}</S.ErrorMasege>
-            <S.ModalBtnEnter onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
+            <S.ModalBtnEnter disabled={isLoginMode} onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
             <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>
             </S.ModalBtnSignup>

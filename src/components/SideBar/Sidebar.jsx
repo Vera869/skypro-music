@@ -1,15 +1,18 @@
 import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
+import { UserContext } from '../../Context/authorization.jsx'
+import { useContext } from 'react'
 
 function SideBar({ 
   setUser,
   isLoading,
   setIsLoading,
   logout, }) {
+    const { userData } = useContext(UserContext)
   return (
     <S.MineSideBar className="sidebar">
       <S.SideBarPersonal>
-        <S.SideBarPersonalName>Vera.Buganova</S.SideBarPersonalName>
+        <S.SideBarPersonalName>{userData.username}</S.SideBarPersonalName>
 
         <S.SideBarIcon onClick={logout}>
           <svg alt="logout">

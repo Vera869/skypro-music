@@ -18,7 +18,6 @@ export const Main = ({ setUser, logout }) => {
   useEffect(() => {
     getAllTracks()
       .then((arrayTracks) => {
-        console.log(arrayTracks)
         setAllTracks(arrayTracks)
         setIsLoading(false)
       })
