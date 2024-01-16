@@ -193,5 +193,5 @@ export const ErrorMasege = styled.p`
   line-height: 24px;
   letter-spacing: -0.05px;
   color: #580ea2;
-  margin-bottom: 30px;
+  // margin-bottom: 30px;
   `

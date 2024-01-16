@@ -2,15 +2,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
 import { useState } from 'react'
 import {loginUser} from '../../Api'
+// import { UserContext } from '../../Context/authorization'
+// import { useContext } from 'react'
 
 export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
 
+  // const { userData } = useContext(UserContext)
+  // const { changingUserData } = useContext(UserContext)
+
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState()
+  const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   console.log("signIn", user);
-  
+  console.log(user);
+
   const handleClickAuth = () => {
     const login = () => {
     try {
@@ -18,9 +25,14 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
       .then(()=>{
         // localStorage.setItem('user', 'true')
         localStorage.setItem("user", JSON.stringify(user));
+        // changingUserData(user)
         setIsLoginMode(true)
-        setUser('user')
+        setUser("user")
         navigate('/')
+      })
+      .catch((error) => {
+        console.log(error.message)
+        setErrorAuthrApi(error.message)
       })
     } finally {
       setIsLoginMode(false)
@@ -67,6 +79,7 @@ export const SignIn = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               }}
             />
             <S.ErrorMasege>{error}</S.ErrorMasege>
+            <S.ErrorMasege>{errorAuthrApi}</S.ErrorMasege>
             <S.ModalBtnEnter disabled={isLoginMode} onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
             <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>

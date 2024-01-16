@@ -4,7 +4,7 @@ import { getToken, registrUser } from '../../Api'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/authorization'
 
-export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
+export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
   const [error, setError] = useState(null)
 
   const [email, setEmail] = useState('')
