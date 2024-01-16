@@ -52,7 +52,6 @@ export const SignUp = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   useEffect(() => {
     setError(null)
   }, [isLoginMode, email, password, repeatPassword])
-  
   return (
     <S.Wrapper>
       <S.ContainerSignUp>

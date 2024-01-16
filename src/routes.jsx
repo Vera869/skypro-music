@@ -11,12 +11,11 @@ import { Main } from '../src/pages/Main/MainPage'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
-  // const [user, setUser] = useState(localStorage.getItem('user'))
  
-  console.log(Boolean("user", JSON.stringify(user)))
+  console.log(Boolean("user"))
   const logout = () => {
-    localStorage.removeItem('user', JSON.stringify(user))
-    setUser('null')
+    localStorage.removeItem('user')
+    // setIsLoginMode(true)
     navigate('/login')
   }
   return (
