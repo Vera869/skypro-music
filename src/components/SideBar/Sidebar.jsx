@@ -12,7 +12,7 @@ function SideBar({
   return (
     <S.MineSideBar className="sidebar">
       <S.SideBarPersonal>
-        <S.SideBarPersonalName> Вы вошли под ником:{userData.username}</S.SideBarPersonalName>
+        <S.SideBarPersonalName>{userData.username}</S.SideBarPersonalName>
 
         <S.SideBarIcon onClick={logout}>
           <svg alt="logout">

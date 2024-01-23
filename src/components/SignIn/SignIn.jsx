@@ -1,7 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
-import { useState, useEffect } from 'react'
-import {loginUser} from '../../Api'
+import { useState, useEffect, useContext } from 'react'
+import {getToken, loginUser} from '../../Api'
+import { UserContext } from '../../Context/authorization'
+
 
 export const SignIn = ({ user, setUser }) => {
   const navigate = useNavigate()
@@ -11,19 +13,25 @@ export const SignIn = ({ user, setUser }) => {
   const [password, setPassword] = useState()
   const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   const [isLoadLogin, setIsLoadLogin] = useState(false)
-  console.log("signIn", user);
+
+  const { changingUserData } = useContext(UserContext)
+  // console.log("signIn", user);
 
   const handleClickAuth = () => {
     
     const login = () => {
       setIsLoadLogin(true)
       loginUser({ email, password })
-      .then(()=>{
-        
-        localStorage.setItem("user", JSON.stringify({ email, password }));
-       
-        setUser("user")
-        navigate('/')
+      .then((newUser) => {
+        localStorage.setItem('user', JSON.stringify(newUser))
+        changingUserData(newUser)
+        setUser(newUser)
+        getToken({email, password})
+        .then((res) => {
+          localStorage.setItem('accessToken', JSON.stringify(res.access))
+          localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+          navigate('/')
+        })
       })
       .catch((error) => {
         console.log(error.message)
