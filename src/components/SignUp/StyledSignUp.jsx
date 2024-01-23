@@ -92,7 +92,7 @@ export const ModalInput = styled.input`
     margin-bottom: 30px;
   }
 `
-export const ModalBtnSignUp = styled(Link)`
+export const ModalBtnSignUp = styled.button`
   width: 278px;
   height: 62px;
   color: black;

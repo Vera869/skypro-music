@@ -5,7 +5,7 @@
     },
     "extends": [
       "plugin:react/recommended",
-      "prettier",
+  
       "plugin:react/jsx-runtime"
     ],
     "parserOptions": {

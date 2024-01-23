@@ -10,7 +10,7 @@ export const SignIn = ({ user, setUser }) => {
 
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState()
+  const [password, setPassword] = useState("")
   const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   const [isLoadLogin, setIsLoadLogin] = useState(false)
 
