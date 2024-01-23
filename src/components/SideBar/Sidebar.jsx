@@ -8,11 +8,11 @@ function SideBar({
   isLoading,
   setIsLoading,
   logout, }) {
-    const { userData } = useContext(UserContext)
+  const { userData } = useContext(UserContext)
   return (
     <S.MineSideBar className="sidebar">
       <S.SideBarPersonal>
-        <S.SideBarPersonalName>{userData.username}</S.SideBarPersonalName>
+        <S.SideBarPersonalName> Вы вошли под ником:{userData.username}</S.SideBarPersonalName>
 
         <S.SideBarIcon onClick={logout}>
           <svg alt="logout">

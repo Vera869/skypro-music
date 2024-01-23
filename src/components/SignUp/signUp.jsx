@@ -4,19 +4,21 @@ import { getToken, registrUser } from '../../Api'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/authorization'
 
-export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
+export const SignUp = ({setUser }) => {
   const [error, setError] = useState(null)
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
   const [errorRegistrApi, setErrorRegistrApi] = useState(null)
+  const [isLoadReg, setIsLoadReg] = useState(false)
 
   const { changingUserData } = useContext(UserContext)
 
   const navigate = useNavigate()
 
   const handleClickRegistr = async () => {
+    
     if (!email) {
       return setError('Укажите почту')
     }
@@ -27,6 +29,7 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
       return setError('Пароли не совпадают')
     }
     try {
+      setIsLoadReg(true)
       registrUser({ email, password })
         .then((newUser) => {
           localStorage.setItem('user', JSON.stringify(newUser))
@@ -36,7 +39,6 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
           .then((res) => {
             localStorage.setItem('accessToken', JSON.stringify(res.access))
             localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
-            setIsLoginMode(true)
             navigate('/login')
           })
         })
@@ -45,13 +47,13 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
           setErrorRegistrApi(error.message)
         })
     } finally {
-      setIsLoginMode(false)
+      setIsLoadReg(false)
     }
   }
 
   useEffect(() => {
     setError(null)
-  }, [isLoginMode, email, password, repeatPassword])
+  }, [isLoadReg, email, password, repeatPassword])
   return (
     <S.Wrapper>
       <S.ContainerSignUp>
@@ -95,10 +97,11 @@ export const SignUp = ({setUser, isLoginMode, setIsLoginMode }) => {
             <S.ErrorMasege>{error}</S.ErrorMasege>
             <S.ErrorMasege>{errorRegistrApi}</S.ErrorMasege>
             <S.ModalBtnSignUp
+              type='button'
               onClick={handleClickRegistr}
-              disabled={isLoginMode}
+              disabled={isLoadReg}
             >
-              {isLoginMode ? 'Регистрация' : 'Зарегистрироваться'}
+              {isLoadReg ? 'Регистрация' : 'Зарегистрироваться'}
             </S.ModalBtnSignUp>
           </S.ModalFormLogin>
         </S.ModalBlock>
