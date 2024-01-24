@@ -2,12 +2,13 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
+import { useSelector } from 'react-redux'
 
 function AudioPlayer({
   isVisiblePlayer,
   isLoading,
-  trackPlayed,
-  setTrackPlayed,
+  // trackPlayed,
+  // setTrackPlayed,
 }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
@@ -16,6 +17,8 @@ function AudioPlayer({
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
+
+  const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -76,7 +79,7 @@ function AudioPlayer({
 
   useEffect(() => {
     setIsPlay(true);
-  }, [trackPlayed])
+  }, [activeTrack])
 
   const handleIsLoop = () => {
     audioRef.current.loop = true
@@ -106,10 +109,10 @@ function AudioPlayer({
   return (
     isVisiblePlayer && (
       <S.Bar>
-        {trackPlayed ? (
+        {activeTrack ? (
           <audio
             ref={audioRef}
-            src={trackPlayed.track_file}
+            src={activeTrack.track_file}
             autoPlay
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
           >
@@ -201,7 +204,7 @@ function AudioPlayer({
                       />
                     ) : (
                       <S.TrackPlayAuthorLink>
-                        {trackPlayed.author}
+                        {activeTrack.author}
                       </S.TrackPlayAuthorLink>
                     )}
                   </S.TrackPlayAuthor>
@@ -214,7 +217,7 @@ function AudioPlayer({
                       />
                     ) : (
                       <S.TrackPlayAlbumLink>
-                        {trackPlayed.name}
+                        {activeTrack.name}
                       </S.TrackPlayAlbumLink>
                     )}
                   </S.TrackPlayAlbum>

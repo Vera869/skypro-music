@@ -39,7 +39,7 @@ export const SignUp = ({ setUser }) => {
           navigate('/login')
         })
       })
-      .catch((error) => {
+      .catch(({error}) => {
         console.log(error.username || error.email || error.password)
         setErrorRegistrApi(error.message)
       })

@@ -1,15 +1,19 @@
 import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
-// import { useState } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { setPlayingTrack } from '../../Store/Slices/sliceTrack.js'
 
 
 function GetTracks({
   isLoading,
-  allTracks,
   errorGetTracks,
-  setTrackPlayed,
+  // setTrackPlayed,
   setVisiblePlayer,
 }) {
+  const tracks = useSelector((state) => state.tracks.tracks)
+  const dispatch = useDispatch()
+
   const toggleErrorContext = () => {
     if (errorGetTracks)
       return (
@@ -30,11 +34,12 @@ function GetTracks({
   }
   
   const clickTrack = ({track}) => {
-    setTrackPlayed(track)
+    // setTrackPlayed(track)
     setVisiblePlayer(true)
+    dispatch(setPlayingTrack({ track }))
     return
   }
-  const trackItems = allTracks.map((track) => (
+  const trackItems = tracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
