@@ -4,7 +4,7 @@ import { getToken, registrUser } from '../../Api'
 import { useNavigate } from 'react-router-dom'
 import { UserContext } from '../../Context/authorization'
 
-export const SignUp = ({setUser }) => {
+export const SignUp = ({ setUser }) => {
   const [error, setError] = useState(null)
 
   const [email, setEmail] = useState('')
@@ -18,7 +18,6 @@ export const SignUp = ({setUser }) => {
   const navigate = useNavigate()
 
   const handleClickRegistr = async () => {
-    
     if (!email) {
       return setError('Укажите почту')
     }
@@ -28,27 +27,23 @@ export const SignUp = ({setUser }) => {
     if (password !== repeatPassword) {
       return setError('Пароли не совпадают')
     }
-    try {
-      setIsLoadReg(true)
-      registrUser({ email, password })
-        .then((newUser) => {
-          localStorage.setItem('user', JSON.stringify(newUser))
-          changingUserData(newUser)
-          setUser(newUser)
-          getToken({email, password})
-          .then((res) => {
-            localStorage.setItem('accessToken', JSON.stringify(res.access))
-            localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
-            navigate('/login')
-          })
+    setIsLoadReg(true)
+    registrUser({ email, password })
+      .then((newUser) => {
+        localStorage.setItem('user', JSON.stringify(newUser))
+        changingUserData(newUser)
+        setUser(newUser)
+        getToken({ email, password }).then((res) => {
+          localStorage.setItem('accessToken', JSON.stringify(res.access))
+          localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+          navigate('/login')
         })
-        .catch((error) => {
-          console.log(error.message)
-          setErrorRegistrApi(error.message)
-        })
-    } finally {
-      setIsLoadReg(false)
-    }
+      })
+      .catch((error) => {
+        console.log(error.username || error.email || error.password)
+        setErrorRegistrApi(error.message)
+      })
+      .finally(() => setIsLoadReg(false))
   }
 
   useEffect(() => {
@@ -97,7 +92,7 @@ export const SignUp = ({setUser }) => {
             <S.ErrorMasege>{error}</S.ErrorMasege>
             <S.ErrorMasege>{errorRegistrApi}</S.ErrorMasege>
             <S.ModalBtnSignUp
-              type='button'
+              type="button"
               onClick={handleClickRegistr}
               disabled={isLoadReg}
             >

@@ -24,7 +24,9 @@ export async function registrUser({ email, password }){
             },
    }) ;
    if (response.status === 400) {
-      throw new Error("Неверный ввод");
+    const error = response.json();
+    console.dir(error);
+      throw new Error(error);
     } else if (response.status === 500) {
       throw new Error("Внутренняя ошибка сервера");
     }

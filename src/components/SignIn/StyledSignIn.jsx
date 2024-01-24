@@ -20,6 +20,7 @@ export const ModalBlock = styled.div`
   opacity: 1;
 `
 export const ModalFormLogin = styled.form`
+  justify-content: space-between;
   width: 366px;
   height: 439px;
   background-color: #ffffff;
@@ -185,7 +186,7 @@ export const ModalBtnSignup = styled.button`
 `
 export const ErrorMasege = styled.p`
   width: 100%;
-  height: 35px; 
+  // height: 35px; 
   padding: 8px 1px;
   font-style: normal;
   font-weight: 400;

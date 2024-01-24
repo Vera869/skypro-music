@@ -5,7 +5,7 @@ import {getToken, loginUser} from '../../Api'
 import { UserContext } from '../../Context/authorization'
 
 
-export const SignIn = ({ user, setUser }) => {
+export const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
 
   const [error, setError] = useState(null)
@@ -15,7 +15,6 @@ export const SignIn = ({ user, setUser }) => {
   const [isLoadLogin, setIsLoadLogin] = useState(false)
 
   const { changingUserData } = useContext(UserContext)
-  // console.log("signIn", user);
 
   const handleClickAuth = () => {
     
@@ -83,8 +82,7 @@ export const SignIn = ({ user, setUser }) => {
                 setPassword(event.target.value)
               }}
             />
-            <S.ErrorMasege>{error}</S.ErrorMasege>
-            <S.ErrorMasege>{errorAuthrApi}</S.ErrorMasege>
+            <S.ErrorMasege>{error || errorAuthrApi}</S.ErrorMasege>
             <S.ModalBtnEnter type='button' disabled={isLoadLogin} onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
             <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>
