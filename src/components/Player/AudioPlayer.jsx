@@ -7,8 +7,6 @@ import { useSelector } from 'react-redux'
 function AudioPlayer({
   isVisiblePlayer,
   isLoading,
-  // trackPlayed,
-  // setTrackPlayed,
 }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
@@ -18,7 +16,7 @@ function AudioPlayer({
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
 
-  const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
 
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -36,14 +34,12 @@ function AudioPlayer({
   const handleStart = () => {
     console.log(duration)
     audioRef.current.play()
-    // setTrackPlayed(true)
     setIsPlay(true);
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    // setTrackPlayed(false)
     setIsPlay(false)
   }
 
@@ -70,7 +66,6 @@ function AudioPlayer({
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // setTrackPlayed(true)
         setIsPlay(false)
       }
     }

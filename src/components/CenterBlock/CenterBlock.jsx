@@ -7,7 +7,6 @@ function CenterBlock({
   allTracks,
   errorGetTracks,
   setVisiblePlayer,
-  setTrackPlayed,
 }) {
   return (
     <S.MainCenterBlock>
@@ -38,7 +37,6 @@ function CenterBlock({
           allTracks={allTracks}
           errorGetTracks={errorGetTracks}
           setVisiblePlayer={setVisiblePlayer}
-          setTrackPlayed={setTrackPlayed}
         />
       </S.CenterBlockContent>
     </S.MainCenterBlock>
