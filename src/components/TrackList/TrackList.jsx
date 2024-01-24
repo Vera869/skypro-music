@@ -7,6 +7,7 @@ import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const activeTrackId = activeTrack.id
   const dispatch = useDispatch()
 
   const toggleErrorContext = () => {
@@ -29,7 +30,6 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
   }
 
   const clickTrack = ({ track }) => {
-    // setTrackPlayed(track)
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
     return
@@ -41,7 +41,7 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
               {activeTrack.id === track.id ? (
-                <S.ActiveTrack/>
+                <S.ActiveTrack />
               ) : (
                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
               )}
