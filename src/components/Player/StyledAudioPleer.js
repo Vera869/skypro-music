@@ -183,6 +183,7 @@ export const PlayerBtnShuffle = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  stroke: ${(props) => (props.$isshuffled ? '#fff' : '#696969')};
 `
 export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;

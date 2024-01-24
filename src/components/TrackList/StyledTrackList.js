@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Link } from 'react-router-dom'
 
 export const PlaylistItem = styled.li`
@@ -134,5 +134,22 @@ export const ErrorMassege = styled.p`
   font-size: 28px;
   color: #ffffff;
 `
+const bubble_out = keyframes`
+    0%,
+    to {
+      transform: scale(0.5);
+    }
+    50% {
+      transform: scale(1);
+    }`
+
+export const ActiveTrack = styled.div`
+  width: 16px;
+  height: 16px;
+  background-color: #b672ff;
+  border-radius: 8px;
+  display: block;
+  animation: ${bubble_out} 0.6s ease-in-out infinite both;
+  `
 
 

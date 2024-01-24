@@ -2,7 +2,9 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux'
+
+import { useSelector, useDispatch } from 'react-redux'
+import { playNextTrack, playPrevTrack,  setIsShuffled} from '../../Store/Slices/sliceTrack.js'
 
 function AudioPlayer({
   isVisiblePlayer,
@@ -17,6 +19,10 @@ function AudioPlayer({
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
 
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
+  const dispatch = useDispatch()
+  const isShuffled = useSelector((state) => state.tracks.isShuffled)
+ 
+  
 
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -98,9 +104,9 @@ function AudioPlayer({
   const onChangeProgress = () => {
     audioRef.current.currentTime = refProgress.current.value
   }
-  const butnNotWorking = () => {
-    alert('Еще не реализовано, пожалуйста, попробуйте позже')
-  }
+  const butNextTrack = () => dispatch(playNextTrack(),)
+  const butPrevtTrack = () => dispatch(playPrevTrack(),) 
+  const butShuffledTrack = () => dispatch(setIsShuffled())
   return (
     isVisiblePlayer && (
       <S.Bar>
@@ -110,6 +116,7 @@ function AudioPlayer({
             src={activeTrack.track_file}
             autoPlay
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
+            onEnded={() => dispatch(playNextTrack())}
           >
             Здесь будет звучать Музыка!
           </audio>
@@ -135,7 +142,7 @@ function AudioPlayer({
           <S.BarPleerBlock>
             <S.BarPleer>
               <S.PlayerControls>
-                <S.PlayerBtnPrev onClick={butnNotWorking}>
+                <S.PlayerBtnPrev onClick={butPrevtTrack}>
                   <S.PlayerBtnPrevSvg alt="prev">
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
@@ -150,7 +157,7 @@ function AudioPlayer({
                     )}
                   </S.PlayerBtnPlaySvg>
                 </S.PlayerBtnPlay>
-                <S.PlayerBtnNext onClick={butnNotWorking}>
+                <S.PlayerBtnNext onClick={butNextTrack}>
                   <S.PlayerBtnNextSvg alt="next">
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
@@ -165,7 +172,8 @@ function AudioPlayer({
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle
-                  onClick={butnNotWorking}
+                  $isshuffled={isShuffled}
+                  onClick={butShuffledTrack}
                   className="_btn-icon"
                 >
                   <S.PlayerBtnShuffleSvg alt="shuffle">

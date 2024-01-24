@@ -10,9 +10,9 @@ import { useDispatch} from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
 
 export const Main = ({ setUser, logout }) => {
+  
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
-
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
 
 
@@ -29,7 +29,7 @@ export const Main = ({ setUser, logout }) => {
         console.log(error.message)
         setErrorGetTracks(error.message)
       })
-  }, [])
+  }, []) //dispatch
   return (
     <>
       <div>

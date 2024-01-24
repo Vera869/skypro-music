@@ -2,16 +2,11 @@ import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setPlayingTrack } from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
-
-function GetTracks({
-  isLoading,
-  errorGetTracks,
-  // setTrackPlayed,
-  setVisiblePlayer,
-}) {
+function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
   const tracks = useSelector((state) => state.tracks.tracks)
+  const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
 
   const toggleErrorContext = () => {
@@ -32,11 +27,11 @@ function GetTracks({
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
     )
   }
-  
-  const clickTrack = ({track}) => {
+
+  const clickTrack = ({ track }) => {
     // setTrackPlayed(track)
     setVisiblePlayer(true)
-    dispatch(setPlayingTrack({ track }))
+    dispatch(setActiveTrack({ track }))
     return
   }
   const trackItems = tracks.map((track) => (
@@ -45,15 +40,19 @@ function GetTracks({
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              {activeTrack.id === track.id ? (
+                <S.ActiveTrack/>
+              ) : (
+                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+              )}
+              {/* <use xlinkHref="img/icon/sprite.svg#icon-note" /> */}
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
             <S.TreckTitleLink
-              onClick={() =>{
-                clickTrack({track})
-              }
-              }
+              onClick={() => {
+                clickTrack({ track })
+              }}
               to="#"
             >
               {track.name}

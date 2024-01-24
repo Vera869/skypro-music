@@ -15,7 +15,6 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   console.log(Boolean(localStorage.getItem("user")))
   const logout = () => {
     localStorage.clear()
-    // localStorage.removeItem('user')
     navigate('/login')
   }
   return (
