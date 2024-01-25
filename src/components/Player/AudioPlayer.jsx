@@ -9,11 +9,12 @@ import { playNextTrack, playPrevTrack,  setIsShuffled} from '../../Store/Slices/
 function AudioPlayer({
   isVisiblePlayer,
   isLoading,
+  isplay,
+  setIsPlay,
 }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
-  const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара

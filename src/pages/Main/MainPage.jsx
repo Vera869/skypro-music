@@ -11,6 +11,7 @@ import { setTracks } from '../../Store/Slices/sliceTrack.js'
 
 export const Main = ({ setUser, logout }) => {
   
+  const [isplay, setIsPlay] = useState(true);
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
@@ -41,6 +42,7 @@ export const Main = ({ setUser, logout }) => {
                 isLoading={isLoading}
                 errorGetTracks={errorGetTracks}
                 setVisiblePlayer={setVisiblePlayer}
+                isplay={isplay}
               />
               <SideBar
                 setUser={setUser}
@@ -53,6 +55,8 @@ export const Main = ({ setUser, logout }) => {
               <AudioPlayer
                 isVisiblePlayer={isVisiblePlayer}
                 isLoading={isLoading}
+                isplay={isplay}
+                setIsPlay={setIsPlay}
               />
             </footer>
           </S.Container>

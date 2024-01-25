@@ -4,7 +4,7 @@ import * as S from '../TrackList/StyledTrackList.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
-function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
+function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay}) {
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   // const activeTrackId = activeTrack.id
@@ -41,16 +41,12 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
         <S.TreckTitleImage>
         {activeTrack.id === track.id ? (
                 <S.TreckTitleImageActive>
-                  <S.ActiveTrack />
-                </S.TreckTitleImageActive>
-                
-              )
-         
-               : (
+                 {isplay ? <S.ActiveTrack /> : ''}
+                </S.TreckTitleImageActive> 
+              ): (
                 <S.TreckTitleSvg alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                 </S.TreckTitleSvg>
-        
               )}
         </S.TreckTitleImage>  
           <S.TreckTitleText>
