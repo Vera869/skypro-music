@@ -38,15 +38,20 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer }) {
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
-          <S.TreckTitleImage>
-            <S.TreckTitleSvg alt="music">
-              {activeTrack.id === track.id ? (
-                <S.ActiveTrack />
-              ) : (
+        {activeTrack.id === track.id ? (
+                <S.TreckTitleImageActive>
+                  {/* <S.ActiveTrack /> */}
+                </S.TreckTitleImageActive>
+                
+              )
+         
+               : ( <S.TreckTitleImage>
+                <S.TreckTitleSvg alt="music">
                 <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-              )}
-            </S.TreckTitleSvg>
+                </S.TreckTitleSvg>
           </S.TreckTitleImage>
+              )}
+            
           <S.TreckTitleText>
             <S.TreckTitleLink
               onClick={() => {

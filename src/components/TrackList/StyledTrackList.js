@@ -69,6 +69,8 @@ export const TreckTitleSvg = styled.svg`
   stroke: #4e4e4e;
   // animation: ${pulsar}  1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
 `
+export const TreckTitleImageActive = styled(TreckTitleImage)`
+`
 export const ActiveTrack = styled.div`
 width: 16px;
 height: 16px;

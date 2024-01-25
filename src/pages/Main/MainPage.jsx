@@ -29,7 +29,7 @@ export const Main = ({ setUser, logout }) => {
         console.log(error.message)
         setErrorGetTracks(error.message)
       })
-  }, []) //dispatch
+  }, [dispatch]) //
   return (
     <>
       <div>
