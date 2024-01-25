@@ -21,7 +21,7 @@ function AudioPlayer({
 
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
-  const isShuffled = useSelector((state) => state.tracks.isShuffled)
+  let isShuffled = useSelector((state) => state.tracks.isShuffled)
  
   
 
@@ -105,9 +105,11 @@ function AudioPlayer({
   const onChangeProgress = () => {
     audioRef.current.currentTime = refProgress.current.value
   }
-  const butNextTrack = () => dispatch(playNextTrack(),)
-  const butPrevtTrack = () => dispatch(playPrevTrack(),) 
-  const butShuffledTrack = () => dispatch(setIsShuffled())
+  const butNextTrack = () => dispatch(playNextTrack())
+  const butPrevtTrack = () => dispatch(playPrevTrack()) 
+  const butShuffledTrack = () => {
+    dispatch(setIsShuffled())
+  }
   return (
     isVisiblePlayer && (
       <S.Bar>
@@ -173,7 +175,7 @@ function AudioPlayer({
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle
-                  $isshuffled={isShuffled}
+                  IsShuffled={isShuffled}
                   onClick={butShuffledTrack}
                   className="_btn-icon"
                 >

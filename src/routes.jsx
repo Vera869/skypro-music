@@ -8,12 +8,21 @@ import { Reg } from './pages/Registration/registration'
 import { PlayListCategory } from '../src/pages/Category/category'
 import { arrayCategorys } from '../src/components/SideBar/ArrayCategory'
 import { Main } from '../src/pages/Main/MainPage'
+import { useState } from 'react'
+// import { useDispatch } from 'react-redux'
+// import { setActiveTrack } from './Store/Slices/sliceTrack'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
+  
   const navigate = useNavigate()
- 
+  const [isplay, setIsPlay] = useState(true);
+  // const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  // const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem("user")))
+
   const logout = () => {
+    // dispatch(setActiveTrack({}))
+    setIsPlay(false)
     localStorage.clear()
     navigate('/login')
   }
@@ -23,7 +32,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
       <Route path="/registration" element={<Reg user={user} setUser={setUser} isLoginMode={isLoginMode} setIsLoginMode={setIsLoginMode}/>} />
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Main setUser={setUser} logout={logout}/>} />
+        <Route path="/" element={<Main setUser={setUser} logout={logout} isplay={isplay} setIsPlay={setIsPlay}/>} />
         <Route
           path="/category/:id"
           element={<PlayListCategory arrayCategorys={arrayCategorys} />}

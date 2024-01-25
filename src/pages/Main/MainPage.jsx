@@ -9,9 +9,10 @@ import { getAllTracks } from '../../Api.jsx'
 import { useDispatch} from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
 
-export const Main = ({ setUser, logout }) => {
+export const Main = ({ setUser, logout, isplay,
+  setIsPlay, }) => {
   
-  const [isplay, setIsPlay] = useState(true);
+  
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)

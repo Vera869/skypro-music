@@ -17,10 +17,11 @@ const trackSlice = createSlice({
       state.activeTrack = action.payload.track
     },
     setIsShuffled(state) {
-      state.isShuffled = !state.isShuffled
+     
       if (state.isShuffled) {
         state.shuffledTracks.sort(() => Math.random() - 0.5)
       }
+      state.isShuffled = !state.isShuffled
     },
     playNextTrack(state) {
       const playlist = state.isShuffled ? state.shuffledTracks : state.tracks

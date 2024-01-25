@@ -194,9 +194,9 @@ export const PlayerBtnShuffleSvg = styled.svg`
   height: 12px;
   fill: transparent;
   stroke: #696969;
-  stroke: ${(props) => (props.$isShuffled ? "#fff" : '#696969')};
+  stroke: ${(props) => (props.IsShuffled ? "#fff" : '#696969')};
   &:hover {
-    stroke: ${(props) => (props.$isShuffled ? "#fff" : "#acacac")};
+    stroke: ${(props) => (props.IsShuffled ? "#fff" : "#acacac")};
   }
 `
 export const PlayerTrackPlay = styled.div`
