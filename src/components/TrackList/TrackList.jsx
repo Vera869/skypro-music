@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
 function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay}) {
+
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   // const activeTrackId = activeTrack.id
@@ -57,11 +58,6 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay}) {
               to="#"
             >
               {track.name}
-              {/* {track.remix ? (
-                <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
-              ) : (
-                ''
-              )} */}
             </S.TreckTitleLink>
           </S.TreckTitleText>
           <S.TreckAuthor>

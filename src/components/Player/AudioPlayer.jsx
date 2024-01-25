@@ -152,7 +152,6 @@ function AudioPlayer({
                 </S.PlayerBtnPrev>
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay}>
                   <S.PlayerBtnPlaySvg alt="play">
-                    {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
                     {isplay ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (

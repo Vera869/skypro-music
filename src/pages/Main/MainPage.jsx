@@ -17,7 +17,6 @@ export const Main = ({ setUser, logout, isplay,
   const [errorGetTracks, setErrorGetTracks] = useState(null)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
 
-
   const dispatch = useDispatch()
   // const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
@@ -31,7 +30,7 @@ export const Main = ({ setUser, logout, isplay,
         console.log(error.message)
         setErrorGetTracks(error.message)
       })
-  }, [dispatch]) //
+  }, []) //dispatch
   return (
     <>
       <div>
