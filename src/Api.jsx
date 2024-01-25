@@ -24,10 +24,9 @@ export async function registrUser({ email, password }){
             },
    }) ;
    if (response.status === 400) {
-    let error = response.json()
-    
-    console.dir({error});
-      throw new Error({error});
+    const data = await response.json()
+    const error = data.email && data.email[0] || data.username && data.username[0] || data.password && data.password[0]
+      throw new Error(error);
     } else if (response.status === 500) {
       throw new Error("Внутренняя ошибка сервера");
     }

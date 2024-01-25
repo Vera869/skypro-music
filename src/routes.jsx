@@ -9,19 +9,20 @@ import { PlayListCategory } from '../src/pages/Category/category'
 import { arrayCategorys } from '../src/components/SideBar/ArrayCategory'
 import { Main } from '../src/pages/Main/MainPage'
 import { useState } from 'react'
-// import { useDispatch } from 'react-redux'
-// import { setActiveTrack } from './Store/Slices/sliceTrack'
+import { useDispatch } from 'react-redux'
+import { setActiveTrack } from './Store/Slices/sliceTrack'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   
   const navigate = useNavigate()
   const [isplay, setIsPlay] = useState(true);
   // const activeTrack = useSelector((state) => state.tracks.activeTrack)
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem("user")))
 
   const logout = () => {
     // dispatch(setActiveTrack({}))
+    dispatch(setActiveTrack({ track: {} }))
     setIsPlay(false)
     localStorage.clear()
     navigate('/login')

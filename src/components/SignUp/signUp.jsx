@@ -39,8 +39,7 @@ export const SignUp = ({ setUser }) => {
           navigate('/login')
         })
       })
-      .catch(({error}) => {
-        console.log(error.username || error.email || error.password)
+      .catch((error) => {
         setErrorRegistrApi(error.message)
       })
       .finally(() => setIsLoadReg(false))

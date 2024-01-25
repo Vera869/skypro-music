@@ -79,9 +79,9 @@ function AudioPlayer({
   }, [audioRef.current, audioRef.current?.currentTime])
 
 
-  useEffect(() => {
-    setIsPlay(true)
-  }, [activeTrack])
+  // useEffect(() => {
+  //   setIsPlay(true)
+  // }, [activeTrack])
 
   const handleIsLoop = () => {
     audioRef.current.loop = true
@@ -106,7 +106,9 @@ function AudioPlayer({
     audioRef.current.currentTime = refProgress.current.value
   }
   const butNextTrack = () => dispatch(playNextTrack())
-  const butPrevtTrack = () => dispatch(playPrevTrack()) 
+  const butPrevtTrack = () => {
+    
+    dispatch(playPrevTrack()) }
   const butShuffledTrack = () => {
     dispatch(setIsShuffled())
   }
@@ -117,7 +119,7 @@ function AudioPlayer({
           <audio
             ref={audioRef}
             src={activeTrack.track_file}
-            autoPlay
+            autoPlay={isplay}
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
             onEnded={() => dispatch(playNextTrack())}
           >
@@ -139,7 +141,6 @@ function AudioPlayer({
               value={timeProgress}
               step={0.01}
               onChange={onChangeProgress}
-              $color="#580EA2"
             />
           </S.BarPlayerProgress>
           <S.BarPleerBlock>
@@ -174,11 +175,11 @@ function AudioPlayer({
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle
-                  IsShuffled={isShuffled}
+                  
                   onClick={butShuffledTrack}
                   className="_btn-icon"
                 >
-                  <S.PlayerBtnShuffleSvg alt="shuffle">
+                  <S.PlayerBtnShuffleSvg IsShuffled={isShuffled} alt="shuffle">
                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                   </S.PlayerBtnShuffleSvg>
                 </S.PlayerBtnShuffle>
