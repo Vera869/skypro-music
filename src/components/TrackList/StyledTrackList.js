@@ -69,6 +69,16 @@ export const TreckTitleSvg = styled.svg`
   stroke: #4e4e4e;
   // animation: ${pulsar}  1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
 `
+export const ActiveTrack = styled.div`
+width: 16px;
+height: 16px;
+fill: #580EA2;
+background-color: #580EA2;
+border-radius: 50%;
+display: block;
+// position: relative;
+animation: ${pulsar} 1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
+`
 export const TreckTitleLink = styled(Link)`
   font-style: normal;
   font-weight: 400;
@@ -145,21 +155,6 @@ export const ErrorMassege = styled.p`
   font-size: 28px;
   color: #ffffff;
 `
-export const ActiveTrack = styled.div`
-width: 16px;
-height: 16px;
-fill: #580EA2;
-// background-color: #580EA2;
-border-radius: 50%;
-position: relative;
-animation: ${pulsar} 1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
 
-    // width: 16px;
-    // height: 16px;
-    // background-color: #b672ff;
-    // border-radius: 8px;
-    // display: block;
-    // animation: ${pulsar} 0.6s ease-in-out infinite ; 
-  `
 
 
