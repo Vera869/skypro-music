@@ -24,7 +24,7 @@ export async function registrUser({ email, password }){
             },
    }) ;
    if (response.status === 400) {
-    let error = response.json();
+    let error = response.json()
     
     console.dir({error});
       throw new Error({error});

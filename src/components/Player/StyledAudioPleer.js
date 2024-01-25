@@ -101,6 +101,7 @@ export const PlayerControls = styled.div`
   padding: 0 27px 0 31px;
 `
 export const PlayerBtnPrev = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -130,6 +131,7 @@ export const PlayerBtnPlaySvg = styled.svg`
   fill: #d9d9d9;
 `
 export const PlayerBtnNext = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +149,7 @@ export const PlayerBtnNextSvg = styled.svg`
   stroke: #d9d9d9;
 `
 export const PlayerBtnRepeat = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,6 +173,7 @@ export const PlayerBtnRepeatSvg = styled.svg`
   }
 `
 export const PlayerBtnShuffle = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -183,16 +187,17 @@ export const PlayerBtnShuffle = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  stroke: ${(props) => (props.isshuffled ? '#fff' : '#696969')};
-  &:hover {
-    stroke: ${(props) => (props.isshuffled ? "#fff" : "#acacac")};
-  }
+ 
 `
 export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
+  stroke: ${(props) => (props.$isShuffled ? "#fff" : '#696969')};
+  &:hover {
+    stroke: ${(props) => (props.$isShuffled ? "#fff" : "#acacac")};
+  }
 `
 export const PlayerTrackPlay = styled.div`
   display: -webkit-box;
