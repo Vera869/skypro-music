@@ -79,7 +79,7 @@ function AudioPlayer({
 
 
   useEffect(() => {
-    setIsPlay(true);
+    setIsPlay(true)
   }, [activeTrack])
 
   const handleIsLoop = () => {

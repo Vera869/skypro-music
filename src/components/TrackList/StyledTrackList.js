@@ -7,7 +7,7 @@ const pulsar = keyframes`
   opacity: 0;
 }
 50% {
-  transform: scale(1.4);
+  transform: scale(1.8);
   opacity: 0.4;
 }
 `
@@ -67,19 +67,26 @@ export const TreckTitleSvg = styled.svg`
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
-  // animation: ${pulsar}  1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
 `
-export const TreckTitleImageActive = styled(TreckTitleImage)`
+export const TreckTitleImageActive = styled.div`
+display: flex;
+align-content: center;
+justify-content: center;
+width: 15px;
+height: 15px;
+background-color: #AD61FF;
+border-radius: 50%;
+display: block;
+position: relative;
 `
 export const ActiveTrack = styled.div`
 width: 16px;
 height: 16px;
-fill: #580EA2;
-background-color: #580EA2;
+background-color: #AD61FF;
 border-radius: 50%;
-display: block;
-// position: relative;
-animation: ${pulsar} 1000ms cubic-bezier(0.9, 0.7, 0.5, 0.9) infinite;
+align-content: center;
+justify-content: center;
+animation: ${pulsar} 1000ms cubic-bezier(0.5, 0.5, 0.5, 0.5) infinite;
 `
 export const TreckTitleLink = styled(Link)`
   font-style: normal;
