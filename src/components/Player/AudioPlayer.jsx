@@ -103,12 +103,11 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
   }
   const butNextTrack = () => dispatch(playNextTrack())
   const butPrevtTrack = () => {
-    if(audioRef.current.currentTime > 5){
+    if (audioRef.current.currentTime > 5) {
       audioRef.current.currentTime = 0
-    } else{
+    } else {
       dispatch(playPrevTrack())
     }
-   
   }
   const butShuffledTrack = () => {
     dispatch(setIsShuffled())
@@ -166,10 +165,9 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
                 </S.PlayerBtnNext>
-                <S.PlayerBtnRepeat className="_btn-icon">
+                <S.PlayerBtnRepeat onClick={toggleLoop} className="_btn-icon">
                   <S.PlayerBtnRepeatSvg
                     alt="repeat"
-                    onClick={toggleLoop}
                     isLooped={isLooped}
                   >
                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>

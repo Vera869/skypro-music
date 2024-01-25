@@ -6,19 +6,15 @@ import * as S from './StyledMain.js'
 import { useEffect, useState } from 'react'
 import { getAllTracks } from '../../Api.jsx'
 
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
 
-export const Main = ({ setUser, logout, isplay,
-  setIsPlay, }) => {
-  
-  
+export const Main = ({ setUser, logout, isplay, setIsPlay }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
 
   const dispatch = useDispatch()
-  // const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
   useEffect(() => {
     getAllTracks()

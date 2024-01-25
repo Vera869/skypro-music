@@ -1,6 +1,5 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { ProtectedRoute } from './ProtectedRoute'
-
 import { NotFound } from './pages/not-found/not-foundPage'
 import { Favorites } from './pages/Favorites/favorites'
 import { Login } from './pages/Login/login'
@@ -13,15 +12,12 @@ import { useDispatch } from 'react-redux'
 import { setActiveTrack } from './Store/Slices/sliceTrack'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
-  
   const navigate = useNavigate()
-  const [isplay, setIsPlay] = useState(true);
-  // const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const [isplay, setIsPlay] = useState(true)
   const dispatch = useDispatch()
-  console.log(Boolean(localStorage.getItem("user")))
+  console.log(Boolean(localStorage.getItem('user')))
 
   const logout = () => {
-    // dispatch(setActiveTrack({}))
     dispatch(setActiveTrack({ track: {} }))
     setIsPlay(false)
     localStorage.clear()
@@ -29,11 +25,41 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   }
   return (
     <Routes>
-      <Route path="/login" element={<Login user={user} setUser={setUser} isLoginMode={isLoginMode} setIsLoginMode={setIsLoginMode}/>} />
-      <Route path="/registration" element={<Reg user={user} setUser={setUser} isLoginMode={isLoginMode} setIsLoginMode={setIsLoginMode}/>} />
+      <Route
+        path="/login"
+        element={
+          <Login
+            user={user}
+            setUser={setUser}
+            isLoginMode={isLoginMode}
+            setIsLoginMode={setIsLoginMode}
+          />
+        }
+      />
+      <Route
+        path="/registration"
+        element={
+          <Reg
+            user={user}
+            setUser={setUser}
+            isLoginMode={isLoginMode}
+            setIsLoginMode={setIsLoginMode}
+          />
+        }
+      />
       <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
         <Route path="*" element={<NotFound />} />
-        <Route path="/" element={<Main setUser={setUser} logout={logout} isplay={isplay} setIsPlay={setIsPlay}/>} />
+        <Route
+          path="/"
+          element={
+            <Main
+              setUser={setUser}
+              logout={logout}
+              isplay={isplay}
+              setIsPlay={setIsPlay}
+            />
+          }
+        />
         <Route
           path="/category/:id"
           element={<PlayListCategory arrayCategorys={arrayCategorys} />}

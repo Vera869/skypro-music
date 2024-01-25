@@ -14,10 +14,9 @@ const trackSlice = createSlice({
       )
     },
     setActiveTrack(state, action) {
-      state.activeTrack = action.payload.track 
+      state.activeTrack = action.payload.track
     },
     setIsShuffled(state) {
-     
       if (state.isShuffled) {
         state.shuffledTracks.sort(() => Math.random() - 0.5)
       }
@@ -35,7 +34,7 @@ const trackSlice = createSlice({
     },
     playPrevTrack(state) {
       const playlist = state.isShuffled ? state.shuffledTracks : state.tracks
-      
+
       const indexCurrentTrack = playlist.findIndex((track) => {
         return track.id === state.activeTrack.id
       })
