@@ -23,8 +23,8 @@ export const BarPlayerProgress = styled.div`
 `
 export const StyledProgressBar = styled.input`
 --progress-height: 8px;
-  --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: #AD61FF;
+  --progress-color: ${(props) => props.$color ? "#AD61FF" : ''};
 
   --progress-bg-color: #2e2e2e;
 

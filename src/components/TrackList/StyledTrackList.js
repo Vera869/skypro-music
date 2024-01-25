@@ -7,7 +7,7 @@ const pulsar = keyframes`
   opacity: 0;
 }
 50% {
-  transform: scale(1.8);
+  transform: scale(1.5);
   opacity: 0.4;
 }
 `
