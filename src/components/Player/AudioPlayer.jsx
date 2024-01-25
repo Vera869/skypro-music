@@ -1,7 +1,8 @@
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
+import { TrakPlayContext } from '../../Context/tracks.js'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { playNextTrack, playPrevTrack,  setIsShuffled} from '../../Store/Slices/sliceTrack.js'
@@ -13,16 +14,16 @@ function AudioPlayer({
   const audioRef = useRef(null)
   const refProgress = useRef()
 
-  const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
 
+  const { changingTrakPlayData } = useContext(TrakPlayContext)
+  let trakPlayContext = useContext(TrakPlayContext)
+
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
   const isShuffled = useSelector((state) => state.tracks.isShuffled)
- 
-  
 
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -40,16 +41,16 @@ function AudioPlayer({
   const handleStart = () => {
     console.log(duration)
     audioRef.current.play()
-    setIsPlay(true);
+    changingTrakPlayData(true);
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    setIsPlay(false)
+    changingTrakPlayData(false)
   }
 
-  const togglePlay = isplay ? handleStop : handleStart
+  const togglePlay = trakPlayContext ? handleStop : handleStart
   useEffect(() => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
@@ -72,14 +73,14 @@ function AudioPlayer({
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        setIsPlay(false)
+        changingTrakPlayData(false)
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
 
   useEffect(() => {
-    setIsPlay(true)
+    changingTrakPlayData(true)
   }, [activeTrack])
 
   const handleIsLoop = () => {
@@ -150,7 +151,7 @@ function AudioPlayer({
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay}>
                   <S.PlayerBtnPlaySvg alt="play">
                     {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
-                    {isplay ? (
+                    {TrakPlayContext ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
