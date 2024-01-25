@@ -1,15 +1,60 @@
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
+import { useState, useEffect, useContext } from 'react'
+import {getToken, loginUser} from '../../Api'
+import { UserContext } from '../../Context/authorization'
 
-export const SignIn = ({ setUser }) => {
+
+export const SignIn = ({ user, setUser }) => {
   const navigate = useNavigate()
 
-  const login = () => {
-    localStorage.setItem('user', 'true')
-    setUser('user')
-    navigate('/')
-  }
+  const [error, setError] = useState(null)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState()
+  const [errorAuthrApi, setErrorAuthrApi] = useState(null)
+  const [isLoadLogin, setIsLoadLogin] = useState(false)
 
+  const { changingUserData } = useContext(UserContext)
+  // console.log("signIn", user);
+
+  const handleClickAuth = () => {
+    
+    const login = () => {
+      setIsLoadLogin(true)
+      loginUser({ email, password })
+      .then((newUser) => {
+        localStorage.setItem('user', JSON.stringify(newUser))
+        changingUserData(newUser)
+        setUser(newUser)
+        getToken({email, password})
+        .then((res) => {
+          localStorage.setItem('accessToken', JSON.stringify(res.access))
+          localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+          navigate('/')
+        })
+      })
+      .catch((error) => {
+        console.log(error.message)
+        setErrorAuthrApi(error.message)
+      }).finally(() => {
+        setIsLoadLogin(false)
+    })
+    }
+
+    if (!email) {
+
+      return setError('Укажите почту')
+    }
+    if (!password) {
+      return setError('Укажите пароль')
+    }
+    else {
+      login()
+    }
+  }
+  useEffect(() => {
+    setError(null)
+  }, [isLoadLogin, email, password])
   return (
     <S.wrapper>
       <S.ContainerEnter>
@@ -20,13 +65,27 @@ export const SignIn = ({ setUser }) => {
                 <S.ModalLogoImg src="../img/logo_modal.png" alt="logo" />
               </S.ModalLogo>
             </a>
-            <S.ModaInputLogin type="text" name="login" placeholder="Почта" />
-            <S.ModaInputPassword
+            <S.ModalInputLogin
+              type="text"
+              name="login"
+              placeholder="Почта"
+              value={email}
+              onChange={(event) => {
+                setEmail(event.target.value)
+              }}
+            />
+            <S.ModalInputPassword
               type="password"
               name="password"
               placeholder="Пароль"
+              value={password}
+              onChange={(event) => {
+                setPassword(event.target.value)
+              }}
             />
-            <S.ModalBtnEnter onClick={login}>Войти</S.ModalBtnEnter>
+            <S.ErrorMasege>{error}</S.ErrorMasege>
+            <S.ErrorMasege>{errorAuthrApi}</S.ErrorMasege>
+            <S.ModalBtnEnter type='button' disabled={isLoadLogin} onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
             <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>
             </S.ModalBtnSignup>

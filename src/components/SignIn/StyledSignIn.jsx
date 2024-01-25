@@ -87,10 +87,11 @@ export const ModalInput = styled.input`
     color: #d0cece;
   }
 `
-export const ModaInputLogin = styled(ModalInput)`
+export const ModalInputLogin = styled(ModalInput)`
   margin-bottom: 30px;
 `
-export const ModaInputPassword = styled(ModalInput)`
+export const ModalInputPassword = styled(ModalInput)`
+  margin-bottom: 10px;
   padding: 8px 1px;
 `
 export const ModalBtnEnter = styled.button`
@@ -98,7 +99,6 @@ export const ModalBtnEnter = styled.button`
   height: 52px;
   background-color: #580ea2;
   border-radius: 6px;
-  margin-top: 60px;
   margin-bottom: 20px;
   border: none;
   display: -webkit-box;
@@ -183,3 +183,15 @@ export const ModalBtnSignup = styled.button`
   //    justify-content: center;
   //  }
 `
+export const ErrorMasege = styled.p`
+  width: 100%;
+  height: 35px; 
+  padding: 8px 1px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  color: #580ea2;
+  // margin-bottom: 30px;
+  `

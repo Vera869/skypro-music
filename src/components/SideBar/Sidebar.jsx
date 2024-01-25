@@ -1,27 +1,22 @@
 import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
-import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../../Context/authorization.jsx'
+import { useContext } from 'react'
 
 function SideBar({ 
   setUser,
   isLoading,
-  setIsLoading }) {
-  const navigate = useNavigate()
-
-  const logout = () => {
-    localStorage.removeItem('user')
-    setUser('null')
-    navigate('/login')
-  }
-
+  setIsLoading,
+  logout, }) {
+  const { userData } = useContext(UserContext)
   return (
     <S.MineSideBar className="sidebar">
       <S.SideBarPersonal>
-        <S.SideBarPersonalName>Vera.Buganova</S.SideBarPersonalName>
+        <S.SideBarPersonalName>{userData.username}</S.SideBarPersonalName>
 
         <S.SideBarIcon onClick={logout}>
           <svg alt="logout">
-            <use xlinkHref="img/icon/sprite.svg#logout"></use>
+            <use xlinkHref="img/sprite.svg#logout"></use>
           </svg>
         </S.SideBarIcon>
       </S.SideBarPersonal>

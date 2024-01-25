@@ -2,22 +2,22 @@ import SideBar from '../../components/SideBar/Sidebar.jsx'
 import CenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
 import AudioPlayer from '../../components/Player/AudioPlayer.jsx'
 import NavMenu from '../../components/NavMenu/NavMenu.jsx'
-import * as S from '../../StyledMain.js'
+import * as S from './StyledMain.js'
 import { useEffect, useState } from 'react'
 import { getAllTracks } from '../../Api.jsx'
 
-export const Main = ({ setUser }) => {
+export const Main = ({ setUser, logout }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [allTracks, setAllTracks] = useState([])
   const [errorGetTracks, setErrorGetTracks] = useState(null)
 
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [trackPlayed, setTrackPlayed] = useState([])
+  
 
   useEffect(() => {
     getAllTracks()
       .then((arrayTracks) => {
-        console.log(arrayTracks)
         setAllTracks(arrayTracks)
         setIsLoading(false)
       })
@@ -32,7 +32,7 @@ export const Main = ({ setUser }) => {
         <S.Wrapper>
           <S.Container>
             <S.Main>
-              <NavMenu setUser={setUser} />
+              <NavMenu logout={logout}/>
               <CenterBlock
                 isLoading={isLoading}
                 allTracks={allTracks}
@@ -44,6 +44,7 @@ export const Main = ({ setUser }) => {
                 setUser={setUser}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                logout={logout}
               />
             </S.Main>
             <footer>
@@ -51,6 +52,7 @@ export const Main = ({ setUser }) => {
                 isVisiblePlayer={isVisiblePlayer}
                 isLoading={isLoading}
                 trackPlayed={trackPlayed}
+                setTrackPlayed={setTrackPlayed}
               />
             </footer>
           </S.Container>

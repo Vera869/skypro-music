@@ -20,8 +20,6 @@ export const BarContent = styled.div`
 `
 export const BarPlayerProgress = styled.div`
   width: 100%;
-  height: 5px;
-  background: #2e2e2e;
 `
 export const StyledProgressBar = styled.input`
 --progress-height: 8px;
@@ -52,30 +50,6 @@ export const StyledProgressBar = styled.input`
     width: var(--thumb-width, var(--thumb-height));
     box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
       100vmax var(--progress-color);
-  }
-
-  &::-webkit-slider-runnable-track {
-    background: var(--progress-bg-color);
-  }
-
-  /* FF */
-  &::-moz-range-track {
-    width: 100%;
-    height: var(--progress-height);
-    background: var(--progress-bg-color);
-    border: none;
-    border-radius: 0px;
-  }
-  &::-moz-range-thumb {
-    border: none;
-    height: 25px;
-    width: 25px;
-    border-radius: 50%;
-    background: transparent;
-  }
-  &::-moz-range-progress {
-    background-color: var(--progress-color);
-    height: var(--progress-height);
   }
 `
 export const BarPleerBlock = styled.div`
@@ -362,7 +336,7 @@ export const VolumeProgressLine = styled.input`
 `
 export const TrackTime = styled.div`
 width: 100%;
-height: 71px;
+height: 55px;
 padding-right: 20px;
 display: flex;
 justify-content: flex-end;

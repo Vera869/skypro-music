@@ -46,8 +46,6 @@ function GetTracks({
           <S.TreckTitleText>
             <S.TreckTitleLink
               onClick={() =>{
-                // setTrackPlayed(track)
-                // setVisiblePlayer(true)
                 clickTrack({track})
               }
               }

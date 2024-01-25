@@ -100,7 +100,7 @@ export const ModalBtnSignUp = styled(Link)`
   border-radius: 6px;
   margin-left: 4px;
   border: none;
-  margin-top: 30px;
+  // margin-top: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -136,3 +136,16 @@ export const ModalBtnSignUp = styled(Link)`
   //            justify-content: center;
   //  }
 `
+export const ErrorMasege = styled.p`
+  width: 100%;
+  height: 35px;
+  padding: 0px 1px;
+  margin-right: 3px;
+  margin-bottom: 3px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  letter-spacing: -0.05px;
+  color: #580ea2;
+  `
