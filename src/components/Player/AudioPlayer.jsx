@@ -4,14 +4,13 @@ import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { playNextTrack, playPrevTrack,  setIsShuffled} from '../../Store/Slices/sliceTrack.js'
+import {
+  playNextTrack,
+  playPrevTrack,
+  setIsShuffled,
+} from '../../Store/Slices/sliceTrack.js'
 
-function AudioPlayer({
-  isVisiblePlayer,
-  isLoading,
-  isplay,
-  setIsPlay,
-}) {
+function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
@@ -22,8 +21,6 @@ function AudioPlayer({
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
- 
-  
 
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -41,7 +38,7 @@ function AudioPlayer({
   const handleStart = () => {
     console.log(duration)
     audioRef.current.play()
-    setIsPlay(true);
+    setIsPlay(true)
   }
 
   const handleStop = () => {
@@ -78,7 +75,6 @@ function AudioPlayer({
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
-
   // useEffect(() => {
   //   setIsPlay(true)
   // }, [activeTrack])
@@ -107,8 +103,13 @@ function AudioPlayer({
   }
   const butNextTrack = () => dispatch(playNextTrack())
   const butPrevtTrack = () => {
-    
-    dispatch(playPrevTrack()) }
+    if(audioRef.current.currentTime > 5){
+      audioRef.current.currentTime = 0
+    } else{
+      dispatch(playPrevTrack())
+    }
+   
+  }
   const butShuffledTrack = () => {
     dispatch(setIsShuffled())
   }
@@ -175,7 +176,6 @@ function AudioPlayer({
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle
-                  
                   onClick={butShuffledTrack}
                   className="_btn-icon"
                 >
