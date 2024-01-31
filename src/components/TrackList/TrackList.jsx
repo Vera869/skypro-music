@@ -3,6 +3,7 @@ import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+import FilterBy from '../FilterBy/FilterBy.jsx'
 
 function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsPlay }) {
   const tracks = useSelector((state) => state.tracks.tracks)
@@ -23,8 +24,32 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsP
       <S.ContentPlaylist>
         <SkeletonTracks />
       </S.ContentPlaylist>
-    ) : (
+    ) : (<>
+     <S.CenterBlockSearch>
+        <S.SearchSvg>
+          <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
+        </S.SearchSvg>
+        <S.SearchText type="search" placeholder="Поиск" name="search" />
+      </S.CenterBlockSearch>
+       <S.CenterBlockH2>Треки</S.CenterBlockH2>
+   <S.CenterBlockFilter>
+     <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
+     <FilterBy />
+   </S.CenterBlockFilter>
+   <S.CenterBlockContent>
+     <S.ContentTitle>
+       <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
+       <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
+       <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
+       <S.PlaylistTitleC0l04>
+         <S.PlaylistTitleSvg alt="time">
+           <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+         </S.PlaylistTitleSvg>
+       </S.PlaylistTitleC0l04>
+     </S.ContentTitle>
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
+      </S.CenterBlockContent>
+      </>
     )
   }
 

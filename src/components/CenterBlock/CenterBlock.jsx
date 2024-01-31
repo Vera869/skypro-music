@@ -1,5 +1,7 @@
 import * as S from '../CenterBlock/StyledCenterBlock.js'
-import { CenterBlockContent } from './CenterBlockContent.jsx'
+import GetTracks from '../TrackList/TrackList.jsx'
+// import FilterBy from '../FilterBy/FilterBy.jsx'
+
 
 function MaineCenterBlock({
   allTracks,
@@ -11,20 +13,45 @@ function MaineCenterBlock({
 }) {
   return (
     <S.MainCenterBlock>
-      <S.CenterBlockSearch>
+        <GetTracks
+       isLoading={isLoading}
+       allTracks={allTracks}
+       errorGetTracks={errorGetTracks}
+       setVisiblePlayer={setVisiblePlayer}
+       isplay={isplay}
+       setIsPlay={setIsPlay}
+     />
+      {/* <S.CenterBlockSearch>
         <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterBlockSearch>
-      {/* <CenterBlockContent
-        allTracks={allTracks}
-        isLoading={isLoading}
-        errorGetTracks={errorGetTracks}
-        setVisiblePlayer={setVisiblePlayer}
-        isplay={isplay}
-        setIsPlay={setIsPlay}
-      /> */}
+      <S.CenterBlockH2>Треки</S.CenterBlockH2>
+   <S.CenterBlockFilter>
+     <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
+     <FilterBy />
+   </S.CenterBlockFilter>
+   <S.CenterBlockContent>
+     <S.ContentTitle>
+       <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
+       <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
+       <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
+       <S.PlaylistTitleC0l04>
+         <S.PlaylistTitleSvg alt="time">
+           <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+         </S.PlaylistTitleSvg>
+       </S.PlaylistTitleC0l04>
+     </S.ContentTitle>
+     <GetTracks
+       isLoading={isLoading}
+       allTracks={allTracks}
+       errorGetTracks={errorGetTracks}
+       setVisiblePlayer={setVisiblePlayer}
+       isplay={isplay}
+       setIsPlay={setIsPlay}
+     />
+   </S.CenterBlockContent> */}
     </S.MainCenterBlock>
   )
 }
