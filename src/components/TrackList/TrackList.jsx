@@ -25,7 +25,7 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
         <SkeletonTracks />
       </S.ContentPlaylist>
     ) : (<>
-    <S.MainCenterBlock>
+    
      <S.CenterBlockSearch>
         <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
@@ -50,11 +50,11 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
      </S.ContentTitle>
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
       </S.CenterBlockContent>
-      </S.MainCenterBlock>
+     
       </>
     )
   }
-
+  // console.log(visiblePlayer);
   const clickTrack = ({ track }) => {
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
