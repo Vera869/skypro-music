@@ -5,11 +5,11 @@ import NavMenu from '../../components/NavMenu/NavMenu.jsx'
 import * as S from './StyledMain.js'
 import { useEffect, useState } from 'react'
 import { getAllTracks } from '../../Api.jsx'
-
 import { useDispatch } from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
+// import { Outlet } from 'react-router-dom'
 
-export const Main = ({ setUser, logout, isplay, setIsPlay }) => {
+export const Layout = ({ setUser, logout, isplay, setIsPlay }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
