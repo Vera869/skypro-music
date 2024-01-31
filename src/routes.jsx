@@ -16,6 +16,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
   const [isplay, setIsPlay] = useState(true)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
 
@@ -55,6 +56,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
           path="/"
           element={
             <LayoutPage
+            isLoading={isLoading}
+            setIsLoading={setIsLoading}
               setUser={setUser}
               logout={logout}
               isplay={isplay}
@@ -74,6 +77,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 isplay={isplay}
                 setIsPlay={setIsPlay}
                 setVisiblePlayer={setVisiblePlayer}
+                isLoading={isLoading}
+              setIsLoading={setIsLoading}
               />
             }
           />

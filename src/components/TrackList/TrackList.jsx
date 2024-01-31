@@ -20,11 +20,7 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
           </S.ErrorMassege>
         </S.ContentPlaylist>
       )
-    return isLoading ? (
-      <S.ContentPlaylist>
-        <SkeletonTracks />
-      </S.ContentPlaylist>
-    ) : (<>
+    return <>
     
      <S.CenterBlockSearch>
         <S.SearchSvg>
@@ -48,13 +44,17 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
          </S.PlaylistTitleSvg>
        </S.PlaylistTitleC0l04>
      </S.ContentTitle>
-      <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
+    { isLoading ? (
+      <S.ContentPlaylist>
+        <SkeletonTracks />
+      </S.ContentPlaylist>
+    ) : (
+      <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>)}
       </S.CenterBlockContent>
      
       </>
-    )
+    
   }
-  // console.log(isVisiblePlayer);
   const clickTrack = ({ track }) => {
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
