@@ -36,7 +36,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
   }
 
   const handleStart = () => {
-    console.log(duration)
+    console.log('PLAY')
     audioRef.current.play()
     setIsPlay(true)
   }
