@@ -1,10 +1,11 @@
 import SideBar from '../../components/SideBar/Sidebar.jsx'
-import MaineCenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
+// import MaineCenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
 import AudioPlayer from '../../components/Player/AudioPlayer.jsx'
 import NavMenu from '../../components/NavMenu/NavMenu.jsx'
 import * as S from '../Main/StyledMain.js'
 import { useEffect, useState } from 'react'
 import { getAllTracks } from '../../Api.jsx'
+import {GetTracks} from '../../components/TrackList/TrackList.jsx'
 
 import { useDispatch } from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
@@ -34,14 +35,16 @@ export const LayoutPage = ({ setUser, logout, isplay, setIsPlay }) => {
       <S.Container>
         <S.Main>
           <NavMenu logout={logout} />
-          <MaineCenterBlock
+          {/* <MaineCenterBlock
             isLoading={isLoading}
             errorGetTracks={errorGetTracks}
             setVisiblePlayer={setVisiblePlayer}
             isplay={isplay}
             setIsPlay={setIsPlay}
-          />
+          /> */}
           <Outlet/>
+          <GetTracks  isLoading={isLoading} errorGetTracks={errorGetTracks} setVisiblePlayer={setVisiblePlayer} isplay={isplay}
+            setIsPlay={setIsPlay}/>
           <SideBar
             setUser={setUser}
             isLoading={isLoading}

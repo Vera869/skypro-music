@@ -11,6 +11,14 @@ const pulsar = keyframes`
   opacity: 0.4;
 }
 `
+
+export const MainCenterBlock = styled.div`
+  width: auto;
+  -webkit-box-flex: 3;
+  -ms-flex-positive: 3;
+  flex-grow: 3;
+  padding: 20px 40px 20px 111px;
+`
 export const CenterBlockSearch = styled.div`
   width: 100%;
   border-bottom: 1px solid #4e4e4e;

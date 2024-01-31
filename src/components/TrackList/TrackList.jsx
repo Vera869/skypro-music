@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../FilterBy/FilterBy.jsx'
 
-function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsPlay }) {
+export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsPlay }) => {
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
@@ -25,6 +25,7 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsP
         <SkeletonTracks />
       </S.ContentPlaylist>
     ) : (<>
+    <S.MainCenterBlock>
      <S.CenterBlockSearch>
         <S.SearchSvg>
           <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
@@ -49,6 +50,7 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsP
      </S.ContentTitle>
       <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
       </S.CenterBlockContent>
+      </S.MainCenterBlock>
       </>
     )
   }
@@ -106,4 +108,4 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsP
   ))
   return toggleErrorContext()
 }
-export default GetTracks
+// export default GetTracks

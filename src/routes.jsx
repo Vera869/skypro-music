@@ -1,7 +1,7 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { ProtectedRoute } from './ProtectedRoute'
 import { NotFound } from './pages/not-found/not-foundPage'
-import { GetFavTracks } from './pages/Favorites/favorites'
+import { Favorites } from './pages/Favorites/favorites'
 import { Login } from './pages/Login/login'
 import { Reg } from './pages/Registration/registration'
 import { PlayListCategory } from '../src/pages/Category/category'
@@ -71,7 +71,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
             path="/category/:id"
             element={<PlayListCategory arrayCategorys={arrayCategorys} />}
           />
-        <Route path="/favorites" element={<GetFavTracks />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Route>
     </Route>
     </Routes>
