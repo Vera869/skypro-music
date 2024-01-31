@@ -17,14 +17,14 @@ function MaineCenterBlock({
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterBlockSearch>
-      <CenterBlockContent
+      {/* <CenterBlockContent
         allTracks={allTracks}
         isLoading={isLoading}
         errorGetTracks={errorGetTracks}
         setVisiblePlayer={setVisiblePlayer}
         isplay={isplay}
         setIsPlay={setIsPlay}
-      />
+      /> */}
     </S.MainCenterBlock>
   )
 }

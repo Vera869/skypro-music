@@ -6,12 +6,14 @@ import { Login } from './pages/Login/login'
 import { Reg } from './pages/Registration/registration'
 import { PlayListCategory } from '../src/pages/Category/category'
 import { arrayCategorys } from '../src/components/SideBar/ArrayCategory'
-import { Main } from '../src/pages/Main/MainPage'
+// import { Main } from '../src/pages/Main/MainPage'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setActiveTrack } from './Store/Slices/sliceTrack'
+import { LayoutPage } from './pages/layout/LayoutPage'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
+
   const navigate = useNavigate()
   const [isplay, setIsPlay] = useState(true)
   const dispatch = useDispatch()
@@ -47,25 +49,28 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
           />
         }
       />
-      <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
+     
+    <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
+      <Route path="/"  element={<LayoutPage/>} >
         <Route path="*" element={<NotFound />} />
-        <Route
-          path="/"
-          element={
-            <Main
-              setUser={setUser}
-              logout={logout}
-              isplay={isplay}
-              setIsPlay={setIsPlay}
-            />
-          }
-        />
-        <Route
-          path="/category/:id"
-          element={<PlayListCategory arrayCategorys={arrayCategorys} />}
-        />
+          {/* <Route
+            path="/main"
+            element={
+              <Main
+                setUser={setUser}
+                logout={logout}
+                isplay={isplay}
+                setIsPlay={setIsPlay}
+              />
+            }
+            /> */}
+          <Route
+            path="/category/:id"
+            element={<PlayListCategory arrayCategorys={arrayCategorys} />}
+          />
         <Route path="/favorites" element={<Favorites />} />
       </Route>
+    </Route>
     </Routes>
   )
 }
