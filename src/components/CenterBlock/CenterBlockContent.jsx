@@ -8,6 +8,7 @@ export const CenterBlockContent = ({
   errorGetTracks,
   setVisiblePlayer,
   isplay,
+  setIsPlay,
 }) => {
   return (
    <>
@@ -33,6 +34,7 @@ export const CenterBlockContent = ({
        errorGetTracks={errorGetTracks}
        setVisiblePlayer={setVisiblePlayer}
        isplay={isplay}
+       setIsPlay={setIsPlay}
      />
    </S.CenterBlockContent>
    </>

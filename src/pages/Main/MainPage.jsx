@@ -38,6 +38,7 @@ export const Main = ({ setUser, logout, isplay, setIsPlay }) => {
                 errorGetTracks={errorGetTracks}
                 setVisiblePlayer={setVisiblePlayer}
                 isplay={isplay}
+                setIsPlay={setIsPlay}
               />
               <SideBar
                 setUser={setUser}

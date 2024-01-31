@@ -7,6 +7,7 @@ function MaineCenterBlock({
   errorGetTracks,
   setVisiblePlayer,
   isplay,
+  setIsPlay,
 }) {
   return (
     <S.MainCenterBlock>
@@ -22,6 +23,7 @@ function MaineCenterBlock({
         errorGetTracks={errorGetTracks}
         setVisiblePlayer={setVisiblePlayer}
         isplay={isplay}
+        setIsPlay={setIsPlay}
       />
     </S.MainCenterBlock>
   )

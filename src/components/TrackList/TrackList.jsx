@@ -4,10 +4,9 @@ import * as S from '../TrackList/StyledTrackList.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
-function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay }) {
+function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsPlay }) {
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
-  // const activeTrackId = activeTrack.id
   const dispatch = useDispatch()
 
   const toggleErrorContext = () => {
@@ -32,6 +31,7 @@ function GetTracks({ isLoading, errorGetTracks, setVisiblePlayer, isplay }) {
   const clickTrack = ({ track }) => {
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
+    setIsPlay(true)
     return
   }
   const trackItems = tracks.map((track) => (
