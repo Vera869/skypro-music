@@ -12,7 +12,7 @@ import { Outlet } from 'react-router-dom'
 export const LayoutPage = ({ setUser, logout, isplay, setIsPlay, setVisiblePlayer, isVisiblePlayer }) => {
   const [isLoading, setIsLoading] = useState(true)
   const [errorGetTracks, setErrorGetTracks] = useState(null)
- 
+  console.log(isVisiblePlayer);
 
   const dispatch = useDispatch()
 
@@ -35,11 +35,11 @@ export const LayoutPage = ({ setUser, logout, isplay, setIsPlay, setVisiblePlaye
             <NavMenu logout={logout} />
 
             <Outlet
-              isLoading={isLoading}
-              errorGetTracks={errorGetTracks}
-              setVisiblePlayer={setVisiblePlayer}
-              isplay={isplay}
-              setIsPlay={setIsPlay}
+              // isLoading={isLoading}
+              // errorGetTracks={errorGetTracks}
+              // setVisiblePlayer={setVisiblePlayer}
+              // isplay={isplay}
+              // setIsPlay={setIsPlay}
             />
 
             <SideBar

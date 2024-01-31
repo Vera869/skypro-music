@@ -15,7 +15,6 @@ export const PlayListCategory = ({ arrayCategorys }) => {
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterBlockSearch>
-      {/* <img src={'/' + arrayCategory.src} alt={arrayCategory.alt} /> */}
       <S.CenterBlockH2>Плейлист {arrayCategory.alt}</S.CenterBlockH2>
       <S.ContentTitle>
        <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>

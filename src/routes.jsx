@@ -73,6 +73,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 logout={logout}
                 isplay={isplay}
                 setIsPlay={setIsPlay}
+                setVisiblePlayer={setVisiblePlayer}
               />
             }
           />

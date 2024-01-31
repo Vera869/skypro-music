@@ -54,7 +54,7 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
       </>
     )
   }
-  // console.log(visiblePlayer);
+  // console.log(isVisiblePlayer);
   const clickTrack = ({ track }) => {
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
