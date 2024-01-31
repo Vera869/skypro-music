@@ -1,5 +1,5 @@
 import SideBar from '../../components/SideBar/Sidebar.jsx'
-import CenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
+import MaineCenterBlock from '../../components/CenterBlock/CenterBlock.jsx'
 import AudioPlayer from '../../components/Player/AudioPlayer.jsx'
 import NavMenu from '../../components/NavMenu/NavMenu.jsx'
 import * as S from './StyledMain.js'
@@ -33,7 +33,7 @@ export const Main = ({ setUser, logout, isplay, setIsPlay }) => {
           <S.Container>
             <S.Main>
               <NavMenu logout={logout} />
-              <CenterBlock
+              <MaineCenterBlock
                 isLoading={isLoading}
                 errorGetTracks={errorGetTracks}
                 setVisiblePlayer={setVisiblePlayer}

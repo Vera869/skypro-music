@@ -1,11 +1,9 @@
-// import GetTracks from '../TrackList/TrackList.jsx'
-// import FilterBy from '../FilterBy/FilterBy.jsx'
 import * as S from '../CenterBlock/StyledCenterBlock.js'
-import {CenterBlockContent} from './CenterBlockContent.jsx'
+import { CenterBlockContent } from './CenterBlockContent.jsx'
 
-function MineCenterBlock({
+function MaineCenterBlock({
+  allTracks,
   isLoading,
-  // allTracks,
   errorGetTracks,
   setVisiblePlayer,
   isplay,
@@ -18,11 +16,14 @@ function MineCenterBlock({
         </S.SearchSvg>
         <S.SearchText type="search" placeholder="Поиск" name="search" />
       </S.CenterBlockSearch>
-      <CenterBlockContent isLoading={isLoading}
-                errorGetTracks={errorGetTracks}
-                setVisiblePlayer={setVisiblePlayer}
-                isplay={isplay}/>
+      <CenterBlockContent
+        allTracks={allTracks}
+        isLoading={isLoading}
+        errorGetTracks={errorGetTracks}
+        setVisiblePlayer={setVisiblePlayer}
+        isplay={isplay}
+      />
     </S.MainCenterBlock>
   )
 }
-export default MineCenterBlock
+export default MaineCenterBlock
