@@ -51,7 +51,10 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
       />
      
     <Route element={<ProtectedRoute isAllowed={Boolean(user)} />}>
-      <Route path="/"  element={<LayoutPage/>} >
+      <Route path="/"  element={<LayoutPage setUser={setUser}
+                logout={logout}
+                isplay={isplay}
+                setIsPlay={setIsPlay}/>} >
         <Route path="*" element={<NotFound />} />
           {/* <Route
             path="/main"
