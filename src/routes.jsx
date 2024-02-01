@@ -84,9 +84,33 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
           />
           <Route
             path="/category/:id"
-            element={<PlayListCategory arrayCategorys={arrayCategorys} />}
+            element={
+              <PlayListCategory
+                arrayCategorys={arrayCategorys}
+                setUser={setUser}
+                logout={logout}
+                isplay={isplay}
+                setIsPlay={setIsPlay}
+                setVisiblePlayer={setVisiblePlayer}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
           />
-          <Route path="/favorites" element={<Favorites />} />
+          <Route
+            path="/favorites"
+            element={
+              <Favorites
+                setUser={setUser}
+                logout={logout}
+                isplay={isplay}
+                setIsPlay={setIsPlay}
+                setVisiblePlayer={setVisiblePlayer}
+                isLoading={isLoading}
+                setIsLoading={setIsLoading}
+              />
+            }
+          />
         </Route>
       </Route>
     </Routes>

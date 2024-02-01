@@ -1,39 +1,49 @@
 import { useParams } from 'react-router-dom'
 import * as S from '../../components/TrackList/StyledTrackList.js'
+import { GetTracks } from '../../components/TrackList/TrackList.jsx'
+import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
-export const PlayListCategory = ({ arrayCategorys }) => {
+export const PlayListCategory = (
+  { arrayCategorys },
+  isplay,
+  setIsPlay,
+  setVisiblePlayer
+) => {
   const params = useParams()
 
   const arrayCategory = arrayCategorys.find(
-    (arrayCategory) => arrayCategory.id === Number(params.id),
+    (arrayCategory) => arrayCategory.id === Number(params.id)
   )
   return (
-    <><S.MainCenterBlock>
-       <S.CenterBlockSearch>
-        <S.SearchSvg>
-          <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-        </S.SearchSvg>
-        <S.SearchText type="search" placeholder="Поиск" name="search" />
-      </S.CenterBlockSearch>
-      <S.CenterBlockH2>Плейлист {arrayCategory.alt}</S.CenterBlockH2>
-      <S.ContentTitle>
-       <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
-       <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
-       <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
-       <S.PlaylistTitleC0l04>
-         <S.PlaylistTitleSvg alt="time">
-           <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-         </S.PlaylistTitleSvg>
-       </S.PlaylistTitleC0l04>
-     </S.ContentTitle>
-     </S.MainCenterBlock>
+    <>
+      <S.MainCenterBlock>
+        <S.CenterBlockSearch>
+          <S.SearchSvg>
+            <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
+          </S.SearchSvg>
+          <S.SearchText type="search" placeholder="Поиск" name="search" />
+        </S.CenterBlockSearch>
+        <S.CenterBlockH2>Плейлист {arrayCategory.alt}</S.CenterBlockH2>
+        <S.ContentTitle>
+          <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
+          <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
+          <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
+          <S.PlaylistTitleC0l04>
+            <S.PlaylistTitleSvg alt="time">
+              <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+            </S.PlaylistTitleSvg>
+          </S.PlaylistTitleC0l04>
+        </S.ContentTitle>
+        <GetTracks
+          isplay={isplay}
+          setVisiblePlayer={setVisiblePlayer}
+          setActiveTrack={setActiveTrack}
+          setIsPlay={setIsPlay}
+        />
+      </S.MainCenterBlock>
     </>
   )
 }
-
-
-
-
 
 // import { useParams } from 'react-router-dom'
 // import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
@@ -75,7 +85,7 @@ export const PlayListCategory = ({ arrayCategorys }) => {
 //          <S.SearchText type="search" placeholder="Поиск" name="search" />
 //        </S.CenterBlockSearch>
 //         <S.CenterBlockH2>Плейлист {arrayCategory.alt}</S.CenterBlockH2>
-   
+
 //     <S.CenterBlockContent>
 //       <S.ContentTitle>
 //         <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
@@ -147,4 +157,3 @@ export const PlayListCategory = ({ arrayCategorys }) => {
 
 //   return toggleErrorContext()
 // }
-

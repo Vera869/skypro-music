@@ -1,4 +1,4 @@
-import {createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery, setupListeners } from '@reduxjs/toolkit/query/react'
 
 // export const musicApi = createApi({
 //    reducerPath: "musicApi",
@@ -77,3 +77,5 @@ export const {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
 } = getFavTracksApi;
+
+// setupListeners(store.dispatch)
