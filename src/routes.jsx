@@ -56,8 +56,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
           path="/"
           element={
             <LayoutPage
-            isLoading={isLoading}
-            setIsLoading={setIsLoading}
+              isLoading={isLoading}
+              setIsLoading={setIsLoading}
               setUser={setUser}
               logout={logout}
               isplay={isplay}
@@ -78,7 +78,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setIsPlay={setIsPlay}
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
-              setIsLoading={setIsLoading}
+                setIsLoading={setIsLoading}
               />
             }
           />
