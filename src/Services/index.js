@@ -32,4 +32,5 @@ export const musicApi = createApi({
    })
 })
 
-export const { useGetAllTracksQuery, useGetFavTracksQuery, useAddFavTrackQuery, useDeleteFavTrackQuery } = musicApi
+export const { useGetAllTracksQuery, useGetFavTracksQuery, useAddFavTrackMutation, useDeleteFavTrackMutation } = musicApi
+export default musicApi.reducer

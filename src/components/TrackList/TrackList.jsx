@@ -1,11 +1,13 @@
 import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
+// import {useGetAllTracksQuery} from '../../Services/index.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../FilterBy/FilterBy.jsx'
 
 export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay, setIsPlay }) => {
+  // const {data, error, isLoading} = useGetAllTracksQuery()
   const tracks = useSelector((state) => state.tracks.tracks)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
@@ -108,4 +110,4 @@ export const GetTracks = ({ isLoading, errorGetTracks, setVisiblePlayer, isplay,
   ))
   return toggleErrorContext()
 }
-// export default GetTracks
+
