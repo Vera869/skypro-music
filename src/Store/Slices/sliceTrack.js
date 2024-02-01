@@ -6,6 +6,7 @@ const trackSlice = createSlice({
     activeTrack: {},
     tracks: [],
     shuffledTracks: [],
+    
   },
   reducers: {
     setTracks(state, action) {

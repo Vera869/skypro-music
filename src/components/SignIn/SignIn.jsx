@@ -27,6 +27,7 @@ export const SignIn = ({ setUser }) => {
         setUser(newUser)
         getToken({email, password})
         .then((res) => {
+          console.log("токены");
           localStorage.setItem('accessToken', JSON.stringify(res.access))
           localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
           navigate('/')

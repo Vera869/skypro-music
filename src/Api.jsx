@@ -53,7 +53,6 @@ export async function loginUser({ email, password }) {
       throw new Error("Ошибка сервера");
     }
    const user = response.json();
-   console.log(user);
    return user
  }
  export async function getToken ({ email, password }) {
@@ -70,6 +69,7 @@ export async function loginUser({ email, password }) {
    return response.json();
    }
 export async function refrashToken ({refresh}) {
+  console.log("обновление токена");
       const response = await fetch(`${host}user/token/refresh/`, {
         method: "POST",
         body: JSON.stringify({
