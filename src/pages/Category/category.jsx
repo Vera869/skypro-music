@@ -17,33 +17,33 @@ export const PlayListCategory = (
   setPlaylist,
   // errorGetTracks, 
   setErrorGetTracks,
-  isLoading,
+  // isLoading,
   setIsLoading,
 ) => {
   const params = useParams()
-  
-  const dispatch = useDispatch()
+  const {data: tracks, isLoading, isError }= useGetAllTracksQuery()
+  // const dispatch = useDispatch()
   const arrayCategory = arrayCategorys.find(
     (arrayCategory) => arrayCategory.id === Number(params.id)
   )
   const categoryId = arrayCategory.id
 
-  useEffect(() => {
-    setPlaylist = 'category'
-    // setIsLoading(true)
-    dispatch(setCategoryId({ categoryId }))
-    getPlaylist(categoryId)
-        .then((tracks) => {
-            dispatch(setTracks({ tracks }))
-        })
-        .then(() => {
-           setErrorGetTracks = ''
-           setIsLoading(false)
-        })
-        .catch((error) => {
-            console.log(error)
-        })
-}, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
+//   useEffect(() => {
+//     setPlaylist = 'category'
+//     // setIsLoading(true)
+//     dispatch(setCategoryId({ categoryId }))
+//     getPlaylist(categoryId)
+//         .then((tracks) => {
+//             dispatch(setTracks({ tracks }))
+//         })
+//         .then(() => {
+//            setErrorGetTracks = ('')
+//            setIsLoading(false)
+//         })
+//         .catch((error) => {
+//             console.log(error)
+//         })
+// }, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
   return (
     <>
       <S.MainCenterBlock>
@@ -70,6 +70,7 @@ export const PlayListCategory = (
               </S.ContentPlaylist>
             ) : (
         <GetTracks
+        tracks={tracks}
           isplay={isplay}
           setVisiblePlayer={setVisiblePlayer}
           setActiveTrack={setActiveTrack}

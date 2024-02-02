@@ -3,18 +3,16 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
+import { useGetAllTracksQuery } from '../../Services/index.js'
 
 export const Main = ({
   isplay,
   setIsPlay,
-  isLoading,
-  errorGetTracks,
   setVisiblePlayer,
-  playlist,
-  setPlaylist,
+  
 }) => {
-  const toggleErrorContext = () => {
-    if (errorGetTracks)
+  const {data: tracks, isLoading, isError }= useGetAllTracksQuery()
+    if (isError)
       return (
         <S.ContentPlaylist>
           <S.ErrorMassege>
@@ -55,12 +53,13 @@ export const Main = ({
             ) : (
               <S.ContentPlaylist>
                 <GetTracks
+                 tracks={tracks}
                   isplay={isplay}
                   setVisiblePlayer={setVisiblePlayer}
                   setActiveTrack={setActiveTrack}
                   setIsPlay={setIsPlay}
-                  playlist={playlist}
-                  setPlaylist={setPlaylist}
+                  // playlist={playlist}
+                  // setPlaylist={setPlaylist}
                 />
               </S.ContentPlaylist>
             )}
@@ -68,6 +67,4 @@ export const Main = ({
         </S.MainCenterBlock>
       </>
     )
-  }
-  return toggleErrorContext()
 }

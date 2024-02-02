@@ -1,14 +1,17 @@
-import {createApi, fetchBaseQuery, } from '@reduxjs/toolkit/query/react'
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
 export const getFavTracksApi = createApi({
-  reducerPath: "getFavTracksApi",
+  reducerPath: 'musicApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://skypro-music-api.skyeng.tech/",
+    baseUrl: 'https://skypro-music-api.skyeng.tech',
   }),
   endpoints: (builder) => ({
+    getAllTracks: builder.query({
+      query: () => ({ url: `/catalog/track/all/` }),
+    }),
     getFavTracks: builder.query({
       query: ({ token }) => ({
-        url: "/catalog/track/favorite/all/",
+        url: '/catalog/track/favorite/all/',
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -17,35 +20,36 @@ export const getFavTracksApi = createApi({
     addFavTrack: builder.mutation({
       query: ({ id, token }) => ({
         url: `/catalog/track/${id}/favorite/`,
-        method: "POST",
+        method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
-      invalidatesTags: [{ type: "Favorites", id: "LIST" }],
+      invalidatesTags: [{ type: 'Favorites', id: 'LIST' }],
     }),
     deleteFavTrack: builder.mutation({
       query: ({ id, token }) => ({
         url: `/catalog/track/${id}/favorite/`,
-        method: "DELETE",
+        method: 'DELETE',
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }),
-      invalidatesTags: [{ type: "Favorites", id: "LIST" }],
+      invalidatesTags: [{ type: 'Favorites', id: 'LIST' }],
     }),
   }),
-});
+})
 
 export const {
+  useGetAllTracksQuery,
   useGetFavTracksQuery,
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
-} = getFavTracksApi;
+} = getFavTracksApi
+
+export default getFavTracksApi.reducer
 
 // setupListeners(store.dispatch)
-
-
 
 // export const musicApi = createApi({
 //    reducerPath: "musicApi",

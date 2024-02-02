@@ -2,10 +2,10 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
-import { useDispatch, useSelector } from 'react-redux'
-import { setTracks } from '../../Store/Slices/sliceTrack.js'
-import { getFavTracks, refreshToken } from '../../Api.jsx'
-import { useEffect } from 'react'
+// import { useDispatch, useSelector } from 'react-redux'
+// import { setTracks } from '../../Store/Slices/sliceTrack.js'
+// import { getFavTracks, refreshToken } from '../../Api.jsx'
+// import { useEffect } from 'react'
 
 export const Favorites = (
   isplay,
@@ -14,8 +14,7 @@ export const Favorites = (
   playlist,
   setPlaylist,
   isLoading,
-  setIsLoading,
-  setErrorGetTracks,
+  // setIsLoading, setErrorGetTracks,
 ) => {
 //   const dispatch = useDispatch()
 //   const tracks = useSelector((state) => state.tracks.tracks)

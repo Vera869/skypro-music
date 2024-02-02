@@ -14,14 +14,11 @@ export const LayoutPage = ({
   logout,
   isplay,
   setIsPlay,
-  setVisiblePlayer,
   isVisiblePlayer,
   isLoading,
   setIsLoading,
-  playlist, setPlaylist,
 }) => {
   const [errorGetTracks, setErrorGetTracks] = useState(null)
-  // const [playlist, setPlaylist] = useState('')
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -42,25 +39,13 @@ export const LayoutPage = ({
           <S.Main>
             <NavMenu logout={logout} />
 
-            <Outlet
-              // isLoading={isLoading}
-              // setIsLoading={setIsLoading}
-              // errorGetTracks={errorGetTracks}
-              setErrorGetTracks={setErrorGetTracks}
-              // setVisiblePlayer={setVisiblePlayer}
-              // isplay={isplay}
-              // setIsPlay={setIsPlay}
-              // playlist={playlist}
-              // setPlaylist={setPlaylist}
-            />
+            <Outlet/>
 
             <SideBar
               setUser={setUser}
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               logout={logout}
-              // playlist={playlist}
-              // setPlaylist={setPlaylist}
             />
           </S.Main>
           <footer>

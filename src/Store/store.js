@@ -1,17 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { trackReducer } from './Slices/sliceTrack'
-import { getFavTracksApi, } from '../Services'
+import getFavTracksApiReducer, {getFavTracksApi}from '../Services'
+
 
 
 export const store = configureStore({
   reducer: {
     tracks: trackReducer,
+    [getFavTracksApi.reducerPath]: getFavTracksApiReducer
   },
-  // reducer: {
-  //       // player: playerReducer,
-  //       [getFavTracksApi.reducerPath]: getFavTracksApi.reducer
-  //     },
-  //     middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(getFavTracksApi.middleware),
+  middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(getFavTracksApi.middleware),
 })
 
 
