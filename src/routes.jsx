@@ -16,6 +16,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [isplay, setIsPlay] = useState(true)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+  const [playlist, setPlaylist] = useState([])
 
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
@@ -64,8 +65,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               setIsPlay={setIsPlay}
               isVisiblePlayer={isVisiblePlayer}
               setVisiblePlayer={setVisiblePlayer}
-              // playlist={playlist}
-              // setPlaylist={setPlaylist}
+              playlist={playlist}
+              setPlaylist={setPlaylist}
 
             />
           }
@@ -82,8 +83,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
+                playlist={playlist}
+                setPlaylist={setPlaylist}
               />
             }
           />
@@ -98,8 +99,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
+                playlist={playlist}
+                setPlaylist={setPlaylist}
               />
             }
           />
@@ -114,8 +115,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
+                playlist={playlist}
+                setPlaylist={setPlaylist}
               />
             }
           />

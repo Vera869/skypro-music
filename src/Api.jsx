@@ -68,7 +68,7 @@ export async function loginUser({ email, password }) {
    })
    return response.json();
    }
-export async function refrashToken ({refresh}) {
+export async function refreshToken ({refresh}) {
   console.log("обновление токена");
       const response = await fetch(`${host}user/token/refresh/`, {
         method: "POST",

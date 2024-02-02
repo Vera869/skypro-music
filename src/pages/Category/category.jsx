@@ -43,7 +43,7 @@ export const PlayListCategory = (
         .catch((error) => {
             console.log(error)
         })
-}, [dispatch, categoryId])
+}, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
   return (
     <>
       <S.MainCenterBlock>
