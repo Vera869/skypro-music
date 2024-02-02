@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom'
 import * as S from '../../components/TrackList/StyledTrackList.js'
+import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import { useEffect } from 'react'
@@ -16,6 +17,7 @@ export const PlayListCategory = (
   setPlaylist,
   // errorGetTracks, 
   setErrorGetTracks,
+  isLoading,
   setIsLoading,
 ) => {
   const params = useParams()
@@ -28,6 +30,7 @@ export const PlayListCategory = (
 
   useEffect(() => {
     setPlaylist = 'category'
+    // setIsLoading(true)
     dispatch(setCategoryId({ categoryId }))
     getPlaylist(categoryId)
         .then((tracks) => {
@@ -61,6 +64,11 @@ export const PlayListCategory = (
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
+        {isLoading ? (
+              <S.ContentPlaylist>
+                <SkeletonTracks />
+              </S.ContentPlaylist>
+            ) : (
         <GetTracks
           isplay={isplay}
           setVisiblePlayer={setVisiblePlayer}
@@ -68,7 +76,7 @@ export const PlayListCategory = (
           setIsPlay={setIsPlay}
           playlist={playlist}
           setPlaylist={setPlaylist}
-        />
+        />)}
       </S.MainCenterBlock>
     </>
   )
