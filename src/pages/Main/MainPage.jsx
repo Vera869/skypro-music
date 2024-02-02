@@ -10,6 +10,8 @@ export const Main = ({
   isLoading,
   errorGetTracks,
   setVisiblePlayer,
+  playlist,
+  setPlaylist,
 }) => {
   const toggleErrorContext = () => {
     if (errorGetTracks)
@@ -57,6 +59,8 @@ export const Main = ({
                   setVisiblePlayer={setVisiblePlayer}
                   setActiveTrack={setActiveTrack}
                   setIsPlay={setIsPlay}
+                  playlist={playlist}
+                  setPlaylist={setPlaylist}
                 />
               </S.ContentPlaylist>
             )}

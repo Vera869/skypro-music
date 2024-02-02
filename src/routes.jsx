@@ -5,7 +5,6 @@ import { Favorites } from './pages/Favorites/favorites'
 import { Login } from './pages/Login/login'
 import { Reg } from './pages/Registration/registration'
 import { PlayListCategory } from '../src/pages/Category/category'
-import { arrayCategorys } from '../src/components/SideBar/ArrayCategory'
 import { Main } from '../src/pages/Main/MainPage'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -17,6 +16,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const [isplay, setIsPlay] = useState(true)
   const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
+
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
 
@@ -64,6 +64,9 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               setIsPlay={setIsPlay}
               isVisiblePlayer={isVisiblePlayer}
               setVisiblePlayer={setVisiblePlayer}
+              // playlist={playlist}
+              // setPlaylist={setPlaylist}
+
             />
           }
         >
@@ -79,6 +82,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                // playlist={playlist}
+                // setPlaylist={setPlaylist}
               />
             }
           />
@@ -86,7 +91,6 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
             path="/category/:id"
             element={
               <PlayListCategory
-                arrayCategorys={arrayCategorys}
                 setUser={setUser}
                 logout={logout}
                 isplay={isplay}
@@ -94,6 +98,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                // playlist={playlist}
+                // setPlaylist={setPlaylist}
               />
             }
           />
@@ -108,6 +114,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
                 setVisiblePlayer={setVisiblePlayer}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
+                // playlist={playlist}
+                // setPlaylist={setPlaylist}
               />
             }
           />

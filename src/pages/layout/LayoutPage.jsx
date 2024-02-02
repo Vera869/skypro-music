@@ -9,11 +9,19 @@ import { useDispatch } from 'react-redux'
 import { setTracks } from '../../Store/Slices/sliceTrack.js'
 import { Outlet } from 'react-router-dom'
 
-export const LayoutPage = ({ setUser, logout, isplay, setIsPlay, setVisiblePlayer, isVisiblePlayer, isLoading,
-  setIsLoading }) => {
- 
+export const LayoutPage = ({
+  setUser,
+  logout,
+  isplay,
+  setIsPlay,
+  setVisiblePlayer,
+  isVisiblePlayer,
+  isLoading,
+  setIsLoading,
+  // playlist, setPlaylist,
+}) => {
   const [errorGetTracks, setErrorGetTracks] = useState(null)
-
+  const [playlist, setPlaylist] = useState('')
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -36,11 +44,14 @@ export const LayoutPage = ({ setUser, logout, isplay, setIsPlay, setVisiblePlaye
 
             <Outlet
               isLoading={isLoading}
+              setIsLoading={setIsLoading}
               errorGetTracks={errorGetTracks}
+              setErrorGetTracks={setErrorGetTracks}
               setVisiblePlayer={setVisiblePlayer}
               isplay={isplay}
               setIsPlay={setIsPlay}
-              setIsLoading={setIsLoading}
+              playlist={playlist}
+              setPlaylist={setPlaylist}
             />
 
             <SideBar
@@ -48,6 +59,8 @@ export const LayoutPage = ({ setUser, logout, isplay, setIsPlay, setVisiblePlaye
               isLoading={isLoading}
               setIsLoading={setIsLoading}
               logout={logout}
+              playlist={playlist}
+              setPlaylist={setPlaylist}
             />
           </S.Main>
           <footer>

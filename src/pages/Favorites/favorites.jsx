@@ -5,7 +5,9 @@ import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 export const Favorites = (
   isplay,
   setIsPlay,
-  setVisiblePlayer
+  setVisiblePlayer,
+  playlist,
+  setPlaylist,
 ) => {
   return (
     <>
@@ -32,6 +34,8 @@ export const Favorites = (
           setVisiblePlayer={setVisiblePlayer}
           setActiveTrack={setActiveTrack}
           setIsPlay={setIsPlay}
+          playlist={playlist}
+          setPlaylist={setPlaylist}
         />
       </S.MainCenterBlock>
     </>

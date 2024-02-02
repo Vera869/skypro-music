@@ -82,12 +82,62 @@ export async function refrashToken ({refresh}) {
       return response.json();
       }
 
-// export async function getTrackId(){
-//    const response = await fetch(`${host}/track/<id>`);
-//    const data = response.json();
-//     if(!response.ok) {
-//      throw new Error("Произошла ошибка")
-//   }
-//    return data
-// }
+// Api для работы через slice
+export async function getFavTracks() {
+  return fetch(
+      `${host}catalog/track/favorite/all/`,
+      {
+          method: 'GET',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+      },
+  )
+}
 
+export async function getPlaylist(id) {
+  return fetch(
+      `${host}catalog/selection/${id}/`,
+      {
+          method: 'GET',
+      },
+  )
+      .then((response) => {
+          return response.json()
+      })
+      .then((response) => {
+          return response.items
+      })
+}
+
+export async function getTrack(id) {
+  return fetch(`${host}catalog/track/${id}`, {
+      method: 'GET',
+  }).then((response) => {
+      return response.json()
+  })
+}
+
+export async function setLike(id) {
+  return fetch(
+      `${host}catalog/track/${id}/favorite/`,
+      {
+          method: 'POST',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+      },
+  )
+}
+
+export async function removeLike(id) {
+  return fetch(
+      `${host}catalog/track/${id}/favorite/`,
+      {
+          method: 'DELETE',
+          headers: {
+              Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
+      },
+  )
+}
