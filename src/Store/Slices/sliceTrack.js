@@ -15,9 +15,9 @@ const trackSlice = createSlice({
   reducers: {
     setTracks(state, action) {
       state.tracks = action.payload.tracks
-      state.shuffledTracks = [...action.payload.tracks].sort(
-        () => Math.random() - 0.5
-      )
+      // state.shuffledTracks = [...action.payload.tracks].sort(
+      //   () => Math.random() - 0.5
+      // )
     },
     setCurrentPlaylist(state) {
       state.currentPlaylist = state.tracks

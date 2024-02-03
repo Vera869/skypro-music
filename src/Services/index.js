@@ -58,7 +58,7 @@ export const {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
   useGetPlaylistByIdQuery,
-  useGetTrackByIDQuery,
+  useGetTrackByIdQuery,
 } = getFavTracksApi
 
 export default getFavTracksApi.reducer
