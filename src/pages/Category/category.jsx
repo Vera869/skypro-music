@@ -13,7 +13,6 @@ import { useGetAllTracksQuery } from '../../Services/index.js'
 export const PlayListCategory = (
   isplay,
   setIsPlay,
-  setVisiblePlayer,
   playlist,
   setPlaylist
 ) => {
@@ -69,7 +68,6 @@ export const PlayListCategory = (
           <GetTracks
             tracks={tracks}
             isplay={isplay}
-            setVisiblePlayer={setVisiblePlayer}
             setActiveTrack={setActiveTrack}
             setIsPlay={setIsPlay}
             playlist={playlist}

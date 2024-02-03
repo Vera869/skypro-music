@@ -1,18 +1,17 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setVisiblePlayer } from '../../Store/Slices/sliceTrack.js'
 
-export const GetTracks = ({ setVisiblePlayer, isplay, setIsPlay, tracks }) => {
+export const GetTracks = ({  isplay, setIsPlay, tracks }) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
 
   const clickTrack = ({ track }) => {
-    setVisiblePlayer(true)
+    dispatch(setVisiblePlayer(true))
     dispatch(setActiveTrack({ track }))
     console.log(activeTrack);
     setIsPlay(true)
-
     return
   }
   const trackItems = tracks.map((track) => (

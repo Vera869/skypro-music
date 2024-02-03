@@ -10,7 +10,10 @@ const trackSlice = createSlice({
     filteredTracks: [],
     isShuffled: false,
     categoryId: null,
-    setCategoryId: null,
+    // isActiveTrack: false,
+    visiblePlayer: false, 
+    // isplay: true, 
+    // setIsPlay: '',
   },
   reducers: {
     setTracks(state, action) {
@@ -62,6 +65,7 @@ const trackSlice = createSlice({
 })
 
 export const {
+  visiblePlayer,
   setTracks,
   setActiveTrack,
   setIsShuffled,
@@ -70,6 +74,8 @@ export const {
   setCurrentPlaylist,
   setFilteredTracks,
   setCategoryId,
+  setVisiblePlayer,
+  // isplay,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

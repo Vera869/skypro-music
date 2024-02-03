@@ -9,7 +9,6 @@ import { useDispatch } from 'react-redux'
 export const Main = ({
   isplay,
   setIsPlay,
-  setVisiblePlayer,
   
 }) => {
   const dispatch = useDispatch()
@@ -58,7 +57,6 @@ export const Main = ({
                 <GetTracks
                  tracks={tracks}
                   isplay={isplay}
-                  setVisiblePlayer={setVisiblePlayer}
                   setActiveTrack={setActiveTrack}
                   setIsPlay={setIsPlay}
                   // playlist={playlist}

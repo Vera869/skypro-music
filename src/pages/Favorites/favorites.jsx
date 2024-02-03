@@ -11,7 +11,6 @@ import { useGetAllTracksQuery } from '../../Services/index.js'
 export const Favorites = (
   isplay,
   setIsPlay,
-  setVisiblePlayer,
   playlist,
   setPlaylist
 ) => {
@@ -67,7 +66,6 @@ export const Favorites = (
           <GetTracks
             tracks={tracks}
             isplay={isplay}
-            setVisiblePlayer={setVisiblePlayer}
             setActiveTrack={setActiveTrack}
             setIsPlay={setIsPlay}
             playlist={playlist}

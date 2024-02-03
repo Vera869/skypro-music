@@ -8,9 +8,11 @@ import {
   playNextTrack,
   playPrevTrack,
   setIsShuffled,
+  setVisiblePlayer,
+  visiblePlayer,
 } from '../../Store/Slices/sliceTrack.js'
 
-function AudioPlayer({ isVisiblePlayer, isplay, setIsPlay }) {
+function AudioPlayer({  isplay, setIsPlay }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
@@ -21,7 +23,7 @@ function AudioPlayer({ isVisiblePlayer, isplay, setIsPlay }) {
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
-  // const isVisiblePlayer = Boolean(useSelector((state) => state.tracks.activeTrack))
+  const isVisible = Boolean(activeTrack)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -113,7 +115,8 @@ function AudioPlayer({ isVisiblePlayer, isplay, setIsPlay }) {
     dispatch(setIsShuffled())
   }
   return (
-    isVisiblePlayer && (
+    visiblePlayer
+    ? (
       <S.Bar>
         {activeTrack ? (
           <audio
@@ -239,7 +242,7 @@ function AudioPlayer({ isVisiblePlayer, isplay, setIsPlay }) {
           </S.BarPleerBlock>
         </S.BarContent>
       </S.Bar>
-    )
+    ) : ''
   )
 }
 export default AudioPlayer
