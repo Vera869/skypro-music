@@ -1,24 +1,21 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { trackReducer } from './Slices/sliceTrack'
-import getFavTracksApiReducer, {getFavTracksApi}from '../Services'
-
-
+import musicTracksApiReducer, { musicTracksApi } from '../Services'
 
 export const store = configureStore({
   reducer: {
     tracks: trackReducer,
-    [getFavTracksApi.reducerPath]: getFavTracksApiReducer
+    [musicTracksApi.reducerPath]: musicTracksApiReducer,
   },
-  middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(getFavTracksApi.middleware),
+  middleware: (GetDefaultMiddleware) =>
+    GetDefaultMiddleware().concat(musicTracksApi.middleware),
 })
 
-
-
-// import getFavTracksApiReducer, { getFavTracksApi } from '../Services/index'
+// import musicTracksApiReducer, { musicTracksApi } from '../Services/index'
 // export const store = configureStore({
 //   reducer: {
 //     // player: playerReducer,
-//     [getFavTracksApi.reducerPath]: getFavTracksApiReducer
+//     [musicTracksApi.reducerPath]: musicTracksApiReducer
 //   },
-//   middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(getFavTracksApi.middleware),
+//   middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(musicTracksApi.middleware),
 //})

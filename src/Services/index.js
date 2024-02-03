@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-export const getFavTracksApi = createApi({
+export const musicTracksApi = createApi({
   reducerPath: 'musicApi',
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://skypro-music-api.skyeng.tech',
@@ -59,9 +59,8 @@ export const {
   useDeleteFavTrackMutation,
   useGetPlaylistByIdQuery,
   useGetTrackByIdQuery,
-} = getFavTracksApi
+} = musicTracksApi
 
-export default getFavTracksApi.reducer
+export default musicTracksApi.reducer
 
-// setupListeners(store.dispatch)
-
+// setupListeners(store.dispatch)         musicTracksApi
