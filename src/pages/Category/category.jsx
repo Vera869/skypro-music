@@ -3,47 +3,44 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { arrayCategorys } from '../../components/SideBar/ArrayCategory.jsx'
-import { setCategoryId, setTracks } from '../../Store/Slices/sliceTrack.js'
-import { getPlaylist } from '../../Api.jsx'
+// import { useEffect } from 'react'
+// import { useDispatch } from 'react-redux'
+// import { setCategoryId, setTracks } from '../../Store/Slices/sliceTrack.js'
+// import { getPlaylist } from '../../Api.jsx'
+import { useGetAllTracksQuery } from '../../Services/index.js'
 
 export const PlayListCategory = (
   isplay,
   setIsPlay,
   setVisiblePlayer,
   playlist,
-  setPlaylist,
-  // errorGetTracks, 
-  setErrorGetTracks,
-  // isLoading,
-  setIsLoading,
+  setPlaylist
 ) => {
   const params = useParams()
-  const {data: tracks, isLoading, isError }= useGetAllTracksQuery()
+  const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
   // const dispatch = useDispatch()
   const arrayCategory = arrayCategorys.find(
     (arrayCategory) => arrayCategory.id === Number(params.id)
   )
-  const categoryId = arrayCategory.id
+  // const categoryId = arrayCategory.id
 
-//   useEffect(() => {
-//     setPlaylist = 'category'
-//     // setIsLoading(true)
-//     dispatch(setCategoryId({ categoryId }))
-//     getPlaylist(categoryId)
-//         .then((tracks) => {
-//             dispatch(setTracks({ tracks }))
-//         })
-//         .then(() => {
-//            setErrorGetTracks = ('')
-//            setIsLoading(false)
-//         })
-//         .catch((error) => {
-//             console.log(error)
-//         })
-// }, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
+  //   useEffect(() => {
+  //     setPlaylist = 'category'
+  //     // setIsLoading(true)
+  //     dispatch(setCategoryId({ categoryId }))
+  //     getPlaylist(categoryId)
+  //         .then((tracks) => {
+  //             dispatch(setTracks({ tracks }))
+  //         })
+  //         .then(() => {
+  //            setErrorGetTracks = ('')
+  //            setIsLoading(false)
+  //         })
+  //         .catch((error) => {
+  //             console.log(error)
+  //         })
+  // }, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
   return (
     <>
       <S.MainCenterBlock>
@@ -65,19 +62,20 @@ export const PlayListCategory = (
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
         {isLoading ? (
-              <S.ContentPlaylist>
-                <SkeletonTracks />
-              </S.ContentPlaylist>
-            ) : (
-        <GetTracks
-        tracks={tracks}
-          isplay={isplay}
-          setVisiblePlayer={setVisiblePlayer}
-          setActiveTrack={setActiveTrack}
-          setIsPlay={setIsPlay}
-          playlist={playlist}
-          setPlaylist={setPlaylist}
-        />)}
+          <S.ContentPlaylist>
+            <SkeletonTracks />
+          </S.ContentPlaylist>
+        ) : (
+          <GetTracks
+            tracks={tracks}
+            isplay={isplay}
+            setVisiblePlayer={setVisiblePlayer}
+            setActiveTrack={setActiveTrack}
+            setIsPlay={setIsPlay}
+            playlist={playlist}
+            setPlaylist={setPlaylist}
+          />
+        )}
       </S.MainCenterBlock>
     </>
   )

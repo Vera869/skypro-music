@@ -10,7 +10,7 @@ import {
   setIsShuffled,
 } from '../../Store/Slices/sliceTrack.js'
 
-function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
+function AudioPlayer({ isVisiblePlayer, isplay, setIsPlay }) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
@@ -21,7 +21,7 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
-
+  // const isVisiblePlayer = Boolean(useSelector((state) => state.tracks.activeTrack))
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -186,57 +186,23 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
               <S.PlayerTrackPlay>
                 <S.TrackPlayContain>
                   <S.TrackPlayImage>
-                    {isLoading ? (
-                      <Skeleton
-                        width={55}
-                        height={55}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlaySvg alt="music">
                         <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                       </S.TrackPlaySvg>
-                    )}
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
-                    {isLoading ? (
-                      <Skeleton
-                        width={270}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlayAuthorLink>
                         {activeTrack.author}
                       </S.TrackPlayAuthorLink>
-                    )}
                   </S.TrackPlayAuthor>
                   <S.TrackPlayAlbum>
-                    {isLoading ? (
-                      <Skeleton
-                        width={270}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlayAlbumLink>
                         {activeTrack.name}
                       </S.TrackPlayAlbumLink>
-                    )}
                   </S.TrackPlayAlbum>
                 </S.TrackPlayContain>
 
                 <S.TrackPlayLikeDis>
-                  {isLoading ? (
-                    <Skeleton
-                      width={55}
-                      height={55}
-                      baseColor="#202020"
-                      highlightColor="#444"
-                    />
-                  ) : (
-                    <>
                       <S.TrackPlayLike className="_btn-icon">
                         <S.TrackPlayLikeSvg alt="like">
                           <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
@@ -247,8 +213,6 @@ function AudioPlayer({ isVisiblePlayer, isLoading, isplay, setIsPlay }) {
                           <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
                         </S.TrackPlayDislikeSvg>
                       </S.TrackPlayDislike>
-                    </>
-                  )}
                 </S.TrackPlayLikeDis>
               </S.PlayerTrackPlay>
             </S.BarPleer>

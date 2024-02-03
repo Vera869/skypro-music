@@ -317,6 +317,7 @@ export const ContentPlaylist = styled.div`
   }
 `
 export const ErrorMassege = styled.p`
+  margin-top: 500px;
   font-style: normal;
   font-weight: 400;
   font-size: 28px;

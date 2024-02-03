@@ -1,9 +1,10 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setTracks } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
+import { useDispatch } from 'react-redux'
 
 export const Main = ({
   isplay,
@@ -11,13 +12,15 @@ export const Main = ({
   setVisiblePlayer,
   
 }) => {
+  const dispatch = useDispatch()
   const {data: tracks, isLoading, isError }= useGetAllTracksQuery()
+  dispatch(setTracks({ tracks }))
     if (isError)
       return (
         <S.ContentPlaylist>
           <S.ErrorMassege>
-            К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
-            попробуйте позже.
+            К сожалению, при загрузке плэйлиста произошла ошибка, <br></br>
+            пожалуйста, попробуйте позже.
           </S.ErrorMassege>
         </S.ContentPlaylist>
       )

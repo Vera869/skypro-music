@@ -2,6 +2,7 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+import { useGetAllTracksQuery } from '../../Services/index.js'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { setTracks } from '../../Store/Slices/sliceTrack.js'
 // import { getFavTracks, refreshToken } from '../../Api.jsx'
@@ -12,32 +13,31 @@ export const Favorites = (
   setIsPlay,
   setVisiblePlayer,
   playlist,
-  setPlaylist,
-  isLoading,
-  // setIsLoading, setErrorGetTracks,
+  setPlaylist
 ) => {
-//   const dispatch = useDispatch()
-//   const tracks = useSelector((state) => state.tracks.tracks)
+  const { data: tracks, isLoading } = useGetAllTracksQuery()
+  //   const dispatch = useDispatch()
+  //   const tracks = useSelector((state) => state.tracks.tracks)
 
-//   useEffect(() => {
-//     setPlaylist = 'fav'
-//     async function getTracks() {
-//         let tracksResponse = await getFavTracks()
+  //   useEffect(() => {
+  //     setPlaylist = 'fav'
+  //     async function getTracks() {
+  //         let tracksResponse = await getFavTracks()
 
-//         if (tracksResponse.status === 401) {
-//             const tokensResponse = await refreshToken()
-//             const tokens = await tokensResponse.json()
-//             localStorage.setItem('accessToken', tokens.access)
-//             tracksResponse = await getFavTracks()
-//         }
+  //         if (tracksResponse.status === 401) {
+  //             const tokensResponse = await refreshToken()
+  //             const tokens = await tokensResponse.json()
+  //             localStorage.setItem('accessToken', tokens.access)
+  //             tracksResponse = await getFavTracks()
+  //         }
 
-//         const tracks = await tracksResponse.json()
-//         dispatch(setTracks({ tracks }))
-//         setErrorGetTracks('')
-//         setIsLoading(false)
-//     }
-//     getTracks()
-// }, [setErrorGetTracks, dispatch, setIsLoading, setPlaylist])
+  //         const tracks = await tracksResponse.json()
+  //         dispatch(setTracks({ tracks }))
+  //         setErrorGetTracks('')
+  //         setIsLoading(false)
+  //     }
+  //     getTracks()
+  // }, [setErrorGetTracks, dispatch, setIsLoading, setPlaylist])
 
   return (
     <>
@@ -60,19 +60,21 @@ export const Favorites = (
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
         {isLoading ? (
-              <S.ContentPlaylist>
-                <SkeletonTracks />
-              </S.ContentPlaylist>
-            ) : (
-        <GetTracks
-          isplay={isplay}
-          setVisiblePlayer={setVisiblePlayer}
-          setActiveTrack={setActiveTrack}
-          setIsPlay={setIsPlay}
-          playlist={playlist}
-          setPlaylist={setPlaylist}
-          isLoading={isLoading}
-        />)}
+          <S.ContentPlaylist>
+            <SkeletonTracks />
+          </S.ContentPlaylist>
+        ) : (
+          <GetTracks
+            tracks={tracks}
+            isplay={isplay}
+            setVisiblePlayer={setVisiblePlayer}
+            setActiveTrack={setActiveTrack}
+            setIsPlay={setIsPlay}
+            playlist={playlist}
+            setPlaylist={setPlaylist}
+            isLoading={isLoading}
+          />
+        )}
       </S.MainCenterBlock>
     </>
   )

@@ -3,15 +3,14 @@ import * as S from '../TrackList/StyledTrackList.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 
-export const GetTracks = ({ setVisiblePlayer, isplay, setIsPlay, tracks
-   }) => {
-  // const tracks = useSelector((state) => state.tracks.tracks)
+export const GetTracks = ({ setVisiblePlayer, isplay, setIsPlay, tracks }) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
 
   const clickTrack = ({ track }) => {
     setVisiblePlayer(true)
     dispatch(setActiveTrack({ track }))
+    console.log(activeTrack);
     setIsPlay(true)
 
     return
@@ -63,4 +62,3 @@ export const GetTracks = ({ setVisiblePlayer, isplay, setIsPlay, tracks
   ))
   return trackItems
 }
-

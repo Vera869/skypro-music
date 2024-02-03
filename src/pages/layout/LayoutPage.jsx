@@ -3,10 +3,9 @@ import AudioPlayer from '../../components/Player/AudioPlayer.jsx'
 import NavMenu from '../../components/NavMenu/NavMenu.jsx'
 import * as S from '../Main/StyledMain.js'
 import { useEffect, useState } from 'react'
-import { getAllTracks } from '../../Api.jsx'
+// import { getAllTracks } from '../../Api.jsx'
 
 import { useDispatch } from 'react-redux'
-import { setTracks } from '../../Store/Slices/sliceTrack.js'
 import { Outlet } from 'react-router-dom'
 
 export const LayoutPage = ({
@@ -18,20 +17,20 @@ export const LayoutPage = ({
   isLoading,
   setIsLoading,
 }) => {
-  const [errorGetTracks, setErrorGetTracks] = useState(null)
-  const dispatch = useDispatch()
+  // const [errorGetTracks, setErrorGetTracks] = useState(null)
+  // const dispatch = useDispatch()
 
-  useEffect(() => {
-    getAllTracks()
-      .then((tracks) => {
-        dispatch(setTracks({ tracks }))
-        setIsLoading(false)
-      })
-      .catch((error) => {
-        console.log(error.message)
-        setErrorGetTracks(error.message)
-      })
-  }, []) //dispatch
+  // useEffect(() => {
+  //   getAllTracks()
+  //     .then((tracks) => {
+  //       dispatch(setTracks({ tracks }))
+  //       setIsLoading(false)
+  //     })
+  //     .catch((error) => {
+  //       console.log(error.message)
+  //       setErrorGetTracks(error.message)
+  //     })
+  // }, []) //dispatch
   return (
     <>
       <S.Wrapper>
