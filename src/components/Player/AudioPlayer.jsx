@@ -18,11 +18,11 @@ function AudioPlayer({  isplay, setIsPlay }) {
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
 
-  const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
+  const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек{}
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
   const isVisible = Boolean(activeTrack) 
-  const isVisiblePlayer = useSelector((state) => state.tracks.visiblePlayer) 
+  // const isVisiblePlayer = useSelector((state) => state.tracks.visiblePlayer) 
   // const isActiveTrack = useSelector((state) => state.tracks.isActiveTrack)
 
   const duration = audioRef.current?.duration || 0 //общее время трека
