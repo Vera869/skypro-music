@@ -11,8 +11,8 @@ import { useGetAllTracksQuery } from '../../Services/index.js'
 export const Favorites = (
   isplay,
   setIsPlay,
-  playlist,
-  setPlaylist
+  // playlist,
+  // setPlaylist
 ) => {
   const { data: tracks, isLoading } = useGetAllTracksQuery()
   //   const dispatch = useDispatch()

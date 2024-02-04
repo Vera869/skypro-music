@@ -5,15 +5,21 @@ import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
 
 export const Main = ({
   isplay,
   setIsPlay,
   
 }) => {
+ 
   const dispatch = useDispatch()
+ 
   const {data: tracks, isLoading, isError }= useGetAllTracksQuery()
-  dispatch(setTracks({ tracks }))
+  useEffect(() => {
+    dispatch(setTracks({ tracks }))
+  }, [tracks])
+  
     if (isError)
       return (
         <S.ContentPlaylist>

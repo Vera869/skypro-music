@@ -13,8 +13,8 @@ import { useGetAllTracksQuery } from '../../Services/index.js'
 export const PlayListCategory = (
   isplay,
   setIsPlay,
-  playlist,
-  setPlaylist
+  // playlist,
+  // setPlaylist
 ) => {
   const params = useParams()
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()

@@ -1,4 +1,4 @@
-import Skeleton from 'react-loading-skeleton'
+// import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
@@ -8,8 +8,6 @@ import {
   playNextTrack,
   playPrevTrack,
   setIsShuffled,
-  setVisiblePlayer,
-  visiblePlayer,
 } from '../../Store/Slices/sliceTrack.js'
 
 function AudioPlayer({  isplay, setIsPlay }) {
@@ -23,7 +21,10 @@ function AudioPlayer({  isplay, setIsPlay }) {
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек[]
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
-  const isVisible = Boolean(activeTrack)
+  const isVisible = Boolean(activeTrack) 
+  const isVisiblePlayer = useSelector((state) => state.tracks.visiblePlayer) 
+  // const isActiveTrack = useSelector((state) => state.tracks.isActiveTrack)
+
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -115,8 +116,8 @@ function AudioPlayer({  isplay, setIsPlay }) {
     dispatch(setIsShuffled())
   }
   return (
-    visiblePlayer
-    ? (
+    isVisible
+    && (
       <S.Bar>
         {activeTrack ? (
           <audio
@@ -242,7 +243,7 @@ function AudioPlayer({  isplay, setIsPlay }) {
           </S.BarPleerBlock>
         </S.BarContent>
       </S.Bar>
-    ) : ''
+    )
   )
 }
 export default AudioPlayer

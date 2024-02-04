@@ -20,7 +20,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
 
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
-
+  
   const logout = () => {
     dispatch(setActiveTrack({ track: {} }))
     setIsPlay(false)
