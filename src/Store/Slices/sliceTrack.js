@@ -23,7 +23,12 @@ const trackSlice = createSlice({
       state.currentPlaylist = state.tracks
     },
     setIsPlay(state) {
-      state.isPlay = !state.isPlay
+      if(state.isPlay = false) {
+        state.isPlay = true
+      } else {
+        state.isPlay = false
+      }
+      // state.isPlay = !state.isPlay
     },
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track

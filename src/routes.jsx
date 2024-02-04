@@ -8,12 +8,12 @@ import { PlayListCategory } from '../src/pages/Category/category'
 import { Main } from '../src/pages/Main/MainPage'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { setActiveTrack } from './Store/Slices/sliceTrack'
+import { setActiveTrack, setIsPlay } from './Store/Slices/sliceTrack'
 import { LayoutPage } from './pages/layout/LayoutPage'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
-  const [isplay, setIsPlay] = useState(true)
+  // const [isplay, setIsPlay] = useState(true)
   // const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   // const [playlist, setPlaylist] = useState([])
@@ -23,7 +23,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   
   const logout = () => {
     dispatch(setActiveTrack({ track: {} }))
-    setIsPlay(false)
+    dispatch(setIsPlay())
+    // setIsPlay(false)
     localStorage.clear()
     navigate('/login')
   }
@@ -61,8 +62,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               setIsLoading={setIsLoading}
               setUser={setUser}
               logout={logout}
-              isplay={isplay}
-              setIsPlay={setIsPlay}
+              // isplay={isplay}
+              // setIsPlay={setIsPlay}
               // playlist={playlist}
               // setPlaylist={setPlaylist}
 
@@ -76,8 +77,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <Main
                 setUser={setUser}
                 logout={logout}
-                isplay={isplay}
-                setIsPlay={setIsPlay}
+                // isplay={isplay}
+                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 // playlist={playlist}
@@ -91,8 +92,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <PlayListCategory
                 setUser={setUser}
                 logout={logout}
-                isplay={isplay}
-                setIsPlay={setIsPlay}
+                // isplay={isplay}
+                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 // playlist={playlist}
@@ -106,8 +107,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <Favorites
                 setUser={setUser}
                 logout={logout}
-                isplay={isplay}
-                setIsPlay={setIsPlay}
+                // isplay={isplay}
+                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
                 // playlist={playlist}
