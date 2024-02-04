@@ -41,12 +41,14 @@ function AudioPlayer(
 
   const handleStart = () => {
     console.log('PLAY')
+    console.log(setIsPlay)
     audioRef.current.play()
     dispatch(setIsPlay())
   }
 
   const handleStop = () => {
     console.log('PAUSE')
+    console.log(setIsPlay)
     audioRef.current.pause()
     dispatch(setIsPlay())
   }
@@ -124,7 +126,8 @@ function AudioPlayer(
           <audio
             ref={audioRef}
             src={activeTrack.track_file}
-            autoPlay={isPlay}
+            autoPlay
+            // ={isPlay}
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
             onEnded={() => dispatch(playNextTrack())}
           >

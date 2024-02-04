@@ -10,7 +10,7 @@ const trackSlice = createSlice({
     filteredTracks: [],
     isShuffled: false,
     categoryId: null,
-    isPlay: false, 
+    isPlay: true, 
   },
   reducers: {
     setTracks(state, action) {

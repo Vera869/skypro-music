@@ -15,7 +15,9 @@ export const GetTracks = ({
     dispatch(setActiveTrack({ track }))
     console.dir(activeTrack);
     // setIsPlay(true)
+    console.dir(setIsPlay)
     dispatch(setIsPlay())
+    console.dir(setIsPlay)
     return
   }
   const trackItems = tracks.map((track) => (
