@@ -13,7 +13,6 @@ export const LayoutPage = ({
   logout,
   isplay,
   setIsPlay,
-  isVisiblePlayer,
   isLoading,
   setIsLoading,
 }) => {
@@ -49,7 +48,6 @@ export const LayoutPage = ({
           </S.Main>
           <footer>
             <AudioPlayer
-              isVisiblePlayer={isVisiblePlayer}
               isLoading={isLoading}
               isplay={isplay}
               setIsPlay={setIsPlay}

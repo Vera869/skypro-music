@@ -21,10 +21,9 @@ function AudioPlayer({  isplay, setIsPlay }) {
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек{}
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
-  const isVisible = Boolean(activeTrack) 
+  const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
   // const isVisiblePlayer = useSelector((state) => state.tracks.visiblePlayer) 
   // const isActiveTrack = useSelector((state) => state.tracks.isActiveTrack)
-
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {

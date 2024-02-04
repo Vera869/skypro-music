@@ -12,7 +12,7 @@ const trackSlice = createSlice({
     categoryId: null,
     // isActiveTrack: false,
     // visiblePlayer: false, 
-    isplay: true, 
+    isPlay: true, 
   },
   reducers: {
     setTracks(state, action) {
@@ -74,7 +74,7 @@ export const {
   setCategoryId,
   setVisiblePlayer,
   setIsActiveTrack,
-  // isplay,
+  setIsPlay,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

@@ -6,6 +6,7 @@ import { setActiveTrack,
  } from '../../Store/Slices/sliceTrack.js'
 
 export const GetTracks = ({  isplay, setIsPlay, tracks }) => {
+  const isPlay = useSelector((state) => state.tracks.setIsplay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
   const clickTrack = ({ track }) => {

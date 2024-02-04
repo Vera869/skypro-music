@@ -70,8 +70,8 @@ export const PlayListCategory = (
             isplay={isplay}
             setActiveTrack={setActiveTrack}
             setIsPlay={setIsPlay}
-            playlist={playlist}
-            setPlaylist={setPlaylist}
+            // playlist={playlist}
+            // setPlaylist={setPlaylist}
           />
         )}
       </S.MainCenterBlock>

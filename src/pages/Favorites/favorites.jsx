@@ -68,8 +68,8 @@ export const Favorites = (
             isplay={isplay}
             setActiveTrack={setActiveTrack}
             setIsPlay={setIsPlay}
-            playlist={playlist}
-            setPlaylist={setPlaylist}
+            // playlist={playlist}
+            // setPlaylist={setPlaylist}
             isLoading={isLoading}
           />
         )}
