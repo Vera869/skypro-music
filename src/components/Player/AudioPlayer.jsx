@@ -41,14 +41,14 @@ function AudioPlayer(
 
   const handleStart = () => {
     console.log('PLAY')
-    console.log(setIsPlay)
+    console.log(isPlay)
     audioRef.current.play()
     dispatch(setIsPlay())
   }
 
   const handleStop = () => {
     console.log('PAUSE')
-    console.log(setIsPlay)
+    console.log(isPlay)
     audioRef.current.pause()
     dispatch(setIsPlay())
   }

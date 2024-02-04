@@ -29,6 +29,7 @@ const trackSlice = createSlice({
         state.isPlay = false
       }
       // state.isPlay = !state.isPlay
+      // return state.isPlay
     },
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track
