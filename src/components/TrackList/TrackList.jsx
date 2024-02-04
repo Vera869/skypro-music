@@ -1,20 +1,21 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack, 
-  // setIsActiveTrack, setVisiblePlayer
+import { setActiveTrack, setIsPlay,
  } from '../../Store/Slices/sliceTrack.js'
 
-export const GetTracks = ({  isplay, setIsPlay, tracks }) => {
-  const isPlay = useSelector((state) => state.tracks.setIsplay)
+export const GetTracks = ({ 
+  //  isplay, setIsPlay, 
+   tracks }) => {
+  const isPlay = useSelector((state) => state.tracks.setIsPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
+
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
     console.dir(activeTrack);
-    // dispatch(setIsActiveTrack(true))
-    // dispatch(setVisiblePlayer(true))
     setIsPlay(true)
+    dispatch(setIsPlay(true))
     return
   }
   const trackItems = tracks.map((track) => (
@@ -24,7 +25,7 @@ export const GetTracks = ({  isplay, setIsPlay, tracks }) => {
           <S.TreckTitleImage>
             {activeTrack.id === track.id ? (
               <S.TreckTitleImageActive>
-                {isplay ? <S.ActiveTrack /> : ''}
+                {isPlay ? <S.ActiveTrack /> : ''}
               </S.TreckTitleImageActive>
             ) : (
               <S.TreckTitleSvg alt="music">

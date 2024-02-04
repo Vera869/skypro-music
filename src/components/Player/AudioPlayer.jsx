@@ -8,9 +8,12 @@ import {
   playNextTrack,
   playPrevTrack,
   setIsShuffled,
+  setIsPlay,
 } from '../../Store/Slices/sliceTrack.js'
 
-function AudioPlayer({  isplay, setIsPlay }) {
+function AudioPlayer(
+  // {  isplay, setIsPlay }
+  ) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
@@ -22,8 +25,7 @@ function AudioPlayer({  isplay, setIsPlay }) {
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
   const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
-  // const isVisiblePlayer = useSelector((state) => state.tracks.visiblePlayer) 
-  // const isActiveTrack = useSelector((state) => state.tracks.isActiveTrack)
+  const isPlay = useSelector((state) => state.tracks.setIsPlay)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -40,16 +42,16 @@ function AudioPlayer({  isplay, setIsPlay }) {
   const handleStart = () => {
     console.log('PLAY')
     audioRef.current.play()
-    setIsPlay(true)
+    dispatch(setIsPlay(true))
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    setIsPlay(false)
+    dispatch(setIsPlay(false))
   }
 
-  const togglePlay = isplay ? handleStop : handleStart
+  const togglePlay = isPlay ? handleStop : handleStart
   useEffect(() => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
@@ -72,13 +74,13 @@ function AudioPlayer({  isplay, setIsPlay }) {
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // setIsPlay(false)
+        // dispatch(setIsPlay(false))
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
   // useEffect(() => {
-  //   setIsPlay(true)
+  //   dispatch(setIsPlay(true))
   // }, [activeTrack])
 
   const handleIsLoop = () => {
@@ -156,7 +158,7 @@ function AudioPlayer({  isplay, setIsPlay }) {
                 </S.PlayerBtnPrev>
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay}>
                   <S.PlayerBtnPlaySvg alt="play">
-                    {isplay ? (
+                    {isPlay ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
