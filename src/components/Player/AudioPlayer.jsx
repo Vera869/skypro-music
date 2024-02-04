@@ -42,13 +42,13 @@ function AudioPlayer(
   const handleStart = () => {
     console.log('PLAY')
     audioRef.current.play()
-    dispatch(setIsPlay(true))
+    dispatch(setIsPlay())
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    dispatch(setIsPlay(false))
+    dispatch(setIsPlay())
   }
 
   const togglePlay = isPlay ? handleStop : handleStart
@@ -74,13 +74,13 @@ function AudioPlayer(
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // dispatch(setIsPlay(false))
+        // dispatch(setIsPlay())
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
   // useEffect(() => {
-  //   dispatch(setIsPlay(true))
+  //   dispatch(setIsPlay())
   // }, [activeTrack])
 
   const handleIsLoop = () => {
@@ -124,7 +124,7 @@ function AudioPlayer(
           <audio
             ref={audioRef}
             src={activeTrack.track_file}
-            autoPlay={isplay}
+            autoPlay={isPlay}
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
             onEnded={() => dispatch(playNextTrack())}
           >

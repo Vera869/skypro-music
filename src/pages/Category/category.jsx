@@ -11,10 +11,6 @@ import { arrayCategorys } from '../../components/SideBar/ArrayCategory.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 
 export const PlayListCategory = (
-  isplay,
-  setIsPlay,
-  // playlist,
-  // setPlaylist
 ) => {
   const params = useParams()
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
@@ -67,11 +63,7 @@ export const PlayListCategory = (
         ) : (
           <GetTracks
             tracks={tracks}
-            isplay={isplay}
-            setActiveTrack={setActiveTrack}
-            setIsPlay={setIsPlay}
-            // playlist={playlist}
-            // setPlaylist={setPlaylist}
+            // setActiveTrack={setActiveTrack}
           />
         )}
       </S.MainCenterBlock>

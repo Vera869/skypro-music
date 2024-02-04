@@ -9,10 +9,6 @@ import { useGetAllTracksQuery } from '../../Services/index.js'
 // import { useEffect } from 'react'
 
 export const Favorites = (
-  isplay,
-  setIsPlay,
-  // playlist,
-  // setPlaylist
 ) => {
   const { data: tracks, isLoading } = useGetAllTracksQuery()
   //   const dispatch = useDispatch()
@@ -65,12 +61,7 @@ export const Favorites = (
         ) : (
           <GetTracks
             tracks={tracks}
-            isplay={isplay}
-            setActiveTrack={setActiveTrack}
-            setIsPlay={setIsPlay}
-            // playlist={playlist}
-            // setPlaylist={setPlaylist}
-            isLoading={isLoading}
+            // setActiveTrack={setActiveTrack}
           />
         )}
       </S.MainCenterBlock>

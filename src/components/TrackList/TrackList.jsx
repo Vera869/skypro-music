@@ -14,8 +14,8 @@ export const GetTracks = ({
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
     console.dir(activeTrack);
-    setIsPlay(true)
-    dispatch(setIsPlay(true))
+    // setIsPlay(true)
+    dispatch(setIsPlay())
     return
   }
   const trackItems = tracks.map((track) => (
