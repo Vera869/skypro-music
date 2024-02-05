@@ -29,6 +29,9 @@ export const GetTracks = ({ tracks }) => {
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
+    if(isPlay == false) {
+      dispatch(setIsPlay())
+    }
     dispatch(setIsPlay())
     return
   }

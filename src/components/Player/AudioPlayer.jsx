@@ -77,9 +77,11 @@ function AudioPlayer(
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
-  // useEffect(() => {
-  //   dispatch(setIsPlay(true))
-  // }, [activeTrack])
+  useEffect(() => {
+    if(isPlay == false) {
+      dispatch(setIsPlay())
+    }
+  }, [activeTrack])
 
   const handleIsLoop = () => {
     audioRef.current.loop = true
