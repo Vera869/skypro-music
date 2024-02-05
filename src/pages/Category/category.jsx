@@ -2,40 +2,26 @@ import { useParams } from 'react-router-dom'
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
-// import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import { arrayCategorys } from '../../components/SideBar/ArrayCategory.jsx'
 // import { useEffect } from 'react'
 // import { useDispatch } from 'react-redux'
-// import { setCategoryId, setTracks } from '../../Store/Slices/sliceTrack.js'
-// import { getPlaylist } from '../../Api.jsx'
-import { useGetAllTracksQuery } from '../../Services/index.js'
+import { useGetCatalogByIdQuery } from '../../Services/index.js'
+import { useSelector } from 'react-redux'
 
 export const PlayListCategory = (
+  {isLoading}
 ) => {
+  // const arrayCategorys = useSelector((state) => state.tracks.playlists)
+  // const { data: tracks, isLoading, isError } = useGetCatalogByIdQuery()
+  // const arrayCategorys = data
+
   const params = useParams()
-  const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
+  // const { data: arrayCategorys, isLoading, isError } = useGetCatalogByIdQuery()
   // const dispatch = useDispatch()
   const arrayCategory = arrayCategorys.find(
     (arrayCategory) => arrayCategory.id === Number(params.id)
   )
-  // const categoryId = arrayCategory.id
-
-  //   useEffect(() => {
-  //     setPlaylist = 'category'
-  //     // setIsLoading(true)
-  //     dispatch(setCategoryId({ categoryId }))
-  //     getPlaylist(categoryId)
-  //         .then((tracks) => {
-  //             dispatch(setTracks({ tracks }))
-  //         })
-  //         .then(() => {
-  //            setErrorGetTracks = ('')
-  //            setIsLoading(false)
-  //         })
-  //         .catch((error) => {
-  //             console.log(error)
-  //         })
-  // }, [dispatch, categoryId, setErrorGetTracks, setIsLoading, setPlaylist])
+  
   return (
     <>
       <S.MainCenterBlock>
@@ -45,7 +31,9 @@ export const PlayListCategory = (
           </S.SearchSvg>
           <S.SearchText type="search" placeholder="Поиск" name="search" />
         </S.CenterBlockSearch>
-        <S.CenterBlockH2>Плейлист {arrayCategory.alt}</S.CenterBlockH2>
+        <S.CenterBlockH2>Плейлист <br></br>
+           {arrayCategory.alt}
+          </S.CenterBlockH2>
         <S.ContentTitle>
           <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
           <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>

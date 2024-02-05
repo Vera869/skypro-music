@@ -1,4 +1,3 @@
-// import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
@@ -41,14 +40,12 @@ function AudioPlayer(
 
   const handleStart = () => {
     console.log('PLAY')
-    console.log(isPlay)
     audioRef.current.play()
     dispatch(setIsPlay())
   }
 
   const handleStop = () => {
     console.log('PAUSE')
-    console.log(isPlay)
     audioRef.current.pause()
     dispatch(setIsPlay())
   }
@@ -76,7 +73,6 @@ function AudioPlayer(
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // dispatch(setIsPlay(false))
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
@@ -116,8 +112,27 @@ function AudioPlayer(
     }
   }
   const butShuffledTrack = () => {
+    dispatch(setShuffledTracks())
     dispatch(setIsShuffled())
   }
+  // const stared_user = useSelector((state) => state.tracks.activeTrack.id)
+  // const trackID = useSelector((state) => state.tracks.activeTrack.id)
+  // const favTrack = { id: trackID, stared_user}
+
+  // const [addLike] = useAddFavTrackMutation();
+  // const [dislike] = useDeleteFavTrackMutation();
+ 
+  // const userId = Number(localStorage.getItem('user'));
+  // const [isFavourite, setFavourite] = useState(false)
+
+  // useEffect(() => {
+  //     setFavourite(stared_user.some((user) => user.id === userId))
+  //   }, [favTrack])
+
+  //   const handleFavorite = () => {
+  //     if (isFavourite) dislike(trackID)
+  //     else addLike(trackID)
+  //   }
   return (
     isVisible
     && (
@@ -211,8 +226,12 @@ function AudioPlayer(
                 </S.TrackPlayContain>
 
                 <S.TrackPlayLikeDis>
-                      <S.TrackPlayLike className="_btn-icon">
-                        <S.TrackPlayLikeSvg alt="like">
+                      <S.TrackPlayLike className="_btn-icon" 
+                      // onClick={handleFavorite()}
+                      >
+                        <S.TrackPlayLikeSvg alt="like" 
+                        // fill={isFavourite ? 'violet' : 'gray'}
+                        >
                           <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                         </S.TrackPlayLikeSvg>
                       </S.TrackPlayLike>

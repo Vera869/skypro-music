@@ -14,6 +14,16 @@ export const Favorites = (
       dispatch(setTracks({ favTracks }))
     }, [favTracks])
   console.log(favTracks);
+
+  if (isError)
+  return (
+    <S.ContentPlaylist>
+      <S.ErrorMassege>
+        К сожалению, при загрузке плэйлиста произошла ошибка, <br></br>
+        пожалуйста, попробуйте позже.
+      </S.ErrorMassege>
+    </S.ContentPlaylist>
+  )
   return (
     <>
       <S.MainCenterBlock>

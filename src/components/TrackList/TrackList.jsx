@@ -4,16 +4,32 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack, setIsPlay } from '../../Store/Slices/sliceTrack.js'
 
 export const GetTracks = ({ tracks }) => {
+  const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
-  const dispatch = useDispatch()
+
+  // const favTrack = { id: trackID, stared_user}
+
+  // const [addLike] = useAddFavTrackMutation();
+  // const [dislike] = useDeleteFavTrackMutation();
+ 
+  // const userId = Number(localStorage.getItem('user'));
+  // const [isFavourite, setFavourite] = useState(false)
+
+  // useEffect(() => {
+  //     setFavourite(stared_user.some((user) => user.id === userId))
+  //   }, [favTrack])
+
+  //   const handleFavorite = () => {
+  //     if (isFavourite) dislike(trackID)
+  //     else addLike(trackID)
+  //   }
+    
+  
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
-    console.dir(activeTrack)
-    console.dir(setIsPlay)
     dispatch(setIsPlay())
-    console.dir(setIsPlay)
     return
   }
   const trackItems = tracks.map((track) => (
@@ -50,7 +66,10 @@ export const GetTracks = ({ tracks }) => {
             <S.TreckAlbumLink>{track.album}</S.TreckAlbumLink>
           </S.TreckAlbum>
           <div>
-            <S.TreckTimeSvg alt="time">
+            <S.TreckTimeSvg alt="time" 
+            // onClick={handleFavorite()}
+            // fill={isFavourite ? 'violet' : 'gray'}
+            >
               <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </S.TreckTimeSvg>
             <S.TreckTimeText>

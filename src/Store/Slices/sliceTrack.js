@@ -5,12 +5,14 @@ const trackSlice = createSlice({
   initialState: {
     activeTrack: {},
     tracks: [],
+    playlists: [],
     shuffledTracks: [],
     currentPlaylist: [],
     filteredTracks: [],
     isShuffled: false,
     categoryId: null,
     isPlay: false, 
+    setAuthorisation: [],
   },
   reducers: {
     setTracks(state, action) {
@@ -19,9 +21,8 @@ const trackSlice = createSlice({
       //   () => Math.random() - 0.5
       // )
     },
-    setShuffledTracks(state, action) {
-      // state.tracks = action.payload.tracks
-      state.shuffledTracks = [...action.payload.tracks].sort(
+    setShuffledTracks(state) {
+      state.shuffledTracks = state.tracks.sort(
         () => Math.random() - 0.5
       )
     },
@@ -33,6 +34,9 @@ const trackSlice = createSlice({
     },
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track
+    },
+    setPlaylists(state, action) {
+      state.playlists = action.payload.track
     },
     setIsShuffled(state) {
       state.isShuffled = !state.isShuffled
@@ -82,6 +86,9 @@ export const {
   setCategoryId,
   isPlay,
   setIsPlay,
+  // playlists,
+  setPlaylists,
+  setAuthorisation,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

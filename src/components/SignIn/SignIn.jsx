@@ -1,54 +1,63 @@
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
 import { useState, useEffect, useContext } from 'react'
-import {getToken, loginUser} from '../../Api'
+import { getToken, loginUser, refreshToken } from '../../Api'
 import { UserContext } from '../../Context/authorization'
-
 
 export const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
 
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState('')
   const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   const [isLoadLogin, setIsLoadLogin] = useState(false)
 
   const { changingUserData } = useContext(UserContext)
 
   const handleClickAuth = () => {
-    
     const login = () => {
       setIsLoadLogin(true)
       loginUser({ email, password })
-      .then((newUser) => {
-        localStorage.setItem('user', JSON.stringify(newUser))
-        changingUserData(newUser)
-        setUser(newUser)
-        getToken({email, password})
-        .then((res) => {
-          console.log("токены");
-          localStorage.setItem('accessToken', JSON.stringify(res.access))
-          localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
-          navigate('/')
+        .then((newUser) => {
+          localStorage.setItem('user', JSON.stringify(newUser))
+          changingUserData(newUser)
+          setUser(newUser)
+          getToken({ email, password }).then((res) => {
+            console.log('токены')
+            localStorage.setItem('accessToken', JSON.stringify(res.access))
+            console.log(localStorage.accessToken)
+            localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
+            console.log(localStorage.refreshToken)
+            navigate('/')
+          })
         })
-      })
-      .catch((error) => {
-        console.log(error.message)
-        setErrorAuthrApi(error.message)
-      }).finally(() => {
-        setIsLoadLogin(false)
-    })
+        .catch((error) => {
+          console.log(error.message)
+          setErrorAuthrApi(error.message)
+        })
+        .finally(() => {
+          setIsLoadLogin(false)
+          // setInterval(
+          //   () =>
+          //     refreshToken({refresh}).then((res) => {
+          //       localStorage.setItem(
+          //         'refreshToken',
+          //         JSON.stringify(res.refresh)
+          //       )
+          //       console.log('refreshToken')
+          //     }),
+          //   180000
+          //)
+        })
     }
 
     if (!email) {
-
       return setError('Укажите почту')
     }
     if (!password) {
       return setError('Укажите пароль')
-    }
-    else {
+    } else {
       login()
     }
   }
@@ -84,7 +93,13 @@ export const SignIn = ({ setUser }) => {
               }}
             />
             <S.ErrorMasege>{error || errorAuthrApi}</S.ErrorMasege>
-            <S.ModalBtnEnter type='button' disabled={isLoadLogin} onClick={handleClickAuth}>Войти</S.ModalBtnEnter>
+            <S.ModalBtnEnter
+              type="button"
+              disabled={isLoadLogin}
+              onClick={handleClickAuth}
+            >
+              Войти
+            </S.ModalBtnEnter>
             <S.ModalBtnSignup>
               <Link to="/registration">Зарегистрироваться</Link>
             </S.ModalBtnSignup>
