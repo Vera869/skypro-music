@@ -9,6 +9,7 @@ import {
   playPrevTrack,
   setIsShuffled,
   setIsPlay,
+  setShuffledTracks,
 } from '../../Store/Slices/sliceTrack.js'
 
 function AudioPlayer(

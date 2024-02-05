@@ -1,39 +1,19 @@
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
-// import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
-import { useGetAllTracksQuery } from '../../Services/index.js'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { setTracks } from '../../Store/Slices/sliceTrack.js'
-// import { getFavTracks, refreshToken } from '../../Api.jsx'
-// import { useEffect } from 'react'
+import { useGetFavTracksQuery } from '../../Services/index.js'
+import { useDispatch } from 'react-redux'
+import { setTracks } from '../../Store/Slices/sliceTrack.js'
+import { useEffect } from 'react'
 
 export const Favorites = (
 ) => {
-  const { data: tracks, isLoading } = useGetAllTracksQuery()
-  //   const dispatch = useDispatch()
-  //   const tracks = useSelector((state) => state.tracks.tracks)
-
-  //   useEffect(() => {
-  //     setPlaylist = 'fav'
-  //     async function getTracks() {
-  //         let tracksResponse = await getFavTracks()
-
-  //         if (tracksResponse.status === 401) {
-  //             const tokensResponse = await refreshToken()
-  //             const tokens = await tokensResponse.json()
-  //             localStorage.setItem('accessToken', tokens.access)
-  //             tracksResponse = await getFavTracks()
-  //         }
-
-  //         const tracks = await tracksResponse.json()
-  //         dispatch(setTracks({ tracks }))
-  //         setErrorGetTracks('')
-  //         setIsLoading(false)
-  //     }
-  //     getTracks()
-  // }, [setErrorGetTracks, dispatch, setIsLoading, setPlaylist])
-
+  const { data: favTracks, isLoading, isError } = useGetFavTracksQuery()
+    const dispatch = useDispatch()
+    useEffect(() => {
+      dispatch(setTracks({ favTracks }))
+    }, [favTracks])
+  console.log(favTracks);
   return (
     <>
       <S.MainCenterBlock>
@@ -60,7 +40,7 @@ export const Favorites = (
           </S.ContentPlaylist>
         ) : (
           <GetTracks
-            tracks={tracks}
+            tracks={favTracks}
           />
         )}
       </S.MainCenterBlock>

@@ -19,19 +19,17 @@ const trackSlice = createSlice({
       //   () => Math.random() - 0.5
       // )
     },
+    setShuffledTracks(state, action) {
+      // state.tracks = action.payload.tracks
+      state.shuffledTracks = [...action.payload.tracks].sort(
+        () => Math.random() - 0.5
+      )
+    },
     setCurrentPlaylist(state) {
       state.currentPlaylist = state.tracks
     },
     setIsPlay(state) {
-      
-      // if(state.isPlay = false) {
-      //   state.isPlay = true
-      // } 
-      // if(state.isPlay = true){
-      //   state.isPlay = false
-      // }
       state.isPlay = !state.isPlay
-      // return state.isPlay
     },
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track
@@ -78,6 +76,7 @@ export const {
   setTracks,
   setActiveTrack,
   setIsShuffled,
+  setShuffledTracks,
   setCurrentPlaylist,
   setFilteredTracks,
   setCategoryId,

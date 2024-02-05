@@ -17,7 +17,7 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
 
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
-  
+
   const logout = () => {
     dispatch(setActiveTrack({ track: {} }))
     dispatch(setIsPlay(false))
@@ -58,11 +58,6 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               setIsLoading={setIsLoading}
               setUser={setUser}
               logout={logout}
-              // isplay={isplay}
-              // setIsPlay={setIsPlay}
-              // playlist={playlist}
-              // setPlaylist={setPlaylist}
-
             />
           }
         >
@@ -73,12 +68,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <Main
                 setUser={setUser}
                 logout={logout}
-                // isplay={isplay}
-                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
               />
             }
           />
@@ -88,12 +79,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <PlayListCategory
                 setUser={setUser}
                 logout={logout}
-                // isplay={isplay}
-                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
               />
             }
           />
@@ -103,12 +90,8 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
               <Favorites
                 setUser={setUser}
                 logout={logout}
-                // isplay={isplay}
-                // setIsPlay={setIsPlay}
                 isLoading={isLoading}
                 setIsLoading={setIsLoading}
-                // playlist={playlist}
-                // setPlaylist={setPlaylist}
               />
             }
           />

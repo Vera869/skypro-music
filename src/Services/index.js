@@ -37,7 +37,13 @@ export const musicTracksApi = createApi({
       }),
       invalidatesTags: [{ type: 'Favorites', id: 'LIST' }],
     }),
-    getPlaylistById: builder.query({
+    getCatalogSelection: builder.query({
+      query: () => ({
+        url: `/catalog/selection/`,
+        method: 'GET',
+      }),
+    }),
+    getCatalogById: builder.query({
       query: ({ id }) => ({
         url: `/catalog/selection/${id}/`,
         method: 'GET',
@@ -57,11 +63,10 @@ export const {
   useGetFavTracksQuery,
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
-  useGetPlaylistByIdQuery,
   useGetTrackByIdQuery,
+  useGetCatalogSelectionQuery,
+  useGetCatalogByIdQuery,
 } = musicTracksApi
 
 export default musicTracksApi.reducer
 
-// setupListeners(store.dispatch)        
-// musicTracksApi
