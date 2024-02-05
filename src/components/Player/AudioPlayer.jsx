@@ -12,7 +12,6 @@ import {
 } from '../../Store/Slices/sliceTrack.js'
 
 function AudioPlayer(
-  // {  isplay, setIsPlay }
   ) {
   const audioRef = useRef(null)
   const refProgress = useRef()
@@ -25,7 +24,7 @@ function AudioPlayer(
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
   const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
-  const isPlay = useSelector((state) => state.tracks.setIsPlay)
+  const isPlay = useSelector((state) => state.isPlay)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -76,13 +75,13 @@ function AudioPlayer(
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // dispatch(setIsPlay())
+        // dispatch(setIsPlay(false))
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
   // useEffect(() => {
-  //   dispatch(setIsPlay())
+  //   dispatch(setIsPlay(true))
   // }, [activeTrack])
 
   const handleIsLoop = () => {

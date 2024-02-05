@@ -1,7 +1,7 @@
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
-import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+// import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 // import { useDispatch, useSelector } from 'react-redux'
 // import { setTracks } from '../../Store/Slices/sliceTrack.js'
@@ -61,7 +61,6 @@ export const Favorites = (
         ) : (
           <GetTracks
             tracks={tracks}
-            // setActiveTrack={setActiveTrack}
           />
         )}
       </S.MainCenterBlock>

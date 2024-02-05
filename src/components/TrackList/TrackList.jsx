@@ -4,17 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack, setIsPlay,
  } from '../../Store/Slices/sliceTrack.js'
 
-export const GetTracks = ({ 
-  //  isplay, setIsPlay, 
-   tracks }) => {
-  const isPlay = useSelector((state) => state.tracks.setIsPlay)
+export const GetTracks = ({ tracks }) => {
+  // const isPlay = Boolean(useSelector((state) => state.tracks.setIsPlay))
+  const isPlay = Boole(useSelector((state) => state.isPlay))
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
-
+   
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
     console.dir(activeTrack);
-    // setIsPlay(true)
     console.dir(setIsPlay)
     dispatch(setIsPlay())
     console.dir(setIsPlay)
@@ -65,5 +63,6 @@ export const GetTracks = ({
       </S.PlaylistTreck>
     </S.PlaylistItem>
   ))
+
   return trackItems
 }

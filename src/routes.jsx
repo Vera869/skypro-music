@@ -13,18 +13,14 @@ import { LayoutPage } from './pages/layout/LayoutPage'
 
 export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
   const navigate = useNavigate()
-  // const [isplay, setIsPlay] = useState(true)
-  // const [isVisiblePlayer, setVisiblePlayer] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-  // const [playlist, setPlaylist] = useState([])
 
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
   
   const logout = () => {
     dispatch(setActiveTrack({ track: {} }))
-    dispatch(setIsPlay())
-    // setIsPlay(false)
+    dispatch(setIsPlay(false))
     localStorage.clear()
     navigate('/login')
   }

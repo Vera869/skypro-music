@@ -23,9 +23,11 @@ const trackSlice = createSlice({
       state.currentPlaylist = state.tracks
     },
     setIsPlay(state) {
+      
       if(state.isPlay = false) {
         state.isPlay = true
-      } else {
+      } 
+      if(state.isPlay = true){
         state.isPlay = false
       }
       // state.isPlay = !state.isPlay
@@ -79,6 +81,7 @@ export const {
   setCurrentPlaylist,
   setFilteredTracks,
   setCategoryId,
+  isPlay,
   setIsPlay,
 } = trackSlice.actions
 

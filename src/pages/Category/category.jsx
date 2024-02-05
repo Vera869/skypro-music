@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom'
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
-import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
+// import { setActiveTrack } from '../../Store/Slices/sliceTrack.js'
 import { arrayCategorys } from '../../components/SideBar/ArrayCategory.jsx'
 // import { useEffect } from 'react'
 // import { useDispatch } from 'react-redux'
@@ -63,7 +63,6 @@ export const PlayListCategory = (
         ) : (
           <GetTracks
             tracks={tracks}
-            // setActiveTrack={setActiveTrack}
           />
         )}
       </S.MainCenterBlock>

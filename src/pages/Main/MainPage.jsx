@@ -1,6 +1,6 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { setActiveTrack, setTracks } from '../../Store/Slices/sliceTrack.js'
+import { setTracks } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
@@ -8,8 +8,8 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
 export const Main = ({
-  isplay,
-  setIsPlay,
+  // isplay,
+  // setIsPlay,
   
 }) => {
  
@@ -62,11 +62,6 @@ export const Main = ({
               <S.ContentPlaylist>
                 <GetTracks
                  tracks={tracks}
-                  isplay={isplay}
-                  setActiveTrack={setActiveTrack}
-                  setIsPlay={setIsPlay}
-                  // playlist={playlist}
-                  // setPlaylist={setPlaylist}
                 />
               </S.ContentPlaylist>
             )}
