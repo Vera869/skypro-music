@@ -24,7 +24,7 @@ function AudioPlayer(
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
   const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
-  const isPlay = useSelector((state) => state.isPlay)
+  const isPlay = useSelector((state) => state.tracks.isPlay)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
