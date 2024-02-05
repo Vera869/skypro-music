@@ -39,7 +39,6 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
       api,
       extraOptions
     )
-
     if (!refreshResult.data.access) {
       return forceLogout()
     }
