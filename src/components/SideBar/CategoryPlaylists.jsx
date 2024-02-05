@@ -3,32 +3,7 @@ import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 
 import { arrayCategorys } from './ArrayCategory.jsx'
-
-// import { useGetCatalogSelectionQuery } from '../../Services/index.js'
-// import { useDispatch, useSelector } from 'react-redux'
-// import { useEffect } from 'react'
-// import { setPlaylists } from '../../Store/Slices/sliceTrack.js'
-
-export const CategoryPlayLists = (
-  {isLoading}
-  ) => {
-  // const dispatch = useDispatch()
-  // const { data, isLoading, isError } = useGetCatalogSelectionQuery()
-  // if (isError)
-  //   return (
-  //     <S.SideBarItem>
-  //       К сожалению, при загрузке <br></br>
-  //       произошла ошибка, <br></br>
-  //       пожалуйста, попробуйте позже.
-  //     </S.SideBarItem>
-  //   )
-  // useEffect(() => {
-  //   dispatch(setPlaylists({ data }))
-  // }, [])
-  // console.log(data)
-  // const arrayCategorys = useSelector((state) => state.tracks.playlists)
-
-  
+export const CategoryPlayLists = ({ isLoading }) => {
   return (
     <>
       {arrayCategorys.map((arrayCategory) => (

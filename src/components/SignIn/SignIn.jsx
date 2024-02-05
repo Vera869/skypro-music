@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import * as S from '../SignIn/StyledSignIn'
 import { useState, useEffect, useContext } from 'react'
-import { getToken, loginUser, refreshToken } from '../../Api'
+import { getToken, loginUser } from '../../Api'
 import { UserContext } from '../../Context/authorization'
 import { useDispatch } from 'react-redux'
 import { setAccess, setRefresh } from '../../Store/Slices/authorization'
@@ -15,7 +15,7 @@ export const SignIn = ({ setUser }) => {
   const [password, setPassword] = useState('')
   const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   const [isLoadLogin, setIsLoadLogin] = useState(false)
-  
+
   const { changingUserData } = useContext(UserContext)
 
   const handleClickAuth = () => {
@@ -27,7 +27,6 @@ export const SignIn = ({ setUser }) => {
           changingUserData(newUser)
           setUser(newUser)
           getToken({ email, password }).then((res) => {
-            console.log('токены')
             localStorage.setItem('accessToken', JSON.stringify(res.access))
             localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
             dispatch(setAccess(res.access))
@@ -41,17 +40,6 @@ export const SignIn = ({ setUser }) => {
         })
         .finally(() => {
           setIsLoadLogin(false)
-          // setInterval(
-          //   () =>
-          //     refreshToken({refresh}).then((res) => {
-          //       localStorage.setItem(
-          //         'refreshToken',
-          //         JSON.stringify(res.refresh)
-          //       )
-          //       console.log('refreshToken')
-          //     }),
-          //   180000
-          //)
         })
     }
 

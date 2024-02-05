@@ -2,13 +2,15 @@ import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack, setIsPlay } from '../../Store/Slices/sliceTrack.js'
+import { useGetFavTracksQuery } from '../../Services/index.js'
 
 export const GetTracks = ({ tracks }) => {
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
-  //const { data, isLoading, isError } = useGetFavTracksQuery()
-  //const staredUser = data.stared_user
+  // const { data, isLoading, isError } = useGetFavTracksQuery()
+  // console.log(data);
+  // const staredUser = data.stared_user
   // const favTrack = { id: trackID, staredUser}
 
   // const [addLike] = useAddFavTrackMutation();

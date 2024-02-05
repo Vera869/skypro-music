@@ -9,7 +9,6 @@ import { useEffect } from 'react'
 
 export const Main = ({
 }) => {
- 
   const dispatch = useDispatch()
  
   const {data: tracks, isLoading, isError }= useGetAllTracksQuery()

@@ -7,7 +7,7 @@ import { Reg } from './pages/Registration/registration'
 import { PlayListCategory } from '../src/pages/Category/category'
 import { Main } from '../src/pages/Main/MainPage'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack, setIsPlay } from './Store/Slices/sliceTrack'
 import { LayoutPage } from './pages/layout/LayoutPage'
 
@@ -17,10 +17,13 @@ export const AppRoutes = ({ user, setUser, isLoginMode, setIsLoginMode }) => {
 
   const dispatch = useDispatch()
   console.log(Boolean(localStorage.getItem('user')))
+  const isPlay = useSelector((state) => state.tracks.isPlay)
 
   const logout = () => {
     dispatch(setActiveTrack({ track: {} }))
-    dispatch(setIsPlay(false))
+    if(isPlay == true) {
+      dispatch(setIsPlay())
+    }
     localStorage.clear()
     navigate('/login')
   }

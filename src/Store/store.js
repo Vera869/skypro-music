@@ -12,12 +12,3 @@ export const store = configureStore({
   middleware: (GetDefaultMiddleware) =>
     GetDefaultMiddleware().concat(musicTracksApi.middleware),
 })
-
-// import musicTracksApiReducer, { musicTracksApi } from '../Services/index'
-// export const store = configureStore({
-//   reducer: {
-//     // player: playerReducer,
-//     [musicTracksApi.reducerPath]: musicTracksApiReducer
-//   },
-//   middleware: (GetDefaultMiddleware) => GetDefaultMiddleware().concat(musicTracksApi.middleware),
-//})

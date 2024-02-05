@@ -18,12 +18,14 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
   }
 
   const authentication =
-    api.getState().authorization ?? JSON.stringify(localStorage.getItem('refreshToken'))
+    api.getState().authorization ??
+    JSON.stringify(localStorage.getItem('refreshToken'))
   if (!authentication.refresh) {
     return forceLogout()
   }
 
   const retryResult = await baseQuery(args, api, extraOptions)
+  console.log(retryResult.response);
 
   if (retryResult?.error?.status === 401) {
     const refreshResult = await baseQuery(
@@ -42,9 +44,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
       return forceLogout()
     }
 
-    api.dispatch(
-      setAccess( refreshResult.data.access )
-    )
+    api.dispatch(setAccess(refreshResult.data.access))
 
     //Повторный запрос с обновлённым токеном
     const retryResult = await baseQuery(args, api, extraOptions)
@@ -70,7 +70,7 @@ export const musicTracksApi = createApi({
       providesTags: ['tracks'],
     }),
     addFavTrack: builder.mutation({
-      query: ({ id}) => ({
+      query: ({ id }) => ({
         url: `/catalog/track/${id}/favorite/`,
         method: 'POST',
       }),
@@ -102,6 +102,7 @@ export const musicTracksApi = createApi({
         url: `/catalog/track/${id}`,
         method: 'GET',
       }),
+      providesTags: ['tracks'],
     }),
   }),
 })
@@ -117,4 +118,3 @@ export const {
 } = musicTracksApi
 
 export default musicTracksApi.reducer
-

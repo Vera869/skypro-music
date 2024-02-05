@@ -2,35 +2,24 @@ import { useParams } from 'react-router-dom'
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
-// import { arrayCategorys } from '../../components/SideBar/ArrayCategory.jsx'
-import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
 import { useGetCatalogByIdQuery } from '../../Services/index.js'
-import { useSelector } from 'react-redux'
 
-export const PlayListCategory = (
-  // {isLoading}
-) => {
-  // const arrayCategorys = useSelector((state) => state.tracks.playlists)
-  // const { data: tracks, isLoading, isError } = useGetCatalogByIdQuery()
-  // const arrayCategorys = data
- 
+export const PlayListCategory = () => {
   const params = useParams()
   const id = params.id
-  const { data: arrayCategorys, isLoading, isError } = useGetCatalogByIdQuery({id})
-  // const dispatch = useDispatch()
-  // const arrayCategory = arrayCategorys.find(
-  //   (arrayCategory) => arrayCategory.id === Number(params.id)
-  // )
-  console.log(arrayCategorys);
-  
+  const {
+    data: arrayCategorys,
+    isLoading,
+    isError,
+  } = useGetCatalogByIdQuery({ id })
+
   if (isError)
-  return (
-   <>
+    return (
+      <>
         К сожалению, при загрузке плэйлиста произошла ошибка, <br></br>
         пожалуйста, попробуйте позже.
-        </>
-  )
+      </>
+    )
   return (
     <>
       <S.MainCenterBlock>
@@ -40,9 +29,10 @@ export const PlayListCategory = (
           </S.SearchSvg>
           <S.SearchText type="search" placeholder="Поиск" name="search" />
         </S.CenterBlockSearch>
-        <S.CenterBlockH2>Плейлист <br></br>
-           {!isLoading && arrayCategorys.name}
-          </S.CenterBlockH2>
+        <S.CenterBlockH2>
+          Плейлист <br></br>
+          {!isLoading && arrayCategorys.name}
+        </S.CenterBlockH2>
         <S.ContentTitle>
           <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
           <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
@@ -58,9 +48,7 @@ export const PlayListCategory = (
             <SkeletonTracks />
           </S.ContentPlaylist>
         ) : (
-          <GetTracks
-            tracks={arrayCategorys.items}
-          />
+          <GetTracks tracks={arrayCategorys.items} />
         )}
       </S.MainCenterBlock>
     </>

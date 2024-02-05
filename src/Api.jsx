@@ -1,4 +1,4 @@
-const host = 'https://skypro-music-api.skyeng.tech/';
+const host = 'https://skypro-music-api.skyeng.tech';
 
 
 // export async function getAllTracks(){
@@ -12,7 +12,7 @@ const host = 'https://skypro-music-api.skyeng.tech/';
 // }
 
 export async function registrUser({ email, password }){
-   const response = await fetch(`${host}user/signup/`, {
+   const response = await fetch(`${host}/user/signup/`, {
       method: "POST",
         body: JSON.stringify({
           email: email,
@@ -35,7 +35,7 @@ export async function registrUser({ email, password }){
    return user
 }
 export async function loginUser({ email, password }) {
-   const response = await fetch(`${host}user/login/`, {
+   const response = await fetch(`${host}/user/login/`, {
      method: "POST",
      body: JSON.stringify({
        email: email,
@@ -56,7 +56,7 @@ export async function loginUser({ email, password }) {
    return user
  }
  export async function getToken ({ email, password }) {
-   const response = await fetch(`${host}user/token/`, {
+   const response = await fetch(`${host}/user/token/`, {
      method: "POST",
      body: JSON.stringify({
        email: email,
@@ -72,7 +72,7 @@ export async function refreshToken (
   {refresh}
   ) {
   console.log("обновление токена");
-      const response = await fetch(`${host}user/token/refresh/`, {
+      const response = await fetch(`${host}/user/token/refresh/`, {
         method: "POST",
         body: JSON.stringify({
          refresh
