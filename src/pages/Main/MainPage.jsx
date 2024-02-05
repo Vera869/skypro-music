@@ -8,9 +8,6 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
 export const Main = ({
-  // isplay,
-  // setIsPlay,
-  
 }) => {
  
   const dispatch = useDispatch()

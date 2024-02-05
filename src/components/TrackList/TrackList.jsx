@@ -7,8 +7,9 @@ export const GetTracks = ({ tracks }) => {
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
-
-  // const favTrack = { id: trackID, stared_user}
+  //const { data, isLoading, isError } = useGetFavTracksQuery()
+  //const staredUser = data.stared_user
+  // const favTrack = { id: trackID, staredUser}
 
   // const [addLike] = useAddFavTrackMutation();
   // const [dislike] = useDeleteFavTrackMutation();
@@ -17,7 +18,7 @@ export const GetTracks = ({ tracks }) => {
   // const [isFavourite, setFavourite] = useState(false)
 
   // useEffect(() => {
-  //     setFavourite(stared_user.some((user) => user.id === userId))
+  //     setFavourite(staredUser.some((user) => user.id === userId))
   //   }, [favTrack])
 
   //   const handleFavorite = () => {

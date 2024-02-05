@@ -9,6 +9,7 @@ import { useEffect } from 'react'
 export const Favorites = (
 ) => {
   const { data: favTracks, isLoading, isError } = useGetFavTracksQuery()
+  
     const dispatch = useDispatch()
     useEffect(() => {
       dispatch(setTracks({ favTracks }))
