@@ -6,7 +6,7 @@ import { setActiveTrack, setIsPlay,
 
 export const GetTracks = ({ tracks }) => {
   // const isPlay = Boolean(useSelector((state) => state.tracks.setIsPlay))
-  const isPlay = Boole(useSelector((state) => state.isPlay))
+  const isPlay = useSelector((state) => state.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const dispatch = useDispatch()
    
