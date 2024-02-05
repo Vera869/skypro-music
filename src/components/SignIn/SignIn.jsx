@@ -3,16 +3,19 @@ import * as S from '../SignIn/StyledSignIn'
 import { useState, useEffect, useContext } from 'react'
 import { getToken, loginUser, refreshToken } from '../../Api'
 import { UserContext } from '../../Context/authorization'
+import { useDispatch } from 'react-redux'
+import { setAccess, setRefresh } from '../../Store/Slices/authorization'
 
 export const SignIn = ({ setUser }) => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const [error, setError] = useState(null)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [errorAuthrApi, setErrorAuthrApi] = useState(null)
   const [isLoadLogin, setIsLoadLogin] = useState(false)
-
+  
   const { changingUserData } = useContext(UserContext)
 
   const handleClickAuth = () => {
@@ -26,9 +29,9 @@ export const SignIn = ({ setUser }) => {
           getToken({ email, password }).then((res) => {
             console.log('токены')
             localStorage.setItem('accessToken', JSON.stringify(res.access))
-            console.log(localStorage.accessToken)
             localStorage.setItem('refreshToken', JSON.stringify(res.refresh))
-            console.log(localStorage.refreshToken)
+            dispatch(setAccess(res.access))
+            dispatch(setRefresh(res.refresh))
             navigate('/')
           })
         })

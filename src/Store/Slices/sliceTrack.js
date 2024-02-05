@@ -12,7 +12,7 @@ const trackSlice = createSlice({
     isShuffled: false,
     categoryId: null,
     isPlay: false, 
-    isAuthorisation: false,
+    isAuthorisation: [],
   },
   reducers: {
     setTracks(state, action) {
@@ -32,9 +32,7 @@ const trackSlice = createSlice({
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track
     },
-    setAuthorisation(state) {
-      state.isAuthorisation= action.payload.track
-    },
+   
     setPlaylists(state, action) {
       state.playlists = action.payload.track
     },

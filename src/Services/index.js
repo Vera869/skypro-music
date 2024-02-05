@@ -1,45 +1,85 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { setAccess } from '../Store/Slices/authorization'
 
-const token = localStorage.accessToken
-// console.log(token)
+const baseQueryRefresh = async (args, api, extraOptions) => {
+  const baseQuery = fetchBaseQuery({
+    baseUrl: 'https://skypro-music-api.skyeng.tech',
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().authorization.access
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`)
+      }
+      return headers
+    },
+  })
+
+  const forceLogout = () => {
+    window.location.href = '/login'
+  }
+
+  const authentication =
+    api.getState().authorization ?? JSON.stringify(localStorage.getItem('refreshToken'))
+  if (!authentication.refresh) {
+    return forceLogout()
+  }
+
+  const retryResult = await baseQuery(args, api, extraOptions)
+
+  if (retryResult?.error?.status === 401) {
+    const refreshResult = await baseQuery(
+      {
+        url: '/user/token/refresh/',
+        method: 'POST',
+        body: {
+          refresh: JSON.stringify(localStorage.getItem('refreshToken')),
+        },
+      },
+      api,
+      extraOptions
+    )
+
+    if (!refreshResult.data.access) {
+      return forceLogout()
+    }
+
+    api.dispatch(
+      setAccess( refreshResult.data.access )
+    )
+
+    //Повторный запрос с обновлённым токеном
+    const retryResult = await baseQuery(args, api, extraOptions)
+    return retryResult
+  }
+
+  return retryResult
+}
 
 export const musicTracksApi = createApi({
   reducerPath: 'musicApi',
   tagTypes: ['tracks'],
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://skypro-music-api.skyeng.tech',
-  }),
+  baseQuery: baseQueryRefresh,
   endpoints: (builder) => ({
     getAllTracks: builder.query({
       query: () => ({ url: `/catalog/track/all/` }),
       providesTags: ['tracks'],
     }),
     getFavTracks: builder.query({
-      query: ({ token }) => ({
+      query: () => ({
         url: '/catalog/track/favorite/all/',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }),
       providesTags: ['tracks'],
     }),
     addFavTrack: builder.mutation({
-      query: ({ id, token }) => ({
+      query: ({ id}) => ({
         url: `/catalog/track/${id}/favorite/`,
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }),
       invalidatesTags: ['tracks'],
     }),
     deleteFavTrack: builder.mutation({
-      query: ({ id, token }) => ({
+      query: ({ id }) => ({
         url: `/catalog/track/${id}/favorite/`,
         method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
       }),
       invalidatesTags: ['tracks'],
     }),
