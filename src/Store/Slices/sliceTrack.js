@@ -13,7 +13,6 @@ const trackSlice = createSlice({
     isShuffled: false,
     categoryId: null,
     isPlay: false,
-    isAuthorisation: [],
   },
   reducers: {
     setTracks(state, action) {
@@ -22,8 +21,14 @@ const trackSlice = createSlice({
     setShuffledTracks(state) {
       state.shuffledTracks = state.tracks.sort(() => Math.random() - 0.5)
     },
-    setCurrentPlaylist(state) {
-      state.currentPlaylist = state.tracks
+    setIsShuffled(state) {
+      state.isShuffled = !state.isShuffled
+
+      if (state.isShuffled) {
+        state.shuffledTracks.sort(() => Math.random() - 0.5)
+      } else { 
+        state.shuffledTracks = state.tracks
+      }
     },
     setIsPlay(state) {
       state.isPlay = !state.isPlay
@@ -34,16 +39,12 @@ const trackSlice = createSlice({
     setFavPlaylist(state, action) {
       state.favPlaylist = action.payload.track
     },
-    setPlaylists(state, action) {
-      state.playlists = action.payload.track
-    },
-    setIsShuffled(state) {
-      state.isShuffled = !state.isShuffled
-
-      if (state.isShuffled) {
-        state.shuffledTracks.sort(() => Math.random() - 0.5)
-      }
-    },
+    // setCurrentPlaylist(state) {
+    //   state.currentPlaylist = state.tracks
+    // },
+    // setPlaylists(state, action) {
+    //   state.playlists = action.payload.track
+    // },
     playNextTrack(state) {
       const playlist = state.isShuffled ? state.shuffledTracks : state.tracks
 

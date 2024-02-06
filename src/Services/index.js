@@ -6,6 +6,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
     baseUrl: 'https://skypro-music-api.skyeng.tech',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authorization.access
+      console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }
@@ -32,13 +33,17 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
       {
         url: '/user/token/refresh/',
         method: 'POST',
-        body: {
-          refresh: JSON.stringify(localStorage.getItem('refreshToken')),
-        },
+        body: JSON.stringify({
+          refresh: localStorage.getItem('refreshToken'),
+        }),
+        // headers: {
+        //   "content-type": "application/json",
+        // },
       },
       api,
       extraOptions
     )
+    console.log(refreshResult.response);
     if (!refreshResult.data.access) {
       return forceLogout()
     }
