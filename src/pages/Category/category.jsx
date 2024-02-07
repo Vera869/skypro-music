@@ -30,7 +30,6 @@ export const PlayListCategory = () => {
           <S.SearchText type="search" placeholder="Поиск" name="search" />
         </S.CenterBlockSearch>
         <S.CenterBlockH2>
-          Плейлист <br></br>
           {!isLoading && arrayCategorys.name}
         </S.CenterBlockH2>
         <S.ContentTitle>

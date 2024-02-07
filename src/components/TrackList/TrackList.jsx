@@ -2,37 +2,38 @@ import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setActiveTrack, setIsPlay } from '../../Store/Slices/sliceTrack.js'
-import { useGetFavTracksQuery } from '../../Services/index.js'
+import {
+  useAddFavTrackMutation,
+  useDeleteFavTrackMutation,
+} from '../../Services/index.js'
+import { useEffect, useState } from 'react'
 
 export const GetTracks = ({ tracks }) => {
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
-  // const { data, isLoading, isError } = useGetFavTracksQuery()
-  // console.log(data);
-  // const staredUser = data.stared_user
-  // const favTrack = { id: trackID, staredUser}
 
-  // const [addLike] = useAddFavTrackMutation();
-  // const [dislike] = useDeleteFavTrackMutation();
- 
-  // const userId = Number(localStorage.getItem('user'));
+  // const [addLike] = useAddFavTrackMutation()
+  // const [dislike] = useDeleteFavTrackMutation()
+
+  // const userId = Number(localStorage.getItem('user'))
   // const [isFavourite, setFavourite] = useState(false)
 
-  // useEffect(() => {
-  //     setFavourite(staredUser.some((user) => user.id === userId))
-  //   }, [favTrack])
-
-  //   const handleFavorite = () => {
-  //     if (isFavourite) dislike(trackID)
-  //     else addLike(trackID)
+  // const favClick = ({ track }) => {
+  //   const { id: trackID, stared_user } = track
+  //   if (isFavourite) {
+  //     dislike(trackID)
+  //   } else {
+  //     addLike(trackID)
   //   }
-    
-  
+  // }
+  // useEffect((track) => {
+  //   setFavourite(stared_user.some((user) => user.id === userId))
+  // }, [track])
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
-    if(isPlay == false) {
+    if (isPlay == false) {
       dispatch(setIsPlay())
     }
     dispatch(setIsPlay())
@@ -72,9 +73,12 @@ export const GetTracks = ({ tracks }) => {
             <S.TreckAlbumLink>{track.album}</S.TreckAlbumLink>
           </S.TreckAlbum>
           <div>
-            <S.TreckTimeSvg alt="time" 
-            // onClick={handleFavorite()}
-            // fill={isFavourite ? 'violet' : 'gray'}
+            <S.TreckTimeSvg
+              alt="time"
+              // onClick={() => {
+              //   favClick({ track })
+              // }}
+              // fill={isFavourite ? 'violet' : 'gray'}
             >
               <use xlinkHref="img/icon/sprite.svg#icon-like" />
             </S.TreckTimeSvg>

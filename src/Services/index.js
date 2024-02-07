@@ -15,7 +15,9 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
   })
 
   const forceLogout = () => {
+    localStorage.removeItem("user")
     window.location.href = '/login'
+    
   }
 
   const authentication =
@@ -26,24 +28,26 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
   }
 
   const retryResult = await baseQuery(args, api, extraOptions)
-  console.log(retryResult.response);
+  // console.log(retryResult.response);
 
   if (retryResult?.error?.status === 401) {
+    const token = JSON.parse(localStorage.getItem('refreshToken'))
+    console.log(token);
     const refreshResult = await baseQuery(
       {
         url: '/user/token/refresh/',
         method: 'POST',
         body: JSON.stringify({
-          refresh: localStorage.getItem('refreshToken'),
+          refresh: token,
         }),
-        // headers: {
-        //   "content-type": "application/json",
-        // },
+        headers: {
+          "content-type": "application/json",
+        },
       },
       api,
       extraOptions
     )
-    console.log(refreshResult.response);
+    // console.log(refreshResult.response);
     if (!refreshResult.data.access) {
       return forceLogout()
     }

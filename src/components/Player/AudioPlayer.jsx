@@ -10,6 +10,7 @@ import {
   setIsPlay,
   setShuffledTracks,
 } from '../../Store/Slices/sliceTrack.js'
+import { useAddFavTrackMutation, useDeleteFavTrackMutation } from '../../Services/index.js'
 
 function AudioPlayer(
   ) {
@@ -117,24 +118,31 @@ function AudioPlayer(
     dispatch(setShuffledTracks())
     dispatch(setIsShuffled())
   }
-  // const stared_user = useSelector((state) => state.tracks.activeTrack.id)
+  const favTrack = useSelector((state) => state.tracks.activeTrack)
+  // const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
   // const trackID = useSelector((state) => state.tracks.activeTrack.id)
-  // const favTrack = { id: trackID, stared_user}
+  
+  // if (favTrack){
+  //   const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
+  //   const trackID = useSelector((state) => state.tracks.activeTrack.id)
+  //   const  id = trackID
+  //   const [addLike] = useAddFavTrackMutation(id);
+  //   const [dislike] = useDeleteFavTrackMutation(id);
+   
+  //   const userId = Number(localStorage.getItem('user'));
+  //   const [isFavourite, setFavourite] = useState(false)
+  
+  //   useEffect(() => {
+  //       setFavourite(stared_user.some((user) => user.id === userId))
+  //     }, [favTrack])
+  
+  //     const favClick = () => {
+  //       if (isFavourite) dislike(trackID)
+  //       else addLike(trackID)
+  //     }
 
-  // const [addLike] = useAddFavTrackMutation();
-  // const [dislike] = useDeleteFavTrackMutation();
- 
-  // const userId = Number(localStorage.getItem('user'));
-  // const [isFavourite, setFavourite] = useState(false)
-
-  // useEffect(() => {
-  //     setFavourite(stared_user.some((user) => user.id === userId))
-  //   }, [favTrack])
-
-  //   const handleFavorite = () => {
-  //     if (isFavourite) dislike(trackID)
-  //     else addLike(trackID)
-  //   }
+ // }
+  
   return (
     isVisible
     && (
@@ -230,6 +238,7 @@ function AudioPlayer(
                 <S.TrackPlayLikeDis>
                       <S.TrackPlayLike className="_btn-icon" 
                       // onClick={handleFavorite()}
+                      // onClick={() => {favClick()}}
                       >
                         <S.TrackPlayLikeSvg alt="like" 
                         // fill={isFavourite ? 'violet' : 'gray'}
