@@ -25,12 +25,13 @@ export const GetTracks = ({ tracks }) => {
     const staredUser = track.stared_user
     if (isFavourite) {
       disLike({id})
-      setIsFavourite(false)
+      setFavorite(false)
       console.log("dislike");
     } else {
       addLike({id})
       setIsFavourite(true)
-      setFavorite(staredUser.some((user) => user.id === userId))
+      // dispatch(setFavorite({id: track.id, track: track }))
+      // dispatch(setFavorite(staredUser.some((user) => user.id === userId)))
       console.log("like");
     }
     }
