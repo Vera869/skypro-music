@@ -1,7 +1,7 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack, setIsPlay } from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setIsPlay, setFavorite } from '../../Store/Slices/sliceTrack.js'
 import {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
@@ -13,23 +13,38 @@ export const GetTracks = ({ tracks }) => {
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
 
-  // const [addLike] = useAddFavTrackMutation()
-  // const [dislike] = useDeleteFavTrackMutation()
+  const [addLike] = useAddFavTrackMutation()
+  const [disLike] = useDeleteFavTrackMutation()
 
-  // const userId = Number(localStorage.getItem('user'))
-  // const [isFavourite, setFavourite] = useState(false)
+  const userId = Number(localStorage.getItem('user'))
+  
+  const [isFavourite, setIsFavourite] = useState(false)
+  // const isUserStarred = (track) => {
+  //   const trackIsLiked =
+  //     track.stared_user &&
+  //     track.stared_user.some((user) => user.id === userId);
+  //   return trackIsLiked || !track.stared_user;
+  // };
 
-  // const favClick = ({ track }) => {
-  //   const { id: trackID, stared_user } = track
-  //   if (isFavourite) {
-  //     dislike(trackID)
-  //   } else {
-  //     addLike(trackID)
-  //   }
-  // }
-  // useEffect((track) => {
-  //   setFavourite(stared_user.some((user) => user.id === userId))
+  const favClick = ({ track }) => {
+    const id = track.id
+    const staredUser = track.stared_user
+    if (isFavourite) {
+      disLike({id})
+      setIsFavourite(false)
+      console.log("dislike");
+    } else {
+      addLike({id})
+      setIsFavourite(true)
+      
+      console.log("like");
+    }
+   
+  }
+  // useEffect(({ track }) => {
+  //   setFavorite(staredUser.some((user) => user.id === userId))
   // }, [track])
+
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
@@ -75,12 +90,12 @@ export const GetTracks = ({ tracks }) => {
           <div>
             <S.TreckTimeSvg
               alt="time"
-              // onClick={() => {
-              //   favClick({ track })
-              // }}
-              // fill={isFavourite ? 'violet' : 'gray'}
-            >
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+              onClick={() => {
+                favClick({ track })
+              }}
+             //fill={isFavourite ? 'violet' : ''}
+            >{isFavourite ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>
             <S.TreckTimeText>
               {(Number(track.duration_in_seconds) / 60).toFixed(2)}

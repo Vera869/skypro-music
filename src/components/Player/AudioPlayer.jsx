@@ -243,12 +243,12 @@ function AudioPlayer(
                         <S.TrackPlayLikeSvg alt="like" 
                         // fill={isFavourite ? 'violet' : 'gray'}
                         >
-                          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                          {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
                         </S.TrackPlayLikeSvg>
                       </S.TrackPlayLike>
                       <S.TrackPlayDislike className="_btn-icon">
                         <S.TrackPlayDislikeSvg alt="dislike">
-                          <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                          {/* <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use> */}
                         </S.TrackPlayDislikeSvg>
                       </S.TrackPlayDislike>
                 </S.TrackPlayLikeDis>
