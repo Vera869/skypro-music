@@ -19,13 +19,7 @@ export const GetTracks = ({ tracks }) => {
   const userId = Number(localStorage.getItem('user'))
   
   const [isFavourite, setIsFavourite] = useState(false)
-  // const isUserStarred = (track) => {
-  //   const trackIsLiked =
-  //     track.stared_user &&
-  //     track.stared_user.some((user) => user.id === userId);
-  //   return trackIsLiked || !track.stared_user;
-  // };
-
+ 
   const favClick = ({ track }) => {
     const id = track.id
     const staredUser = track.stared_user
@@ -36,11 +30,10 @@ export const GetTracks = ({ tracks }) => {
     } else {
       addLike({id})
       setIsFavourite(true)
-      
+      setFavorite(staredUser.some((user) => user.id === userId))
       console.log("like");
     }
-   
-  }
+    }
   // useEffect(({ track }) => {
   //   setFavorite(staredUser.some((user) => user.id === userId))
   // }, [track])
