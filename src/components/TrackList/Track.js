@@ -8,7 +8,7 @@ import {
 } from '../../Services/index.js'
 import {  useState } from 'react'
 
-export const GetTracks = ({ track }) => {
+export const GetTracks = ({ tracks }) => {
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
@@ -51,8 +51,7 @@ export const GetTracks = ({ track }) => {
     dispatch(setIsPlay())
     return
   }
-  
-  return(<>
+  const trackItems = tracks.map((track) => (
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
@@ -102,5 +101,7 @@ export const GetTracks = ({ track }) => {
         </S.TreckTitle>
       </S.PlaylistTreck>
     </S.PlaylistItem>
-    </>)
+  ))
+
+  return trackItems
 }

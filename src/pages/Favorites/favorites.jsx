@@ -44,15 +44,20 @@ export const Favorites = (
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        {isLoading ? (
-          <S.ContentPlaylist>
-            <SkeletonTracks />
+        <S.ContentPlaylist>
+            {isLoading ? (
+              <SkeletonTracks />
+            ) : (
+              favTracks.map((track) => {
+                return (
+                  <GetTracks
+                    key={track.id}
+                    track={track}
+                  />
+                )
+              })
+            )}
           </S.ContentPlaylist>
-        ) : (
-          <GetTracks
-            tracks={favTracks}
-          />
-        )}
       </S.MainCenterBlock>
     </>
   )

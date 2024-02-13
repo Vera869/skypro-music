@@ -42,14 +42,22 @@ export const PlayListCategory = () => {
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
-        {isLoading ? (
-          <S.ContentPlaylist>
-            <SkeletonTracks />
+        <S.ContentPlaylist>
+            {isLoading ? (
+              <SkeletonTracks />
+            ) : (
+              arrayCategorys.items.map((track) => {
+                return (
+                  <GetTracks
+                    key={track.id}
+                    track={track}
+                  />
+                )
+              })
+            )}
           </S.ContentPlaylist>
-        ) : (
-          <GetTracks tracks={arrayCategorys.items} />
-        )}
       </S.MainCenterBlock>
     </>
   )
 }
+//arrayCategorys.items
