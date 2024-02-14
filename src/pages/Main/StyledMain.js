@@ -27,3 +27,4 @@ export const Main = styled.main`
   justify-content: space-between;
   flex-wrap: nowrap;
 `
+

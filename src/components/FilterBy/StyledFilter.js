@@ -13,6 +13,7 @@ export const ListEl = styled.div`
   }
 `
 export const List = styled.ul`
+  z-index: 1;
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ export const List = styled.ul`
   border: 1px solid #ffffff;
   border-radius: 10px;
   padding: 5px;
-  z-index: 1
+  z-index: 1;
   &::-webkit-scrollbar:vertical {
     overflow: scroll;
     color: #d9b6ff;

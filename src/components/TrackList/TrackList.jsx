@@ -1,62 +1,90 @@
-import { SkeletonTracks } from './SkeletonTracks.jsx'
 import * as S from '../TrackList/StyledTrackList.js'
-// import { useState } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { setActiveTrack, setIsPlay} from '../../Store/Slices/sliceTrack.js'
+import {
+  useAddFavTrackMutation,
+  useDeleteFavTrackMutation,
+} from '../../Services/index.js'
+import {  useState } from 'react'
+import { useEffect } from 'react'
 
 
-function GetTracks({
-  isLoading,
-  allTracks,
-  errorGetTracks,
-  setTrackPlayed,
-  setVisiblePlayer,
-}) {
-  const toggleErrorContext = () => {
-    if (errorGetTracks)
-      return (
-        <S.ContentPlaylist>
-          <S.ErrorMassege>
-            К сожалению, при загрузке плэйлиста произошла ошибка, пожалуйста,
-            попробуйте позже.
-          </S.ErrorMassege>
-        </S.ContentPlaylist>
-      )
-    return isLoading ? (
-      <S.ContentPlaylist>
-        <SkeletonTracks />
-      </S.ContentPlaylist>
-    ) : (
-      <S.ContentPlaylist>{trackItems}</S.ContentPlaylist>
-    )
-  }
+
+export const GetTracks = ({ track } ) => {
+  const [isLike, setIsLike] = useState(false)
+
+  const dispatch = useDispatch()
+  const isPlay = useSelector((state) => state.tracks.isPlay)
+  const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const playlist = useSelector((state) => state.tracks.playlist)
+  // const favorite = useSelector((state) => state.tracks.favorite)
+
+  const [addLike] = useAddFavTrackMutation()
+  const [disLike] = useDeleteFavTrackMutation()
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userId = user.id
   
-  const clickTrack = ({track}) => {
-    setTrackPlayed(track)
-    setVisiblePlayer(true)
+  const id = track.id
+  const staredUser = track.stared_user
+  
+  const favClick = () => {
+   
+    if (isLike) {
+      disLike({id})
+      setIsLike(false)
+      console.log("dislike");
+    } else {
+      addLike({id})
+      setIsLike(true)
+      // dispatch(setFavorite({id: track.id, track: track }))
+      // dispatch(setFavorite(staredUser.some((user) => user.id === userId)))
+      console.log("like");
+
+    }
+    }
+  useEffect(() => {
+    if(playlist !== 'fav') {
+      setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
+    } else {
+      setIsLike(true)
+    }
+    
+ }, [track])
+
+  const clickTrack = ({ track }) => {
+    dispatch(setActiveTrack({ track }))
+    if (isPlay == false) {
+      dispatch(setIsPlay())
+    }
+    dispatch(setIsPlay())
     return
   }
-  const trackItems = allTracks.map((track) => (
+  
+  return(<>
     <S.PlaylistItem key={track.id}>
       <S.PlaylistTreck>
         <S.TreckTitle>
           <S.TreckTitleImage>
-            <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
-            </S.TreckTitleSvg>
+            {activeTrack.id === track.id ? (
+              <S.TreckTitleImageActive>
+                {isPlay ? <S.ActiveTrack /> : ''}
+              </S.TreckTitleImageActive>
+            ) : (
+              <S.TreckTitleSvg alt="music">
+                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+              </S.TreckTitleSvg>
+            )}
           </S.TreckTitleImage>
           <S.TreckTitleText>
             <S.TreckTitleLink
-              onClick={() =>{
-                clickTrack({track})
-              }
-              }
+              onClick={() => {
+                clickTrack({ track })
+              }}
               to="#"
             >
               {track.name}
-              {/* {track.remix ? (
-                <S.TreckTitleSpan>({track.remix})</S.TreckTitleSpan>
-              ) : (
-                ''
-              )} */}
             </S.TreckTitleLink>
           </S.TreckTitleText>
           <S.TreckAuthor>
@@ -68,8 +96,14 @@ function GetTracks({
             <S.TreckAlbumLink>{track.album}</S.TreckAlbumLink>
           </S.TreckAlbum>
           <div>
-            <S.TreckTimeSvg alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />
+            <S.TreckTimeSvg
+              alt="time"
+              onClick={() => {
+                favClick({ track })
+              }}
+             //  track.stared_user.find((user) => user.id === userId) || track.stared_user.some((user) => user.id === userId)
+            >{isLike ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
+              <use xlinkHref="img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>
             <S.TreckTimeText>
               {(Number(track.duration_in_seconds) / 60).toFixed(2)}
@@ -78,7 +112,5 @@ function GetTracks({
         </S.TreckTitle>
       </S.PlaylistTreck>
     </S.PlaylistItem>
-  ))
-  return toggleErrorContext()
+    </>)
 }
-export default GetTracks

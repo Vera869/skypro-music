@@ -1,8 +1,8 @@
 import * as S from './StyledSideBar.js'
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { arrayCategorys } from './ArrayCategory.jsx'
 
+import { arrayCategorys } from './ArrayCategory.jsx'
 export const CategoryPlayLists = ({ isLoading }) => {
   return (
     <>

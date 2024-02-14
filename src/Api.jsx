@@ -1,18 +1,18 @@
-const host = 'https://skypro-music-api.skyeng.tech/';
+const host = 'https://skypro-music-api.skyeng.tech';
 
 
-export async function getAllTracks(){
-   const response = await fetch(`${host}catalog/track/all/`);
-   if(!response.ok) {
-      throw new Error("Произошла ошибка");
-   } 
-   const data = response.json();
+// export async function getAllTracks(){
+//    const response = await fetch(`${host}catalog/track/all/`);
+//    if(!response.ok) {
+//       throw new Error("Произошла ошибка");
+//    } 
+//    const data = response.json();
 
-   return data
-}
+//    return data
+// }
 
 export async function registrUser({ email, password }){
-   const response = await fetch(`${host}user/signup/`, {
+   const response = await fetch(`${host}/user/signup/`, {
       method: "POST",
         body: JSON.stringify({
           email: email,
@@ -24,7 +24,9 @@ export async function registrUser({ email, password }){
             },
    }) ;
    if (response.status === 400) {
-      throw new Error("Неверный ввод");
+    const data = await response.json()
+    const error = data.email && data.email[0] || data.username && data.username[0] || data.password && data.password[0]
+      throw new Error(error);
     } else if (response.status === 500) {
       throw new Error("Внутренняя ошибка сервера");
     }
@@ -33,7 +35,7 @@ export async function registrUser({ email, password }){
    return user
 }
 export async function loginUser({ email, password }) {
-   const response = await fetch(`${host}user/login/`, {
+   const response = await fetch(`${host}/user/login/`, {
      method: "POST",
      body: JSON.stringify({
        email: email,
@@ -51,11 +53,10 @@ export async function loginUser({ email, password }) {
       throw new Error("Ошибка сервера");
     }
    const user = response.json();
-   console.log(user);
    return user
  }
  export async function getToken ({ email, password }) {
-   const response = await fetch(`${host}user/token/`, {
+   const response = await fetch(`${host}/user/token/`, {
      method: "POST",
      body: JSON.stringify({
        email: email,
@@ -67,8 +68,11 @@ export async function loginUser({ email, password }) {
    })
    return response.json();
    }
-export async function refrashToken ({refresh}) {
-      const response = await fetch(`${host}user/token/refresh/`, {
+export async function refreshToken (
+  {refresh}
+  ) {
+  console.log("обновление токена");
+      const response = await fetch(`${host}/user/token/refresh/`, {
         method: "POST",
         body: JSON.stringify({
          refresh
@@ -79,13 +83,3 @@ export async function refrashToken ({refresh}) {
       })
       return response.json();
       }
-
-// export async function getTrackId(){
-//    const response = await fetch(`${host}/track/<id>`);
-//    const data = response.json();
-//     if(!response.ok) {
-//      throw new Error("Произошла ошибка")
-//   }
-//    return data
-// }
-

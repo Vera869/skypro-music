@@ -23,8 +23,8 @@ export const BarPlayerProgress = styled.div`
 `
 export const StyledProgressBar = styled.input`
 --progress-height: 8px;
-  --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: #AD61FF;
+  --progress-color: ${(props) => props.$color ? "#AD61FF" : ''};
 
   --progress-bg-color: #2e2e2e;
 
@@ -101,6 +101,7 @@ export const PlayerControls = styled.div`
   padding: 0 27px 0 31px;
 `
 export const PlayerBtnPrev = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -130,6 +131,7 @@ export const PlayerBtnPlaySvg = styled.svg`
   fill: #d9d9d9;
 `
 export const PlayerBtnNext = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +149,7 @@ export const PlayerBtnNextSvg = styled.svg`
   stroke: #d9d9d9;
 `
 export const PlayerBtnRepeat = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -170,6 +173,7 @@ export const PlayerBtnRepeatSvg = styled.svg`
   }
 `
 export const PlayerBtnShuffle = styled.div`
+cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -183,12 +187,17 @@ export const PlayerBtnShuffle = styled.div`
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+ 
 `
 export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
+  stroke: ${(props) => (props.IsShuffled ? "#fff" : '#696969')};
+  &:hover {
+    stroke: ${(props) => (props.IsShuffled ? "#fff" : "#acacac")};
+  }
 `
 export const PlayerTrackPlay = styled.div`
   display: -webkit-box;

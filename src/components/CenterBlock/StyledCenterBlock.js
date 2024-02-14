@@ -74,86 +74,86 @@ export const SearchText = styled.input`
     line-height: 24px;
   }
 `
-export const CenterBlockH2 = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 64px;
-  line-height: 72px;
-  letter-spacing: -0.8px;
-  margin-bottom: 45px;
-`
-export const CenterBlockFilter = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  margin-bottom: 51px;
-  align-items: flex-start;
-  gap: 15px;
-`
-export const CenterBlockFilterTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  margin-right: 15px;
-`
-export const CenterBlockContent = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  position: absolute;
-`
-export const ContentTitle = styled.div`
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: row;
-  flex-direction: row;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  margin-bottom: 24px;
-`
-export const PlaylistTitle = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 2px;
-  color: #696969;
-  text-transform: uppercase;
-`
-export const PlaylistTitleC0l01 = styled(PlaylistTitle)`
-  width: 447px;
-`
-export const PlaylistTitleC0l02 = styled(PlaylistTitle)`
-  width: 321px;
-`
-export const PlaylistTitleC0l03 = styled(PlaylistTitle)`
-  width: 245px;
-`
-export const PlaylistTitleC0l04 = styled(PlaylistTitle)`
-  width: 60px;
-  text-align: end;
-`
-export const PlaylistTitleSvg = styled.svg`
-  width: 12px;
-  height: 12px;
-  fill: transparent;
-  stroke: #696969;
-`
+// export const CenterBlockH2 = styled.div`
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 64px;
+//   line-height: 72px;
+//   letter-spacing: -0.8px;
+//   margin-bottom: 45px;
+// `
+// export const CenterBlockFilter = styled.div`
+//   display: -webkit-box;
+//   display: -ms-flexbox;
+//   display: flex;
+//   -webkit-box-orient: horizontal;
+//   -webkit-box-direction: normal;
+//   -ms-flex-direction: row;
+//   flex-direction: row;
+//   -webkit-box-align: center;
+//   -ms-flex-align: center;
+//   margin-bottom: 51px;
+//   align-items: flex-start;
+//   gap: 15px;
+// `
+// export const CenterBlockFilterTitle = styled.div`
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 16px;
+//   line-height: 24px;
+//   margin-right: 15px;
+// `
+// export const CenterBlockContent = styled.div`
+//   display: -webkit-box;
+//   display: -ms-flexbox;
+//   display: flex;
+//   -webkit-box-orient: vertical;
+//   -webkit-box-direction: normal;
+//   -ms-flex-direction: column;
+//   flex-direction: column;
+//   position: absolute;
+// `
+// export const ContentTitle = styled.div`
+//   display: -webkit-box;
+//   display: -ms-flexbox;
+//   display: flex;
+//   -webkit-box-orient: horizontal;
+//   -webkit-box-direction: normal;
+//   -ms-flex-direction: row;
+//   flex-direction: row;
+//   -webkit-box-align: center;
+//   -ms-flex-align: center;
+//   align-items: center;
+//   -webkit-box-pack: justify;
+//   -ms-flex-pack: justify;
+//   justify-content: space-between;
+//   margin-bottom: 24px;
+// `
+// export const PlaylistTitle = styled.div`
+//   font-style: normal;
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 24px;
+//   letter-spacing: 2px;
+//   color: #696969;
+//   text-transform: uppercase;
+// `
+// export const PlaylistTitleC0l01 = styled(PlaylistTitle)`
+//   width: 447px;
+// `
+// export const PlaylistTitleC0l02 = styled(PlaylistTitle)`
+//   width: 321px;
+// `
+// export const PlaylistTitleC0l03 = styled(PlaylistTitle)`
+//   width: 245px;
+// `
+// export const PlaylistTitleC0l04 = styled(PlaylistTitle)`
+//   width: 60px;
+//   text-align: end;
+// `
+// export const PlaylistTitleSvg = styled.svg`
+//   width: 12px;
+//   height: 12px;
+//   fill: transparent;
+//   stroke: #696969;
+// `

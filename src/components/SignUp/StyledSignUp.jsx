@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -92,7 +91,7 @@ export const ModalInput = styled.input`
     margin-bottom: 30px;
   }
 `
-export const ModalBtnSignUp = styled(Link)`
+export const ModalBtnSignUp = styled.button`
   width: 278px;
   height: 62px;
   color: black;
@@ -138,7 +137,6 @@ export const ModalBtnSignUp = styled(Link)`
 `
 export const ErrorMasege = styled.p`
   width: 100%;
-  height: 35px;
   padding: 0px 1px;
   margin-right: 3px;
   margin-bottom: 3px;

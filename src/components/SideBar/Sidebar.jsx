@@ -2,12 +2,10 @@ import * as S from '../SideBar/StyledSideBar.js'
 import { CategoryPlayLists } from './CategoryPlaylists.jsx'
 import { UserContext } from '../../Context/authorization.jsx'
 import { useContext } from 'react'
+import { useGetAllTracksQuery } from '../../Services/index.js'
 
-function SideBar({ 
-  setUser,
-  isLoading,
-  setIsLoading,
-  logout, }) {
+function SideBar({ setUser, logout }) {
+  const { isLoading } = useGetAllTracksQuery()
   const { userData } = useContext(UserContext)
   return (
     <S.MineSideBar className="sidebar">
@@ -22,9 +20,7 @@ function SideBar({
       </S.SideBarPersonal>
       <S.SideBarBlock>
         <S.SideBarList>
-          <CategoryPlayLists setUser={setUser}
-                isLoading={isLoading}
-                setIsLoading={setIsLoading} />
+          <CategoryPlayLists setUser={setUser} isLoading={isLoading} />
         </S.SideBarList>
       </S.SideBarBlock>
     </S.MineSideBar>

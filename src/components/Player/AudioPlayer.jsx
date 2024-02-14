@@ -1,22 +1,31 @@
-import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import * as S from '../Player/StyledAudioPleer.js'
 import { useState, useEffect, useRef } from 'react'
 
-function AudioPlayer({
-  isVisiblePlayer,
-  isLoading,
-  trackPlayed,
-  setTrackPlayed,
-}) {
+import { useSelector, useDispatch } from 'react-redux'
+import {
+  playNextTrack,
+  playPrevTrack,
+  setIsShuffled,
+  setIsPlay,
+  setShuffledTracks,
+} from '../../Store/Slices/sliceTrack.js'
+import { useAddFavTrackMutation, useDeleteFavTrackMutation } from '../../Services/index.js'
+
+function AudioPlayer(
+  ) {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
-  const [isplay, setIsPlay] = useState(true);
   const [isLooped, setIsLooped] = useState(false)
   const [currentTime, setCurrentTime] = useState(0) // стэйт текущего времени воспроизведения
   const [timeProgress, setTimeProgress] = useState(0) // стэйт прогресс бара
 
+  const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек{}
+  const dispatch = useDispatch()
+  let isShuffled = useSelector((state) => state.tracks.isShuffled)
+  const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
+  const isPlay = useSelector((state) => state.tracks.isPlay)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
   const timeFormat = (time) => {
@@ -31,20 +40,18 @@ function AudioPlayer({
   }
 
   const handleStart = () => {
-    console.log(duration)
+    console.log('PLAY')
     audioRef.current.play()
-    // setTrackPlayed(true)
-    setIsPlay(true);
+    dispatch(setIsPlay())
   }
 
   const handleStop = () => {
     console.log('PAUSE')
     audioRef.current.pause()
-    // setTrackPlayed(false)
-    setIsPlay(false)
+    dispatch(setIsPlay())
   }
 
-  const togglePlay = isplay ? handleStop : handleStart
+  const togglePlay = isPlay ? handleStop : handleStart
   useEffect(() => {
     const updateCurrentTime = () => {
       if (audioRef.current) {
@@ -67,16 +74,15 @@ function AudioPlayer({
 
       if (audioRef.current.currentTime === audioRef.current.duration) {
         setCurrentTime(0)
-        // setTrackPlayed(true)
-        setIsPlay(false)
       }
     }
   }, [audioRef.current, audioRef.current?.currentTime])
 
-
   useEffect(() => {
-    setIsPlay(true);
-  }, [trackPlayed])
+    if(isPlay == false) {
+      dispatch(setIsPlay())
+    }
+  }, [activeTrack])
 
   const handleIsLoop = () => {
     audioRef.current.loop = true
@@ -100,18 +106,55 @@ function AudioPlayer({
   const onChangeProgress = () => {
     audioRef.current.currentTime = refProgress.current.value
   }
-  const butnNotWorking = () => {
-    alert('Еще не реализовано, пожалуйста, попробуйте позже')
+  const butNextTrack = () => dispatch(playNextTrack())
+  const butPrevtTrack = () => {
+    if (audioRef.current.currentTime > 5) {
+      audioRef.current.currentTime = 0
+    } else {
+      dispatch(playPrevTrack())
+    }
   }
+  const butShuffledTrack = () => {
+    dispatch(setShuffledTracks())
+    dispatch(setIsShuffled())
+  }
+  const favTrack = useSelector((state) => state.tracks.activeTrack)
+  // const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
+  // const trackID = useSelector((state) => state.tracks.activeTrack.id)
+  
+  // if (favTrack){
+  //   const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
+  //   const trackID = useSelector((state) => state.tracks.activeTrack.id)
+  //   const  id = trackID
+  //   const [addLike] = useAddFavTrackMutation(id);
+  //   const [dislike] = useDeleteFavTrackMutation(id);
+   
+  //   const userId = Number(localStorage.getItem('user'));
+  //   const [isFavourite, setFavourite] = useState(false)
+  
+  //   useEffect(() => {
+  //       setFavourite(stared_user.some((user) => user.id === userId))
+  //     }, [favTrack])
+  
+  //     const favClick = () => {
+  //       if (isFavourite) dislike(trackID)
+  //       else addLike(trackID)
+  //     }
+
+ // }
+  
   return (
-    isVisiblePlayer && (
+    isVisible
+    && (
       <S.Bar>
-        {trackPlayed ? (
+        {activeTrack ? (
           <audio
             ref={audioRef}
-            src={trackPlayed.track_file}
+            src={activeTrack.track_file}
             autoPlay
+            // ={isPlay}
             onTimeUpdate={() => setTimeProgress(audioRef.current.currentTime)}
+            onEnded={() => dispatch(playNextTrack())}
           >
             Здесь будет звучать Музыка!
           </audio>
@@ -131,46 +174,43 @@ function AudioPlayer({
               value={timeProgress}
               step={0.01}
               onChange={onChangeProgress}
-              $color="#580EA2"
             />
           </S.BarPlayerProgress>
           <S.BarPleerBlock>
             <S.BarPleer>
               <S.PlayerControls>
-                <S.PlayerBtnPrev onClick={butnNotWorking}>
+                <S.PlayerBtnPrev onClick={butPrevtTrack}>
                   <S.PlayerBtnPrevSvg alt="prev">
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </S.PlayerBtnPrevSvg>
                 </S.PlayerBtnPrev>
                 <S.PlayerBtnPlay className="_btn" onClick={togglePlay}>
                   <S.PlayerBtnPlaySvg alt="play">
-                    {/* <use xlinkHref="img/icon/sprite.svg#icon-play"></use> */}
-                    {isplay ? (
+                    {isPlay ? (
                       <use xlinkHref="img/icon/sprite.svg#icon-pause"></use>
                     ) : (
                       <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
                     )}
                   </S.PlayerBtnPlaySvg>
                 </S.PlayerBtnPlay>
-                <S.PlayerBtnNext onClick={butnNotWorking}>
+                <S.PlayerBtnNext onClick={butNextTrack}>
                   <S.PlayerBtnNextSvg alt="next">
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </S.PlayerBtnNextSvg>
                 </S.PlayerBtnNext>
-                <S.PlayerBtnRepeat className="_btn-icon">
+                <S.PlayerBtnRepeat onClick={toggleLoop} className="_btn-icon">
                   <S.PlayerBtnRepeatSvg
                     alt="repeat"
-                    onClick={toggleLoop}
                     isLooped={isLooped}
                   >
                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
                 <S.PlayerBtnShuffle
-                  onClick={butnNotWorking}
+                  onClick={butShuffledTrack}
                   className="_btn-icon"
                 >
-                  <S.PlayerBtnShuffleSvg alt="shuffle">
+                  <S.PlayerBtnShuffleSvg IsShuffled={isShuffled} alt="shuffle">
                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                   </S.PlayerBtnShuffleSvg>
                 </S.PlayerBtnShuffle>
@@ -179,69 +219,38 @@ function AudioPlayer({
               <S.PlayerTrackPlay>
                 <S.TrackPlayContain>
                   <S.TrackPlayImage>
-                    {isLoading ? (
-                      <Skeleton
-                        width={55}
-                        height={55}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlaySvg alt="music">
                         <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                       </S.TrackPlaySvg>
-                    )}
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
-                    {isLoading ? (
-                      <Skeleton
-                        width={270}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlayAuthorLink>
-                        {trackPlayed.author}
+                        {activeTrack.author}
                       </S.TrackPlayAuthorLink>
-                    )}
                   </S.TrackPlayAuthor>
                   <S.TrackPlayAlbum>
-                    {isLoading ? (
-                      <Skeleton
-                        width={270}
-                        baseColor="#202020"
-                        highlightColor="#444"
-                      />
-                    ) : (
                       <S.TrackPlayAlbumLink>
-                        {trackPlayed.name}
+                        {activeTrack.name}
                       </S.TrackPlayAlbumLink>
-                    )}
                   </S.TrackPlayAlbum>
                 </S.TrackPlayContain>
 
                 <S.TrackPlayLikeDis>
-                  {isLoading ? (
-                    <Skeleton
-                      width={55}
-                      height={55}
-                      baseColor="#202020"
-                      highlightColor="#444"
-                    />
-                  ) : (
-                    <>
-                      <S.TrackPlayLike className="_btn-icon">
-                        <S.TrackPlayLikeSvg alt="like">
-                          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
+                      <S.TrackPlayLike className="_btn-icon" 
+                      // onClick={handleFavorite()}
+                      // onClick={() => {favClick()}}
+                      >
+                        <S.TrackPlayLikeSvg alt="like" 
+                        // fill={isFavourite ? 'violet' : 'gray'}
+                        >
+                          {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
                         </S.TrackPlayLikeSvg>
                       </S.TrackPlayLike>
                       <S.TrackPlayDislike className="_btn-icon">
                         <S.TrackPlayDislikeSvg alt="dislike">
-                          <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
+                          {/* <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use> */}
                         </S.TrackPlayDislikeSvg>
                       </S.TrackPlayDislike>
-                    </>
-                  )}
                 </S.TrackPlayLikeDis>
               </S.PlayerTrackPlay>
             </S.BarPleer>
