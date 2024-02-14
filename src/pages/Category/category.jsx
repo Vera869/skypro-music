@@ -3,8 +3,13 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetCatalogByIdQuery } from '../../Services/index.js'
+import { useDispatch } from 'react-redux'
+import { setPlaylist } from '../../Store/Slices/sliceTrack.js'
 
 export const PlayListCategory = () => {
+  const dispatch = useDispatch()
+  dispatch(setPlaylist('categorys'))
+
   const params = useParams()
   const id = params.id
   const {

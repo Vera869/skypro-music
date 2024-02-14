@@ -3,7 +3,7 @@ import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetFavTracksQuery } from '../../Services/index.js'
 import { useDispatch } from 'react-redux'
-import { setFavPlaylist } from '../../Store/Slices/sliceTrack.js'
+import { setFavPlaylist, setPlaylist } from '../../Store/Slices/sliceTrack.js'
 import { useEffect } from 'react'
 
 export const Favorites = (
@@ -11,6 +11,7 @@ export const Favorites = (
   const { data: favTracks, isLoading, isError } = useGetFavTracksQuery()
 
     const dispatch = useDispatch()
+    dispatch(setPlaylist('fav'))
     useEffect(() => {
       dispatch(setFavPlaylist({ favTracks }))
     }, [favTracks])

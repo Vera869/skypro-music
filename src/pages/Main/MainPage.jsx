@@ -1,6 +1,6 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { setTracks } from '../../Store/Slices/sliceTrack.js'
+import { setPlaylist, setTracks } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
@@ -9,10 +9,12 @@ import { useEffect } from 'react'
 
 export const Main = ({}) => {
   const dispatch = useDispatch()
+  dispatch(setPlaylist('all'))
 
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
   useEffect(() => {
     dispatch(setTracks({ tracks }))
+    // dispatch(setPlaylist('all'))
   }, [tracks])
 
   if (isError)

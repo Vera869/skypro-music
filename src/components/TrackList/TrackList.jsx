@@ -1,47 +1,57 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack, setIsPlay, setFavorite } from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setIsPlay} from '../../Store/Slices/sliceTrack.js'
 import {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
 } from '../../Services/index.js'
 import {  useState } from 'react'
+import { useEffect } from 'react'
 
-export const GetTracks = ({ track }) => {
+
+
+export const GetTracks = ({ track } ) => {
+  const [isLike, setIsLike] = useState(false)
+
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
+  const playlist = useSelector((state) => state.tracks.playlist)
+  // const favorite = useSelector((state) => state.tracks.favorite)
 
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
 
-  const userId = Number(localStorage.getItem('user'))
-  const user = localStorage.getItem('user')
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userId = user.id
   
-  const [isFavourite, setIsFavourite] = useState(false)
- 
-  const favClick = ({ track }) => {
-    const id = track.id
-    const staredUser = track.stared_user
-
+  const id = track.id
+  const staredUser = track.stared_user
+  
+  const favClick = () => {
    
-    if (isFavourite) {
+    if (isLike) {
       disLike({id})
-      setFavorite(false)
+      setIsLike(false)
       console.log("dislike");
     } else {
       addLike({id})
-      setIsFavourite(true)
+      setIsLike(true)
       // dispatch(setFavorite({id: track.id, track: track }))
       // dispatch(setFavorite(staredUser.some((user) => user.id === userId)))
       console.log("like");
-    }
-    }
-  // useEffect(({ track }) => {
-  //   setFavorite(staredUser.some((user) => user.id === userId))
-  // }, [track])
 
+    }
+    }
+  useEffect(() => {
+    if(playlist !== 'fav') {
+      setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
+    } else {
+      setIsLike(true)
+    }
+    
+ }, [track])
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
@@ -91,8 +101,8 @@ export const GetTracks = ({ track }) => {
               onClick={() => {
                 favClick({ track })
               }}
-             //  track.stared_user.found((user) => user.id === userId) || track.stared_user.some((user) => user.id === userId)
-            >{isFavourite ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
+             //  track.stared_user.find((user) => user.id === userId) || track.stared_user.some((user) => user.id === userId)
+            >{isLike ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
               <use xlinkHref="img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>
             <S.TreckTimeText>

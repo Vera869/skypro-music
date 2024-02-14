@@ -7,7 +7,7 @@ const trackSlice = createSlice({
     tracks: [],
     favPlaylist: [],
     favorite: [],
-    playlists: [],
+    playlist: '',
     shuffledTracks: [],
     currentPlaylist: [],
     filteredTracks: [],
@@ -47,7 +47,10 @@ const trackSlice = createSlice({
     //   state.currentPlaylist = state.tracks
     // },
     setFavPlaylist(state, action) {
-      state.favPlaylist = action.payload.tracks
+      state.favPlaylist = action.payload
+    },
+    setPlaylist(state, action) {
+      state.playlist = action.payload
     },
     playNextTrack(state) {
       const playlist = state.isShuffled ? state.shuffledTracks : state.tracks
@@ -91,7 +94,7 @@ export const {
   isPlay,
   setIsPlay,
   setFavorite,
-  setPlaylists,
+  setPlaylist,
   setFavPlaylist,
 } = trackSlice.actions
 
