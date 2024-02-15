@@ -38,8 +38,6 @@ export const GetTracks = ({ track } ) => {
     } else {
       addLike({id})
       setIsLike(true)
-      // dispatch(setFavorite({id: track.id, track: track }))
-      // dispatch(setFavorite(staredUser.some((user) => user.id === userId)))
       console.log("like");
 
     }

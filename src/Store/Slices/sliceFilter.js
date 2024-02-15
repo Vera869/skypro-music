@@ -36,4 +36,4 @@ const setFilters = createSlice({
 });
 
 export const {setFilterYears, setFilterAuthor, setFilterGenre} = setFilters.actions;
-export default setFilters.reducer;
+export const setFiltersReducer = setFilters.reducer;

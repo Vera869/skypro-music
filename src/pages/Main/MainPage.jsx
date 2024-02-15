@@ -14,7 +14,6 @@ export const Main = ({}) => {
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
   useEffect(() => {
     dispatch(setTracks({ tracks }))
-    // dispatch(setPlaylist('all'))
   }, [tracks])
 
   if (isError)
