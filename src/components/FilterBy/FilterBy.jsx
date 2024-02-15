@@ -26,6 +26,8 @@ function FilterBy() {
     setOpenGenre(!openGenre)
     setOpenYear(false)
     setOpenAuthor(false)
+   
+
   }
   return (
     <>

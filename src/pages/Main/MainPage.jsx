@@ -1,17 +1,19 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
 import { setPlaylist, setTracks } from '../../Store/Slices/sliceTrack.js'
+import {CenterblockFilter} from '../../components/FilterBy/BlockFilters.jsx'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 
-export const Main = ({}) => {
+export const Main = () => {
   const dispatch = useDispatch()
   dispatch(setPlaylist('all'))
-
+  
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
+  // console.log(tracks);
   useEffect(() => {
     dispatch(setTracks({ tracks }))
   }, [tracks])
@@ -37,7 +39,7 @@ export const Main = ({}) => {
         <S.CenterBlockH2>Треки</S.CenterBlockH2>
         <S.CenterBlockFilter>
           <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
-          <FilterBy />
+          <CenterblockFilter tracks={tracks} />
         </S.CenterBlockFilter>
         <S.CenterBlockContent>
           <S.ContentTitle>

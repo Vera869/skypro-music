@@ -23,9 +23,7 @@ export const LayoutPage = ({ setUser, logout, isLoading, setIsLoading }) => {
             />
           </S.Main>
           <footer>
-            <AudioPlayer
-              isLoading={isLoading}
-            />
+            <AudioPlayer isLoading={isLoading} />
           </footer>
         </S.Container>
       </S.Wrapper>

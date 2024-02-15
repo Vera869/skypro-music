@@ -6,18 +6,11 @@ import {
   setFilterGenre,
 } from '../../Store/Slices/sliceFilter.js'
 
-export let filterList = ({ data, criterion }) => {
+export let FilterList = ({ data, criterion }) => {
   const dispatch = useDispatch()
 
   const filterListClick = (item) => {
     switch (criterion) {
-      case 'Год выпуска':
-        dispatch(
-          setFilterYears({
-            years: item,
-          })
-        )
-        break
       case 'Исполнители':
         dispatch(
           setFilterAuthor({
@@ -32,6 +25,13 @@ export let filterList = ({ data, criterion }) => {
           })
         )
         break
+      case 'Год выпуска':
+        dispatch(
+          setFilterYears({
+            years: item,
+          })
+        )
+        break
       default:
         break
     }
@@ -40,7 +40,9 @@ export let filterList = ({ data, criterion }) => {
     <div>
       <S.List>
         {data.map((item, i) => (
-          <S.ListEl key={i} onClick={() => filterListClick(item)}>
+          <S.ListEl  
+         //  className={isActive ? 'activeButton' : ' '}
+          key={i} onClick={() => filterListClick(item)}>
             {' '}
             {item}{' '}
           </S.ListEl>
