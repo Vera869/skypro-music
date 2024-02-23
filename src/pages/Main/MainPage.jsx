@@ -1,6 +1,6 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { setPlaylist, setTracks } from '../../Store/Slices/sliceTrack.js'
+import { setPlaylist, setTrackListForFilter, setTracks } from '../../Store/Slices/sliceTrack.js'
 import {CenterblockFilter} from '../../components/FilterBy/BlockFilters.jsx'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
@@ -11,12 +11,24 @@ import { useEffect } from 'react'
 export const Main = () => {
   const dispatch = useDispatch()
   dispatch(setPlaylist('all'))
-  
-  const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
-  // console.log(tracks);
+
+  const { data: tracks, isloading, isError } = useGetAllTracksQuery()
+  console.log(tracks);
+ 
+  const filteredData = useSelector((state) => state.tracks.filteredTracks)
+  const initialTracks = useSelector((state) => state.tracks.tracksForFilter)
+  const isFiltered = useSelector((state) => state.tracks.isFiltered)
+  const newFilteredData = isFiltered ? filteredData : initialTracks
+
   useEffect(() => {
     dispatch(setTracks({ tracks }))
-  }, [tracks])
+    dispatch(setTrackListForFilter(tracks || []))
+  }, [dispatch, tracks])
+  // const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
+  // // console.log(tracks);
+  // useEffect(() => {
+  //   dispatch(setTracks({ tracks }))
+  // }, [tracks])
 
   if (isError)
     return (

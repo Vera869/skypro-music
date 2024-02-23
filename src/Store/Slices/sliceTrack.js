@@ -16,7 +16,7 @@ const trackSlice = createSlice({
     tracksForFilter: [],
     filteredTracks: [],
     isFiltered: false,
-    filters: { author: [], years: [], genre: [], search: "" },
+    filters: { author: '', years: '', genre: '', search: "" },
   },
   reducers: {
     setTracks(state, action) {
@@ -81,6 +81,14 @@ const trackSlice = createSlice({
     setCategoryId(state, action) {
       state.categoryId = action.payload.categoryId
     },
+    clearTheFilter:(state) => {
+      state.filters = { author: '', years: '', genre: '', search: "" }
+      state.isFiltered = false
+    },
+    selectedFiltered:(state, action) => {
+      state.author = [...state.filteredAuthtorGenreYears, action.payload]
+      state.filteredAuthtorGenreYears = author
+    },
     setFilters(state, action) {
       state.filters[action.payload.nameFilter] = action.payload.valueFilter
       state.isFiltered = true
@@ -118,6 +126,9 @@ const trackSlice = createSlice({
     }
 
     },
+    setTrackListForFilter:(state, action) => {
+      state.tracksForFilter = action.payload
+     },
   },
 })
 
@@ -136,6 +147,10 @@ export const {
   setFavorite,
   setPlaylist,
   setFavPlaylist,
+  clearTheFilter,
+  selectedFiltered,
+  setFilters,
+  setTrackListForFilter,
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

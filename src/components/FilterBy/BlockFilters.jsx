@@ -5,42 +5,30 @@ import { FilterList } from './listFilter.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { setIsFiltered } from '../../Store/Slices/sliceFilter.js'
+import { useEffect } from 'react'
+import { setTrackListForFilter } from '../../Store/Slices/sliceTrack.js'
 
 export const CenterblockFilter = ({ tracks }) => {
-  const dispatch = useDispatch
-  const [activeCriterion, setActiveCriterion] = useState(null)
-  const data = useSelector((state) => state.tracks.tracks)
-  // const isFiltered = useSelector((state) => state.setFilters.isFiltered)
-  // const data = tracks
-//   const { data } = useGetAllTracksQuery()
-//   console.log(data);
   
-    const authorTrack = data.map((item) => item.author)
-  const author = Array.from(new Set(authorTrack))
-
-  const genreTrack = data.map((item) => item.genre)
-  const genre = Array.from(new Set(genreTrack))
-
-  const years = ['Сначала новые', 'Сначала старые']
   
-  const handleCriterionClick = (criterionName) => {
-    if (activeCriterion === criterionName) {
-      setActiveCriterion(null)
-    } else {
-      setActiveCriterion(criterionName)
-    }
-  }
+  // const handleCriterionClick = (criterionName) => {
+  //   if (activeCriterion === criterionName) {
+  //     setActiveCriterion(null)
+  //   } else {
+  //     setActiveCriterion(criterionName)
+  //   }
+  // }
 
   return (
     <S.FilterButtonList>
       <div>
         <CriterionButton
           Criterion={'Исполнители'}
-          isActive={activeCriterion === 'Исполнители'}
-          onClick={() => handleCriterionClick('Исполнители')}
+          // isActive={activeCriterion === 'Исполнители'}
+          // onClick={() => handleCriterionClick('Исполнители')}
         />
         {activeCriterion === 'Исполнители' && (
-          <FilterList data={author} criterion={'Исполнители'} />
+          <FilterList  criterion={'Исполнители'} />
         )}
       </div>
       <div>
