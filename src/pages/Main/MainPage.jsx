@@ -14,7 +14,6 @@ export const Main = ({}) => {
   const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
   useEffect(() => {
     dispatch(setTracks({ tracks }))
-    // dispatch(setPlaylist('all'))
   }, [tracks])
 
   if (isError)
@@ -37,7 +36,7 @@ export const Main = ({}) => {
         </S.CenterBlockSearch>
         <S.CenterBlockH2>Треки</S.CenterBlockH2>
         <S.CenterBlockFilter>
-          <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
+          
           <FilterBy />
         </S.CenterBlockFilter>
         <S.CenterBlockContent>
