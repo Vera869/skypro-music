@@ -11,6 +11,7 @@ import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+import SearchBlock from '../../components/FilterBy/SearchFiltered.jsx'
 
 export const Main = ({}) => {
   const dispatch = useDispatch()
@@ -43,12 +44,13 @@ export const Main = ({}) => {
   return (
     <>
       <S.MainCenterBlock>
-        <S.CenterBlockSearch>
+        <SearchBlock />
+        {/* <S.CenterBlockSearch>
           <S.SearchSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
           </S.SearchSvg>
           <S.SearchText type="search" placeholder="Поиск" name="search" />
-        </S.CenterBlockSearch>
+        </S.CenterBlockSearch> */}
         <S.CenterBlockH2>Треки</S.CenterBlockH2>
         <S.CenterBlockFilter>
           <FilterBy />

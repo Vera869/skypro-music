@@ -3,11 +3,14 @@ import * as S from '../../components/TrackList/StyledTrackList.js'
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetCatalogByIdQuery } from '../../Services/index.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setPlaylist } from '../../Store/Slices/sliceTrack.js'
+import SearchBlock from '../../components/FilterBy/SearchFiltered.jsx'
 
 export const PlayListCategory = () => {
   const dispatch = useDispatch()
+  const valueSearch = useSelector((state) => state.tracks.search)
+
   dispatch(setPlaylist('categorys'))
 
   const params = useParams()
@@ -28,12 +31,13 @@ export const PlayListCategory = () => {
   return (
     <>
       <S.MainCenterBlock>
-        <S.CenterBlockSearch>
+        <SearchBlock />
+        {/* <S.CenterBlockSearch>
           <S.SearchSvg>
             <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
           </S.SearchSvg>
           <S.SearchText type="search" placeholder="Поиск" name="search" />
-        </S.CenterBlockSearch>
+        </S.CenterBlockSearch> */}
         <S.CenterBlockH2>
           {!isLoading && arrayCategorys.name}
         </S.CenterBlockH2>

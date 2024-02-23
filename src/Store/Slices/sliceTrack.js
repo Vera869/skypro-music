@@ -16,6 +16,8 @@ const trackSlice = createSlice({
 
     filteredTracks: [],
     tracksForFilter: [],
+    tracksFavoriteForFilter: [],
+    filtredFavoriteTracks: [],
     filteredAuthorGenreYears: [],
     isFiltred: false,
     $isAuthorClick: false,
@@ -80,6 +82,8 @@ const trackSlice = createSlice({
       }
 
       state.filteredTracks = state.tracksForFilter
+      // state.tracksFavoriteForFilter = [...state.favPlaylist]
+      state.filtredFavoriteTracks = state.tracksFavoriteForFilter;
 
       console.log(state.filters[action.payload.nameFilter])
 
@@ -139,6 +143,20 @@ const trackSlice = createSlice({
           )
         })
       }
+      if (state.filters.search) {
+        state.filtredFavoriteTracks = state.filtredFavoriteTracks.filter(
+          (track) => {
+            return (
+              track.name
+                .toLowerCase()
+                .includes(state.filters.search.toLowerCase()) ||
+              track.author
+                .toLowerCase()
+                .includes(state.filters.search.toLowerCase())
+            );
+          }
+        );
+      }
     },
 
     setShuffledTracks(state) {
@@ -196,6 +214,9 @@ const trackSlice = createSlice({
     },
     setTrackListForFilter: (state, action) => {
       state.tracksForFilter = action.payload
+    },
+    setTrackListFavoriteFilter: (state, action) => {
+      state.tracksFavoriteForFilter = action.payload;
     },
     setCategoryId(state, action) {
       state.categoryId = action.payload.categoryId

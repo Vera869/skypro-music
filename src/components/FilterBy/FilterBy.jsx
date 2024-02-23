@@ -1,34 +1,3 @@
-// import { useState } from 'react'
-// import { genreList } from '../FilterBy/ListGenre.jsx'
-// import { yearList } from '../FilterBy/ListYear.jsx'
-// import { authorList } from '../FilterBy/listAuthor.jsx'
-// import * as S from '../FilterBy/StyledFilter.js'
-
-// function FilterBy() {
-//   const [openAuthor, setOpenAuthor] = useState(false)
-//   const [openYear, setOpenYear] = useState(false)
-//   const [openGenre, setOpenGenre] = useState(false)
-
-//   function toggleOpenAuthor() {
-//     console.log('Author')
-//     setOpenAuthor(!openAuthor)
-//     setOpenYear(false)
-//     setOpenGenre(false)
-//   }
-//   function toggleOpenYear() {
-//     console.log('Year')
-//     setOpenYear(!openYear)
-//     setOpenAuthor(false)
-//     setOpenGenre(false)
-//   }
-//   function toggleOpenGenre() {
-//     console.log('Genre')
-//     setOpenGenre(!openGenre)
-//     setOpenYear(false)
-//     setOpenAuthor(false)
-//   }
-
-// import React, { useEffect } from 'react'
 import * as S from '../FilterBy/StyledFilter.js'
 import { useState } from 'react'
 import { useGetAllTracksQuery } from '../../Services/index.js'
@@ -72,7 +41,7 @@ function FilterBy() {
       data.forEach((element) => {
         ganreSet.add(element.genre)
       })
-      console.log(ganreSet)
+      // console.log(ganreSet)
       setGenre(Array.from(ganreSet))
     }
     if (data.length > 0) {
@@ -84,7 +53,7 @@ function FilterBy() {
       setDataTrack(['По умолчанию', 'Сначала старые', 'Сначала новые'])
     }
   }, [data])
-  // const filtredDataRedux = useSelector((state) => state.tracks.filteredTracks);
+  
   const filterCount = useSelector((state) => state.tracks.filters)
   const $isAuthorClick = useSelector((state) => state.tracks.$isAuthorClick)
   const $isGenreClick = useSelector((state) => state.tracks.$isGenreClick)
