@@ -6,7 +6,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
     baseUrl: 'https://skypro-music-api.skyeng.tech',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authorization.access
-      console.log(token);
+      // console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }

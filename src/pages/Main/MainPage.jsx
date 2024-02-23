@@ -1,6 +1,11 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { clearTheFilter, setFilters, setPlaylist, setTrackListForFilter, setTracks } from '../../Store/Slices/sliceTrack.js'
+import {
+  clearTheFilter,
+  setFilters,
+  setPlaylist,
+  setTrackListForFilter,
+} from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
@@ -20,14 +25,11 @@ export const Main = ({}) => {
 
   let newFiltredData = isFiltred ? filtredData : initialTracks
 
-  // useEffect(() => {
-  //   dispatch(setTracks({ tracks }))
-  // }, [tracks])
   useEffect(() => {
-    dispatch(clearTheFilter());
-    dispatch(setTrackListForFilter(data || []));
-    dispatch(setFilters({ nameFilter: "search", valueFilter: valueSearch }));
-  }, [dispatch, data, isLoading, valueSearch]);
+    dispatch(clearTheFilter())
+    dispatch(setTrackListForFilter(data || []))
+    dispatch(setFilters({ nameFilter: 'search', valueFilter: valueSearch }))
+  }, [dispatch, data, isLoading, valueSearch])
 
   if (isError && newFiltredData.length === 0)
     return (
@@ -65,26 +67,15 @@ export const Main = ({}) => {
           <S.ContentPlaylist>
             {isLoading ? (
               <SkeletonTracks />
+            ) : newFiltredData.length ? (
+              newFiltredData.map((track) => {
+                return <GetTracks key={track.id} track={track} />
+              })
             ) : (
-              // tracks.map((track) => {
-              //   return <GetTracks key={track.id} track={track} />
-              // })
-              newFiltredData.length ? (
-                newFiltredData.map((track) => {
-                  return (<GetTracks key={track.id} track={track} />
-                    // <Track
-                    //   // refetch={refetch}
-                    //   key={item.id}
-                    //   item={item}
-                    //   {...item}
-                    //   data={data}
-                    //   isFavoriteLike={false}
-                    // />
-                  );}
-                )) : (initialTracks.map((track) => {
-                  return (<GetTracks key={track.id} track={track} />)}))
-                )}
-              
+              initialTracks.map((track) => {
+                return <GetTracks key={track.id} track={track} />
+              })
+            )}
           </S.ContentPlaylist>
         </S.CenterBlockContent>
       </S.MainCenterBlock>

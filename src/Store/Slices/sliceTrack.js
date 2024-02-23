@@ -9,7 +9,6 @@ const trackSlice = createSlice({
     favorite: [],
     playlist: '',
     shuffledTracks: [],
-    currentPlaylist: [],
     filteredTracks: [],
     isShuffled: false,
     categoryId: null,
@@ -17,8 +16,6 @@ const trackSlice = createSlice({
 
     filteredTracks: [],
     tracksForFilter: [],
-    filtredFavoriteTracks: [],
-    tracksFavoriteForFilter: [],
     filteredAuthorGenreYears: [],
     isFiltred: false,
     $isAuthorClick: false,
@@ -28,8 +25,8 @@ const trackSlice = createSlice({
     filters: {
       genre: [],
       author: [],
-      years: "По умолчанию",
-      search: "",
+      years: 'По умолчанию',
+      search: '',
     },
   },
   reducers: {
@@ -40,16 +37,16 @@ const trackSlice = createSlice({
       state.filters = {
         genre: [],
         author: [],
-        years: "По умолчанию",
-        search: "",
-      };
+        years: 'По умолчанию',
+        search: '',
+      }
 
-      state.countYears = 0;
-      state.isFiltred = false;
+      state.countYears = 0
+      state.isFiltred = false
     },
     selectedFiltered: (state, action) => {
-      const author = [...state.filteredAuthorGenreYears, action.payload];
-      state.filteredAuthorGenreYears = author;
+      const author = [...state.filteredAuthorGenreYears, action.payload]
+      state.filteredAuthorGenreYears = author
     },
     setFilters: (state, action) => {
       if (
@@ -58,12 +55,12 @@ const trackSlice = createSlice({
         !state.filters.years &&
         !state.filters.search
       ) {
-        state.isFiltred = false;
-        return;
+        state.isFiltred = false
+        return
       }
       if (
-        action.payload.nameFilter !== "years" &&
-        action.payload.nameFilter !== "search"
+        action.payload.nameFilter !== 'years' &&
+        action.payload.nameFilter !== 'search'
       ) {
         if (
           state.filters[action.payload.nameFilter].includes(
@@ -72,68 +69,63 @@ const trackSlice = createSlice({
         ) {
           state.filters[action.payload.nameFilter] = state.filters[
             action.payload.nameFilter
-          ].filter((elem) => elem !== action.payload.valueFilter);
+          ].filter((elem) => elem !== action.payload.valueFilter)
         } else {
           state.filters[action.payload.nameFilter].push(
             action.payload.valueFilter
-          );
+          )
         }
       } else {
-        state.filters[action.payload.nameFilter] = action.payload.valueFilter;
+        state.filters[action.payload.nameFilter] = action.payload.valueFilter
       }
 
-      state.filteredTracks = state.tracksForFilter;
-    
-      state.filtredFavoriteTracks = state.tracksFavoriteForFilter;
+      state.filteredTracks = state.tracksForFilter
 
-      console.log(state.filters[action.payload.nameFilter]);
+      console.log(state.filters[action.payload.nameFilter])
 
-      state.isFiltred = true;
+      state.isFiltred = true
       if (state.filters.years) {
-        state.$isYearsClick = true;
-        if (state.filters.years === "Сначала старые") {
-          state.countYears = state.countYears = 1;
+        state.$isYearsClick = true
+        if (state.filters.years === 'Сначала старые') {
+          state.countYears = state.countYears = 1
           state.filteredTracks = [...state.filteredTracks].sort(
             (a, b) => new Date(a.release_date) - new Date(b.release_date)
-          );
+          )
         }
-        if (state.filters.years === "Сначала новые") {
-          state.countYears = state.countYears = 1;
+        if (state.filters.years === 'Сначала новые') {
+          state.countYears = state.countYears = 1
           state.filteredTracks = [...state.filteredTracks].sort(
             (a, b) => new Date(b.release_date) - new Date(a.release_date)
-          );
+          )
         }
-        if (state.filters.years === "По умолчанию") {
-          state.countYears = state.countYears = 0;
-          state.filteredTracks = state.tracksForFilter;
+        if (state.filters.years === 'По умолчанию') {
+          state.countYears = state.countYears = 0
+          state.filteredTracks = state.tracksForFilter
         }
       }
 
       if (state.filters.genre.length > 0) {
-        state.$isGenreClick = true;
+        state.$isGenreClick = true
         state.filteredTracks = state.filters.genre
           .map((elemFilter) => {
             return state.filteredTracks.filter(
               (elem) => elem.genre === elemFilter
-            );
+            )
           })
-          .flat();
+          .flat()
       }
 
       if (state.filters.author.length > 0) {
-        state.$isAuthorClick = true;
+        state.$isAuthorClick = true
         state.filteredTracks = state.filters.author
           .map((authorItem) => {
             return state.filteredTracks.filter(
               (elem) => elem.author === authorItem
-            );
+            )
           })
-          .flat();
-        console.log(state.filteredTracks);
-       
+          .flat()
+        console.log(state.filteredTracks)
       }
-
-      
 
       if (state.filters.search) {
         state.filteredTracks = state.filteredTracks.filter((track) => {
@@ -144,27 +136,10 @@ const trackSlice = createSlice({
             track.author
               .toLowerCase()
               .includes(state.filters.search.toLowerCase())
-          );
-        });
-      } 
-      if (state.filters.search) {
-        state.filtredFavoriteTracks = state.filtredFavoriteTracks.filter(
-          (track) => {
-            return (
-              track.name
-                .toLowerCase()
-                .includes(state.filters.search.toLowerCase()) ||
-              track.author
-                .toLowerCase()
-                .includes(state.filters.search.toLowerCase())
-            );
-          }
-        );
+          )
+        })
       }
-
     },
-
-
 
     setShuffledTracks(state) {
       state.shuffledTracks = state.tracks.sort(() => Math.random() - 0.5)
@@ -174,7 +149,7 @@ const trackSlice = createSlice({
 
       if (state.isShuffled) {
         state.shuffledTracks.sort(() => Math.random() - 0.5)
-      } else { 
+      } else {
         state.shuffledTracks = state.tracks
       }
     },
@@ -190,9 +165,6 @@ const trackSlice = createSlice({
     setFavorite(state, action) {
       state.favorite = action.payload.track
     },
-    // setCurrentPlaylist(state) {
-    //   state.currentPlaylist = state.tracks
-    // },
     setFavPlaylist(state, action) {
       state.favPlaylist = action.payload
     },
@@ -223,7 +195,7 @@ const trackSlice = createSlice({
       state.filteredTracks = action.payload.filteredTracks
     },
     setTrackListForFilter: (state, action) => {
-      state.tracksForFilter = action.payload;
+      state.tracksForFilter = action.payload
     },
     setCategoryId(state, action) {
       state.categoryId = action.payload.categoryId

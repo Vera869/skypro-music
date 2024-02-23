@@ -87,26 +87,26 @@ export const clearFilteredButton = styled.div`
   border-radius: 60px;
   padding: 6px 20px;
   position: relative;
-  border-color: ${(props) => props.theme.borderColorButton};
+  border-color: #d9b6ff
 
   &:hover {
-    border-color: ${(props) => props.theme.borderColorButton};
-    color: ${(props) => props.theme.colorBtnHover};
+    border-color: #d9b6ff;
+    color: #d9b6ff;
     cursor: pointer;
   }
   &:not(:last-child) {
     margin-right: 10px;
   }
   &:active {
-    // border-color: ${(props) => props.theme.borderColorButton};
-    // color: ${(props) => props.theme.colorBtnHover};
+    // border-color: #d9b6ff;
+    // color:#d9b6ff;
     cursor: pointer;
   }
 `;
 export const filterCountAuthor = styled.div`
   position: absolute;
-  top: -14px;
-  left: 210px;
+  top: 227px;
+  left: 580px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
   background: #8215f9;
@@ -115,12 +115,12 @@ export const filterCountAuthor = styled.div`
   text-align: center;
   opacity: 1;
   z-index: 1;
-  // color: ${(props) => props.theme.colorCount};
+  color: #d9b6ff;
 `;
 export const filterCountGenre = styled.div`
   position: absolute;
   top: -14px;
-  left: 310px;
+  left: 240px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
   background: #8215f9;
@@ -129,12 +129,13 @@ export const filterCountGenre = styled.div`
   text-align: center;
   opacity: 1;
   z-index: 1;
-  // color: ${(props) => props.theme.colorCount};
+  color: #d9b6ff;
 `;
 export const filterCountYears = styled.div`
   position: absolute;
   top: -14px;
-  right: 0px;
+  right: 200px;
+  // left: 240px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
   background: #8215f9;
@@ -143,5 +144,5 @@ export const filterCountYears = styled.div`
   text-align: center;
   opacity: 1;
   z-index: 1;
-  // color: ${(props) => props.theme.colorCount};
+  color: #d9b6ff;
 `;

@@ -102,7 +102,6 @@ function FilterBy() {
   useEffect(() => {
     console.log(filteredAuthorGenreYears)
   }, [filteredAuthorGenreYears])
-  console.log(filterCount)
   return (
     <>
       <S.CenterBlockFilterTitle>Искать по:</S.CenterBlockFilterTitle>
