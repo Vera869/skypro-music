@@ -10,10 +10,13 @@ const trackSlice = createSlice({
     playlist: '',
     shuffledTracks: [],
     currentPlaylist: [],
-    filteredTracks: [],
     isShuffled: false,
     categoryId: null,
     isPlay: false,
+    tracksForFilter: [],
+    filteredTracks: [],
+    isFiltered: false,
+    filters: { author: [], years: [], genre: [], search: "" },
   },
   reducers: {
     setTracks(state, action) {
@@ -77,6 +80,43 @@ const trackSlice = createSlice({
     },
     setCategoryId(state, action) {
       state.categoryId = action.payload.categoryId
+    },
+    setFilters(state, action) {
+      state.filters[action.payload.nameFilter] = action.payload.valueFilter
+      state.isFiltered = true
+
+      const { author, years, genre, search } = state.filters
+
+      if(!author && !years && !genre && !search) {
+        state.isFiltered = false
+      }
+
+      state.filteredTracks = state.tracksForFilter
+
+     if(years) { 
+      if(years === 'Сначала Старые') {
+        state.filteredTracks = [...state.filteredTracks].sort((a, b) => a.release_date - b.release_date)
+      }
+      if(years === 'Сначала Старые') {
+        state.filteredTracks = [...state.filteredTracks].sort((a, b) => b.release_date - a.release_date)
+      }
+      if(years === 'По умолчанию') {
+        state.filteredTracks = state.tracksForFilter     
+       }
+    }
+
+    if(genre) {
+      state.filteredTracks = state.filteredTracks.filter(el => {
+        return el.genre === genre
+      })
+    }
+
+    if(author) {
+      state.filteredTracks = state.filteredTracks.filter(el => {
+        return el.author === author
+      })
+    }
+
     },
   },
 })
