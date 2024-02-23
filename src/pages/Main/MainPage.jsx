@@ -1,22 +1,35 @@
 import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import * as S from '../../components/TrackList/StyledTrackList.js'
-import { setPlaylist, setTracks } from '../../Store/Slices/sliceTrack.js'
+import { clearTheFilter, setFilters, setPlaylist, setTrackListForFilter, setTracks } from '../../Store/Slices/sliceTrack.js'
 import FilterBy from '../../components/FilterBy/FilterBy.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 
 export const Main = ({}) => {
   const dispatch = useDispatch()
   dispatch(setPlaylist('all'))
 
-  const { data: tracks, isLoading, isError } = useGetAllTracksQuery()
-  useEffect(() => {
-    dispatch(setTracks({ tracks }))
-  }, [tracks])
+  const { data, isLoading, isError } = useGetAllTracksQuery()
 
-  if (isError)
+  const filtredData = useSelector((state) => state.tracks.filteredTracks)
+  const initialTracks = useSelector((state) => state.tracks.tracksForFilter)
+  const isFiltred = useSelector((state) => state.tracks.isFiltred)
+  const valueSearch = useSelector((state) => state.tracks.search)
+
+  let newFiltredData = isFiltred ? filtredData : initialTracks
+
+  // useEffect(() => {
+  //   dispatch(setTracks({ tracks }))
+  // }, [tracks])
+  useEffect(() => {
+    dispatch(clearTheFilter());
+    dispatch(setTrackListForFilter(data || []));
+    dispatch(setFilters({ nameFilter: "search", valueFilter: valueSearch }));
+  }, [dispatch, data, isLoading, valueSearch]);
+
+  if (isError && newFiltredData.length === 0)
     return (
       <S.ContentPlaylist>
         <S.ErrorMassege>
@@ -36,7 +49,6 @@ export const Main = ({}) => {
         </S.CenterBlockSearch>
         <S.CenterBlockH2>Треки</S.CenterBlockH2>
         <S.CenterBlockFilter>
-          
           <FilterBy />
         </S.CenterBlockFilter>
         <S.CenterBlockContent>
@@ -54,15 +66,25 @@ export const Main = ({}) => {
             {isLoading ? (
               <SkeletonTracks />
             ) : (
-              tracks.map((track) => {
-                return (
-                  <GetTracks
-                    key={track.id}
-                    track={track}
-                  />
-                )
-              })
-            )}
+              // tracks.map((track) => {
+              //   return <GetTracks key={track.id} track={track} />
+              // })
+              newFiltredData.length ? (
+                newFiltredData.map((track) => {
+                  return (<GetTracks key={track.id} track={track} />
+                    // <Track
+                    //   // refetch={refetch}
+                    //   key={item.id}
+                    //   item={item}
+                    //   {...item}
+                    //   data={data}
+                    //   isFavoriteLike={false}
+                    // />
+                  );}
+                )) : (initialTracks.map((track) => {
+                  return (<GetTracks key={track.id} track={track} />)}))
+                )}
+              
           </S.ContentPlaylist>
         </S.CenterBlockContent>
       </S.MainCenterBlock>

@@ -116,7 +116,6 @@ function FilterBy() {
           <>
             <S.FilterButton className="_btn-text" onClick={showFilterAuthor}>
               исполнителю
-            </S.FilterButton>
             <S.List onClick={(e) => e.stopPropagation()}>
               {data.map((item) => {
                 return (
@@ -136,6 +135,7 @@ function FilterBy() {
                 )
               })}
             </S.List>
+            </S.FilterButton>
           </>
         ) : (
           <>
@@ -154,7 +154,6 @@ function FilterBy() {
           <>
             <S.FilterButton className="_btn-text" onClick={showFilterGenre}>
               жанру
-            </S.FilterButton>
             <S.List onClick={(e) => e.stopPropagation()}>
               {genre.map((item) => {
                 return (
@@ -174,6 +173,7 @@ function FilterBy() {
                 )
               })}
             </S.List>
+            </S.FilterButton>
           </>
         ) : (
           <>
@@ -191,7 +191,7 @@ function FilterBy() {
           <>
             <S.FilterButton className="_btn-text" onClick={showFilterYears}>
             {filterCount.years}
-            </S.FilterButton>
+            
             <S.List onClick={(e) => e.stopPropagation()}>
               {dataTrack.map((item) => {
                 return (
@@ -211,6 +211,7 @@ function FilterBy() {
                 )
               })}
             </S.List>
+            </S.FilterButton>
           </>
         ) : (
           <>

@@ -222,6 +222,9 @@ const trackSlice = createSlice({
     setFilteredTracks(state, action) {
       state.filteredTracks = action.payload.filteredTracks
     },
+    setTrackListForFilter: (state, action) => {
+      state.tracksForFilter = action.payload;
+    },
     setCategoryId(state, action) {
       state.categoryId = action.payload.categoryId
     },
