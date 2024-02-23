@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {   
+const initialState = { 
+   isFiltered: false,  
     years: [],
     author: [],
     genre: []
@@ -12,6 +13,9 @@ const setFilters = createSlice({
   
 
   reducers: {   
+    setIsFiltered: (state, action) => {
+      state.isFiltered = action.payload.isFiltered;
+    },
     setFilterYears: (state, action) => {
         state.years = action.payload.years;     
     },
@@ -35,5 +39,5 @@ const setFilters = createSlice({
   },
 });
 
-export const {setFilterYears, setFilterAuthor, setFilterGenre} = setFilters.actions;
+export const {setFilterYears, setFilterAuthor, setFilterGenre, setIsFiltered} = setFilters.actions;
 export const setFiltersReducer = setFilters.reducer;

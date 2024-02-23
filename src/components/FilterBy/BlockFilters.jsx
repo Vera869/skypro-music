@@ -3,22 +3,26 @@ import { useState } from 'react'
 import { CriterionButton } from './FilterButton.jsx'
 import { FilterList } from './listFilter.jsx'
 import { useGetAllTracksQuery } from '../../Services/index.js'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setIsFiltered } from '../../Store/Slices/sliceFilter.js'
 
 export const CenterblockFilter = ({ tracks }) => {
+  const dispatch = useDispatch
   const [activeCriterion, setActiveCriterion] = useState(null)
-//   const data = useSelector((state) => state.tracks.tracks)
-  const data = tracks
+  const data = useSelector((state) => state.tracks.tracks)
+  // const isFiltered = useSelector((state) => state.setFilters.isFiltered)
+  // const data = tracks
 //   const { data } = useGetAllTracksQuery()
 //   console.log(data);
-  const authorTrack = data.map((item) => item.author)
+  
+    const authorTrack = data.map((item) => item.author)
   const author = Array.from(new Set(authorTrack))
 
   const genreTrack = data.map((item) => item.genre)
   const genre = Array.from(new Set(genreTrack))
 
   const years = ['Сначала новые', 'Сначала старые']
-
+  
   const handleCriterionClick = (criterionName) => {
     if (activeCriterion === criterionName) {
       setActiveCriterion(null)
