@@ -34,16 +34,9 @@ export const PlayListCategory = () => {
   )
   useEffect(() => {
     dispatch(setCategoryPlaylist({data}))
-  }, [])
-  if(data) {
-    useEffect(() => {
-      dispatch(setCategoryPlaylist({data}))
-      dispatch(setCathegoryPlaylistFilter(data.items))
-      dispatch(clearTheFilter())
-    }, [data.items, dispatch])
- 
-  }
-     
+    dispatch(setCathegoryPlaylistFilter(data.items || []))
+    dispatch(clearTheFilter())
+  }, [data, dispatch])    
  
   if (isError)
     return (
