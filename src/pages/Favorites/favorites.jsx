@@ -9,7 +9,7 @@ import SearchBlock from '../../components/FilterBy/SearchFiltered.jsx'
 
 export const Favorites = () => {
   const { data: favTracks, isLoading, isError } = useGetFavTracksQuery()
-  // const valueSearch = useSelector((state) => state.tracks.search)
+  
   const favoriteTracksFiltered = useSelector(
     (state) => state.tracks.filtredFavoriteTracks
   )
@@ -41,12 +41,6 @@ export const Favorites = () => {
     <>
       <S.MainCenterBlock>
         <SearchBlock />
-        {/* <S.CenterBlockSearch>
-          <S.SearchSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-          </S.SearchSvg>
-          <S.SearchText type="search" placeholder="Поиск" name="search" />
-        </S.CenterBlockSearch> */}
         <S.CenterBlockH2>Мой плейлист</S.CenterBlockH2>
         <S.ContentTitle>
           <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>

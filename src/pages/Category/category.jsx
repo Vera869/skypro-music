@@ -4,23 +4,47 @@ import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetCatalogByIdQuery } from '../../Services/index.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { setPlaylist } from '../../Store/Slices/sliceTrack.js'
+import {
+  clearTheFilter,
+  setCategoryPlaylist,
+  setCathegoryPlaylistFilter,
+  setPlaylist,
+} from '../../Store/Slices/sliceTrack.js'
 import SearchBlock from '../../components/FilterBy/SearchFiltered.jsx'
+import { useEffect } from 'react'
 
 export const PlayListCategory = () => {
   const dispatch = useDispatch()
-  const valueSearch = useSelector((state) => state.tracks.search)
 
   dispatch(setPlaylist('categorys'))
-
+  
   const params = useParams()
   const id = params.id
   const {
-    data: arrayCategorys,
+    data,
     isLoading,
     isError,
   } = useGetCatalogByIdQuery({ id })
-
+  
+  const cathegoryPlaylistFiltered = useSelector(
+    (state) => state.tracks.filtredCathegoryPlaylist
+  )
+  const isFiltred = useSelector(
+    (state) => state.tracks.isFiltred
+  )
+  useEffect(() => {
+    dispatch(setCategoryPlaylist({data}))
+  }, [])
+  if(data) {
+    useEffect(() => {
+      dispatch(setCategoryPlaylist({data}))
+      dispatch(setCathegoryPlaylistFilter(data.items))
+      dispatch(clearTheFilter())
+    }, [data.items, dispatch])
+ 
+  }
+     
+ 
   if (isError)
     return (
       <>
@@ -28,19 +52,12 @@ export const PlayListCategory = () => {
         пожалуйста, попробуйте позже.
       </>
     )
+
   return (
     <>
       <S.MainCenterBlock>
         <SearchBlock />
-        {/* <S.CenterBlockSearch>
-          <S.SearchSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-          </S.SearchSvg>
-          <S.SearchText type="search" placeholder="Поиск" name="search" />
-        </S.CenterBlockSearch> */}
-        <S.CenterBlockH2>
-          {!isLoading && arrayCategorys.name}
-        </S.CenterBlockH2>
+        <S.CenterBlockH2>{!isLoading && data.name}</S.CenterBlockH2>
         <S.ContentTitle>
           <S.PlaylistTitleC0l01>Трек</S.PlaylistTitleC0l01>
           <S.PlaylistTitleC0l02>ИСПОЛНИТЕЛЬ</S.PlaylistTitleC0l02>
@@ -52,21 +69,21 @@ export const PlayListCategory = () => {
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>
         <S.ContentPlaylist>
-            {isLoading ? (
-              <SkeletonTracks />
-            ) : (
-              arrayCategorys.items.map((track) => {
-                return (
-                  <GetTracks
-                    key={track.id}
-                    track={track}
-                  />
-                )
-              })
-            )}
-          </S.ContentPlaylist>
+          {isLoading ? (
+            <SkeletonTracks />
+          ) : 
+            // (arrayCategorys.items.map((track) => {
+            //   return <GetTracks key={track.id} track={track} />
+            // })
+
+            (isFiltred ? (cathegoryPlaylistFiltered.map((track) => {
+              return <GetTracks key={track.id} track={track} />
+            })) : (data.items.map((track) => {
+                return <GetTracks key={track.id} track={track} />
+              })))
+          }
+        </S.ContentPlaylist>
       </S.MainCenterBlock>
     </>
   )
 }
-//arrayCategorys.items

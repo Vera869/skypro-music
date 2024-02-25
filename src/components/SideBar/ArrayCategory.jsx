@@ -1,17 +1,17 @@
 export const arrayCategorys = [
   {
     id: 1,
-    src: 'img/playlist01.png',
-    alt: "day's playlist",
+    src: 'img/playlist-classic.png',
+    alt: "playlist-classic",
   },
   {
     id: 2,
-    src: 'img/playlist02.png',
-    alt: '100 hits',
+    src: 'img/playlist-electro.png',
+    alt: 'playlist-electro',
   },
   {
     id: 3,
-    src: 'img/playlist03.png',
-    alt: 'Indi',
+    src: 'img/playlist-rock.png',
+    alt: 'playlist-rock',
   },
 ]

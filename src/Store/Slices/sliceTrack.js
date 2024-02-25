@@ -7,6 +7,7 @@ const trackSlice = createSlice({
     tracks: [],
     favPlaylist: [],
     favorite: [],
+    categoryPlaylist: [],
     playlist: '',
     shuffledTracks: [],
     filteredTracks: [],
@@ -18,6 +19,8 @@ const trackSlice = createSlice({
     tracksForFilter: [],
     tracksFavoriteForFilter: [],
     filtredFavoriteTracks: [],
+    cathegoryPlaylistForFilter: [],
+    filtredCathegoryPlaylist: [],
     filteredAuthorGenreYears: [],
     isFiltred: false,
     $isAuthorClick: false,
@@ -82,7 +85,7 @@ const trackSlice = createSlice({
       }
 
       state.filteredTracks = state.tracksForFilter
-      // state.tracksFavoriteForFilter = [...state.favPlaylist]
+      state.filtredCathegoryPlaylist = state.cathegoryPlaylistForFilter  
       state.filtredFavoriteTracks = state.tracksFavoriteForFilter;
 
       console.log(state.filters[action.payload.nameFilter])
@@ -157,6 +160,20 @@ const trackSlice = createSlice({
           }
         );
       }
+      if (state.filters.search) {
+        state.filtredCathegoryPlaylist = state.filtredCathegoryPlaylist.filter(
+          (track) => {
+            return (
+              track.name
+                .toLowerCase()
+                .includes(state.filters.search.toLowerCase()) ||
+              track.author
+                .toLowerCase()
+                .includes(state.filters.search.toLowerCase())
+            );
+          }
+        );
+      }
     },
 
     setShuffledTracks(state) {
@@ -218,8 +235,14 @@ const trackSlice = createSlice({
     setTrackListFavoriteFilter: (state, action) => {
       state.tracksFavoriteForFilter = action.payload;
     },
+    setCathegoryPlaylistFilter: (state, action) => {
+      state.cathegoryPlaylistForFilter = action.payload;
+    },
     setCategoryId(state, action) {
-      state.categoryId = action.payload.categoryId
+      state.categoryId = action.payload
+    },
+    setCategoryPlaylist(state, action) {
+      state.categoryPlaylist = action.payload
     },
   },
 })
@@ -239,12 +262,14 @@ export const {
   setFavorite,
   setPlaylist,
   setFavPlaylist,
+  setCategoryPlaylist,
 
   setFilters,
   setTrackListForFilter,
   clearTheFilter,
   selectedFiltered,
   setTrackListFavoriteFilter,
+  setCathegoryPlaylistFilter
 } = trackSlice.actions
 
 export const trackReducer = trackSlice.reducer

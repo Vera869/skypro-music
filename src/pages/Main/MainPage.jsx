@@ -45,12 +45,6 @@ export const Main = ({}) => {
     <>
       <S.MainCenterBlock>
         <SearchBlock />
-        {/* <S.CenterBlockSearch>
-          <S.SearchSvg>
-            <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
-          </S.SearchSvg>
-          <S.SearchText type="search" placeholder="Поиск" name="search" />
-        </S.CenterBlockSearch> */}
         <S.CenterBlockH2>Треки</S.CenterBlockH2>
         <S.CenterBlockFilter>
           <FilterBy />
