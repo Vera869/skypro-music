@@ -184,9 +184,6 @@ const trackSlice = createSlice({
     setActiveTrack(state, action) {
       state.activeTrack = action.payload.track
     },
-    setTracks(state, action) {
-      state.tracks = action.payload.tracks
-    },
     setCurrentPlaylist(state, action) {
       state.currentPlaylist = action.payload
     },

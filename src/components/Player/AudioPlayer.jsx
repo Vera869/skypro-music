@@ -134,7 +134,7 @@ function AudioPlayer() {
   const userId = user.id
 
   const [isFavourite, setFavourite] = useState(false)
-  
+
   useEffect(() => {
     if (isPlay) {
       setFavourite(Boolean(staredUser.find((id) => id.id === userId)))
@@ -244,13 +244,9 @@ function AudioPlayer() {
                 <S.TrackPlayLikeDis>
                   <S.TrackPlayLike
                     className="_btn-icon"
-                    // onClick={() => {
-                    //   favClick
-                    // }}
                   >
                     <S.TrackPlayLikeSvg
                       alt="like"
-                      // fill={isFavourite ? 'violet' : 'gray'}
                       onClick={() => {
                         favClick()
                       }}

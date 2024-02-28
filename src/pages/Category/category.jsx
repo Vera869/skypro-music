@@ -25,17 +25,20 @@ export const PlayListCategory = () => {
     isLoading,
     isError,
   } = useGetCatalogByIdQuery({ id })
-  console.log(data);
+
   const cathegoryPlaylistFiltered = useSelector(
     (state) => state.tracks.filtredCathegoryPlaylist
   )
   const isFiltred = useSelector(
     (state) => state.tracks.isFiltred
   )
-  useEffect((data) => {
-    dispatch(setCategoryPlaylist({data}))
-    dispatch(setCathegoryPlaylistFilter(data.items || []))
-    dispatch(clearTheFilter())
+  useEffect(() => {
+    if(data) {
+      dispatch(setCategoryPlaylist(data.items))
+      dispatch(setCathegoryPlaylistFilter(data.items || []))
+      dispatch(clearTheFilter())
+    }
+   
   }, [data, dispatch])    
  
   if (isError)
@@ -70,7 +73,7 @@ export const PlayListCategory = () => {
             // })
 
             (isFiltred ? (cathegoryPlaylistFiltered.map((track) => {
-              return <GetTracks key={track.id} track={track} currentPlaylist={data.items}/>
+              return <GetTracks key={track.id} track={track} currentPlaylist={cathegoryPlaylistFiltered}/>
             })) : (data.items.map((track) => {
                 return <GetTracks key={track.id} track={track} currentPlaylist={data.items}/>
               })))

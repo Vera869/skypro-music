@@ -19,6 +19,8 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
   
+  const isFiltred = useSelector((state) => state.tracks.isFiltred)
+  
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
 
