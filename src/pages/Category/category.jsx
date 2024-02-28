@@ -25,7 +25,7 @@ export const PlayListCategory = () => {
     isLoading,
     isError,
   } = useGetCatalogByIdQuery({ id })
-  
+  console.log(data.items);
   const cathegoryPlaylistFiltered = useSelector(
     (state) => state.tracks.filtredCathegoryPlaylist
   )
@@ -70,9 +70,9 @@ export const PlayListCategory = () => {
             // })
 
             (isFiltred ? (cathegoryPlaylistFiltered.map((track) => {
-              return <GetTracks key={track.id} track={track} />
+              return <GetTracks key={track.id} track={track} currentPlaylist={data.items}/>
             })) : (data.items.map((track) => {
-                return <GetTracks key={track.id} track={track} />
+                return <GetTracks key={track.id} track={track} currentPlaylist={data.items}/>
               })))
           }
         </S.ContentPlaylist>

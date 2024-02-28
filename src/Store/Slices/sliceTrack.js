@@ -3,8 +3,9 @@ import { createSlice } from '@reduxjs/toolkit'
 const trackSlice = createSlice({
   name: 'tracks',
   initialState: {
-    activeTrack: {},
     tracks: [],
+    currentPlaylist: [],
+    activeTrack: {},
     favPlaylist: [],
     favorite: [],
     categoryPlaylist: [],
@@ -177,7 +178,7 @@ const trackSlice = createSlice({
     },
 
     setShuffledTracks(state) {
-      state.shuffledTracks = state.tracks.sort(() => Math.random() - 0.5)
+      state.shuffledTracks = state.currentPlaylist.sort(() => Math.random() - 0.5)
     },
     setIsShuffled(state) {
       state.isShuffled = !state.isShuffled
@@ -185,7 +186,7 @@ const trackSlice = createSlice({
       if (state.isShuffled) {
         state.shuffledTracks.sort(() => Math.random() - 0.5)
       } else {
-        state.shuffledTracks = state.tracks
+        state.shuffledTracks = state.currentPlaylist
       }
     },
     setIsPlay(state) {
@@ -197,6 +198,10 @@ const trackSlice = createSlice({
     setTracks(state, action) {
       state.tracks = action.payload.tracks
     },
+    setCurrentPlaylist(state, action) {
+      state.currentPlaylist = action.payload
+      // console.log(state.currentPlaylist);
+    },
     setFavorite(state, action) {
       state.favorite = action.payload.track
     },
@@ -207,7 +212,7 @@ const trackSlice = createSlice({
       state.playlist = action.payload
     },
     playNextTrack(state) {
-      const playlist = state.isShuffled ? state.shuffledTracks : state.tracks
+      const playlist = state.isShuffled ? state.shuffledTracks : state.currentPlaylist
 
       const indexCurrentTrack = playlist.findIndex((track) => {
         return track.id === state.activeTrack.id
@@ -217,7 +222,7 @@ const trackSlice = createSlice({
       }
     },
     playPrevTrack(state) {
-      const playlist = state.isShuffled ? state.shuffledTracks : state.tracks
+      const playlist = state.isShuffled ? state.shuffledTracks : state.currentPlaylist
 
       const indexCurrentTrack = playlist.findIndex((track) => {
         return track.id === state.activeTrack.id

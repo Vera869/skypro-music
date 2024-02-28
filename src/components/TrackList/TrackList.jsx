@@ -1,7 +1,7 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack, setIsPlay} from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setCurrentPlaylist, setIsPlay} from '../../Store/Slices/sliceTrack.js'
 import {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 
 
-export const GetTracks = ({ track } ) => {
+export const GetTracks = ({ track }, currentPlaylist ) => {
   const [isLike, setIsLike] = useState(false)
 
   const dispatch = useDispatch()
@@ -19,6 +19,10 @@ export const GetTracks = ({ track } ) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
   // const favorite = useSelector((state) => state.tracks.favorite)
+  console.log(currentPlaylist);
+  dispatch(setCurrentPlaylist(currentPlaylist))
+  const cPlaylist = useSelector((state) => state.tracks.currentPlaylist)
+  console.log(cPlaylist);
 
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
@@ -38,8 +42,6 @@ export const GetTracks = ({ track } ) => {
     } else {
       addLike({id})
       setIsLike(true)
-      // dispatch(setFavorite({id: track.id, track: track }))
-      // dispatch(setFavorite(staredUser.some((user) => user.id === userId)))
       console.log("like");
 
     }
@@ -55,6 +57,7 @@ export const GetTracks = ({ track } ) => {
 
   const clickTrack = ({ track }) => {
     dispatch(setActiveTrack({ track }))
+    dispatch(setCurrentPlaylist(currentPlaylist))
     if (isPlay == false) {
       dispatch(setIsPlay())
     }

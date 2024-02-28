@@ -65,11 +65,11 @@ export const Main = ({}) => {
               <SkeletonTracks />
             ) : newFiltredData.length ? (
               newFiltredData.map((track) => {
-                return <GetTracks key={track.id} track={track} />
+                return <GetTracks key={track.id} track={track} currentPlaylist={data}/>
               })
             ) : (
               initialTracks.map((track) => {
-                return <GetTracks key={track.id} track={track} />
+                return <GetTracks key={track.id} track={track} currentPlaylist={data}/>
               })
             )}
           </S.ContentPlaylist>

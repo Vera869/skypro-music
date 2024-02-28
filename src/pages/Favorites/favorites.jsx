@@ -60,11 +60,11 @@ export const Favorites = () => {
           // })
           favoriteData.length ? (
             favoriteData.map((track) => {
-              return <GetTracks key={track.id} track={track} />
+              return <GetTracks key={track.id} track={track} currentPlaylist={favTracks}/>
             })
           ) : (
             initialFavoriteTracks.map((track) => {
-              return <GetTracks key={track.id} track={track} />
+              return <GetTracks key={track.id} track={track} currentPlaylist={favTracks}/>
             })
           )}
         </S.ContentPlaylist>
