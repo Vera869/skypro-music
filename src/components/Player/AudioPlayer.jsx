@@ -118,7 +118,7 @@ function AudioPlayer(
     dispatch(setShuffledTracks())
     dispatch(setIsShuffled())
   }
-  const favTrack = useSelector((state) => state.tracks.activeTrack)
+  //const favTrack = useSelector((state) => state.tracks.activeTrack)
   // const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
   // const trackID = useSelector((state) => state.tracks.activeTrack.id)
   
@@ -243,7 +243,7 @@ function AudioPlayer(
                         <S.TrackPlayLikeSvg alt="like" 
                         // fill={isFavourite ? 'violet' : 'gray'}
                         >
-                          {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
+                          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
                         </S.TrackPlayLikeSvg>
                       </S.TrackPlayLike>
                       <S.TrackPlayDislike className="_btn-icon">

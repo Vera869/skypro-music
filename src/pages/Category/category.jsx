@@ -25,7 +25,6 @@ export const PlayListCategory = () => {
     isLoading,
     isError,
   } = useGetCatalogByIdQuery({ id })
-  console.log(data.items);
   const cathegoryPlaylistFiltered = useSelector(
     (state) => state.tracks.filtredCathegoryPlaylist
   )

@@ -11,7 +11,7 @@ import { useEffect } from 'react'
 
 
 
-export const GetTracks = ({ track }, currentPlaylist ) => {
+export const GetTracks = ({ track, currentPlaylist } ) => {
   const [isLike, setIsLike] = useState(false)
 
   const dispatch = useDispatch()
@@ -19,17 +19,6 @@ export const GetTracks = ({ track }, currentPlaylist ) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
   
-  // const newPlaylist = currentPlaylist.map((songs) => {
-  //   <li key={songs.id} ></li>
-  //   return songs
-  // } )
-  // console.log(newPlaylist);
- 
-  console.log(currentPlaylist);
-  dispatch(setCurrentPlaylist(currentPlaylist))
-  const cPlaylist = useSelector((state) => state.tracks.currentPlaylist)
-  console.log(cPlaylist);
-
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
 
