@@ -10,10 +10,12 @@ import {
   setIsPlay,
   setShuffledTracks,
 } from '../../Store/Slices/sliceTrack.js'
-import { useAddFavTrackMutation, useDeleteFavTrackMutation } from '../../Services/index.js'
+import {
+  useAddFavTrackMutation,
+  useDeleteFavTrackMutation,
+} from '../../Services/index.js'
 
-function AudioPlayer(
-  ) {
+function AudioPlayer() {
   const audioRef = useRef(null)
   const refProgress = useRef()
 
@@ -24,7 +26,7 @@ function AudioPlayer(
   const activeTrack = useSelector((state) => state.tracks.activeTrack) //активный трек{}
   const dispatch = useDispatch()
   let isShuffled = useSelector((state) => state.tracks.isShuffled)
-  const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id)) 
+  const isVisible = Boolean(useSelector((state) => state.tracks.activeTrack.id))
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const duration = audioRef.current?.duration || 0 //общее время трека
 
@@ -79,7 +81,7 @@ function AudioPlayer(
   }, [audioRef.current, audioRef.current?.currentTime])
 
   useEffect(() => {
-    if(isPlay == false) {
+    if (isPlay == false) {
       dispatch(setIsPlay())
     }
   }, [activeTrack])
@@ -118,34 +120,41 @@ function AudioPlayer(
     dispatch(setShuffledTracks())
     dispatch(setIsShuffled())
   }
-  //const favTrack = useSelector((state) => state.tracks.activeTrack)
-  // const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
-  // const trackID = useSelector((state) => state.tracks.activeTrack.id)
-  
-  // if (favTrack){
-  //   const stared_user = useSelector((state) => state.tracks.activeTrack.stared_user)
-  //   const trackID = useSelector((state) => state.tracks.activeTrack.id)
-  //   const  id = trackID
-  //   const [addLike] = useAddFavTrackMutation(id);
-  //   const [dislike] = useDeleteFavTrackMutation(id);
-   
-  //   const userId = Number(localStorage.getItem('user'));
-  //   const [isFavourite, setFavourite] = useState(false)
-  
-  //   useEffect(() => {
-  //       setFavourite(stared_user.some((user) => user.id === userId))
-  //     }, [favTrack])
-  
-  //     const favClick = () => {
-  //       if (isFavourite) dislike(trackID)
-  //       else addLike(trackID)
-  //     }
+  const favTrack = useSelector((state) => state.tracks.activeTrack)
 
- // }
-  
+  const staredUser = useSelector(
+    (state) => state.tracks.activeTrack.stared_user
+  )
+  const trackID = useSelector((state) => state.tracks.activeTrack.id)
+  const id = trackID
+  const [addLike] = useAddFavTrackMutation(id)
+  const [disLike] = useDeleteFavTrackMutation(id)
+
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userId = user.id
+
+  const [isFavourite, setFavourite] = useState(false)
+  console.log(Boolean(staredUser.find((id) => id.id === userId)))
+  useEffect(() => {
+    if (activeTrack) {
+      // setFavourite(Boolean(staredUser.find((id) => id.id === userId)))
+    }
+  }, [favTrack])
+
+  const favClick = () => {
+    if (isFavourite) {
+      disLike({ id })
+      setFavourite(false)
+      console.log('dislike')
+    } else {
+      addLike({ id })
+      setFavourite(true)
+      console.log('like')
+    }
+  }
+
   return (
-    isVisible
-    && (
+    isVisible && (
       <S.Bar>
         {activeTrack ? (
           <audio
@@ -199,10 +208,7 @@ function AudioPlayer(
                   </S.PlayerBtnNextSvg>
                 </S.PlayerBtnNext>
                 <S.PlayerBtnRepeat onClick={toggleLoop} className="_btn-icon">
-                  <S.PlayerBtnRepeatSvg
-                    alt="repeat"
-                    isLooped={isLooped}
-                  >
+                  <S.PlayerBtnRepeatSvg alt="repeat" isLooped={isLooped}>
                     <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
                   </S.PlayerBtnRepeatSvg>
                 </S.PlayerBtnRepeat>
@@ -219,38 +225,52 @@ function AudioPlayer(
               <S.PlayerTrackPlay>
                 <S.TrackPlayContain>
                   <S.TrackPlayImage>
-                      <S.TrackPlaySvg alt="music">
-                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-                      </S.TrackPlaySvg>
+                    <S.TrackPlaySvg alt="music">
+                      <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                    </S.TrackPlaySvg>
                   </S.TrackPlayImage>
                   <S.TrackPlayAuthor>
-                      <S.TrackPlayAuthorLink>
-                        {activeTrack.author}
-                      </S.TrackPlayAuthorLink>
+                    <S.TrackPlayAuthorLink>
+                      {activeTrack.author}
+                    </S.TrackPlayAuthorLink>
                   </S.TrackPlayAuthor>
                   <S.TrackPlayAlbum>
-                      <S.TrackPlayAlbumLink>
-                        {activeTrack.name}
-                      </S.TrackPlayAlbumLink>
+                    <S.TrackPlayAlbumLink>
+                      {activeTrack.name}
+                    </S.TrackPlayAlbumLink>
                   </S.TrackPlayAlbum>
                 </S.TrackPlayContain>
 
                 <S.TrackPlayLikeDis>
-                      <S.TrackPlayLike className="_btn-icon" 
-                      // onClick={handleFavorite()}
-                      // onClick={() => {favClick()}}
-                      >
-                        <S.TrackPlayLikeSvg alt="like" 
-                        // fill={isFavourite ? 'violet' : 'gray'}
-                        >
-                          <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
-                        </S.TrackPlayLikeSvg>
-                      </S.TrackPlayLike>
-                      <S.TrackPlayDislike className="_btn-icon">
-                        <S.TrackPlayDislikeSvg alt="dislike">
-                          {/* <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use> */}
-                        </S.TrackPlayDislikeSvg>
-                      </S.TrackPlayDislike>
+                  <S.TrackPlayLike
+                    className="_btn-icon"
+                    // onClick={() => {
+                    //   favClick
+                    // }}
+                  >
+                    <S.TrackPlayLikeSvg
+                      alt="like"
+                      // fill={isFavourite ? 'violet' : 'gray'}
+                      onClick={() => {
+                        favClick()
+                      }}
+                    >
+                      {isFavourite ? (
+                        <use
+                          xlinkHref="img/icon/sprite.svg#icon-like"
+                          fill="violet"
+                        />
+                      ) : (
+                        <use xlinkHref="img/icon/sprite.svg#icon-like" />
+                      )}
+                      {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
+                    </S.TrackPlayLikeSvg>
+                  </S.TrackPlayLike>
+                  <S.TrackPlayDislike className="_btn-icon">
+                    <S.TrackPlayDislikeSvg alt="dislike">
+                      {/* <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use> */}
+                    </S.TrackPlayDislikeSvg>
+                  </S.TrackPlayDislike>
                 </S.TrackPlayLikeDis>
               </S.PlayerTrackPlay>
             </S.BarPleer>

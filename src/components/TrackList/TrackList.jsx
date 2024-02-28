@@ -99,7 +99,6 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
               onClick={() => {
                 favClick({ track })
               }}
-             //  track.stared_user.find((user) => user.id === userId) || track.stared_user.some((user) => user.id === userId)
             >{isLike ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
               <use xlinkHref="img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>

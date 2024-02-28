@@ -55,9 +55,7 @@ export const Favorites = () => {
         <S.ContentPlaylist>
           {isLoading ? (
             <SkeletonTracks />
-          ) : // favTracks.map((track) => {
-          //   return <GetTracks key={track.id} track={track} />
-          // })
+          ) : 
           favoriteData.length ? (
             favoriteData.map((track) => {
               return <GetTracks key={track.id} track={track} currentPlaylist={favTracks}/>

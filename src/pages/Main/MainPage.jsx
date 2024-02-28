@@ -18,7 +18,6 @@ export const Main = ({}) => {
   dispatch(setPlaylist('all'))
 
   const { data, isLoading, isError } = useGetAllTracksQuery()
-  console.log(data);
 
   const filtredData = useSelector((state) => state.tracks.filteredTracks)
   const initialTracks = useSelector((state) => state.tracks.tracksForFilter)

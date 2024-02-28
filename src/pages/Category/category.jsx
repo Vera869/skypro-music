@@ -25,13 +25,14 @@ export const PlayListCategory = () => {
     isLoading,
     isError,
   } = useGetCatalogByIdQuery({ id })
+  console.log(data);
   const cathegoryPlaylistFiltered = useSelector(
     (state) => state.tracks.filtredCathegoryPlaylist
   )
   const isFiltred = useSelector(
     (state) => state.tracks.isFiltred
   )
-  useEffect(() => {
+  useEffect((data) => {
     dispatch(setCategoryPlaylist({data}))
     dispatch(setCathegoryPlaylistFilter(data.items || []))
     dispatch(clearTheFilter())

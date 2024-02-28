@@ -89,7 +89,7 @@ const trackSlice = createSlice({
       state.filtredCathegoryPlaylist = state.cathegoryPlaylistForFilter  
       state.filtredFavoriteTracks = state.tracksFavoriteForFilter;
 
-      console.log(state.filters[action.payload.nameFilter])
+      // console.log(state.filters[action.payload.nameFilter])
 
       state.isFiltred = true
       if (state.filters.years) {
@@ -177,18 +177,7 @@ const trackSlice = createSlice({
       }
     },
 
-    setShuffledTracks(state) {
-      state.shuffledTracks = state.currentPlaylist.sort(() => Math.random() - 0.5)
-    },
-    setIsShuffled(state) {
-      state.isShuffled = !state.isShuffled
-
-      if (state.isShuffled) {
-        state.shuffledTracks.sort(() => Math.random() - 0.5)
-      } else {
-        state.shuffledTracks = state.currentPlaylist
-      }
-    },
+   
     setIsPlay(state) {
       state.isPlay = !state.isPlay
     },
@@ -200,7 +189,6 @@ const trackSlice = createSlice({
     },
     setCurrentPlaylist(state, action) {
       state.currentPlaylist = action.payload
-      // console.log(state.currentPlaylist);
     },
     setFavorite(state, action) {
       state.favorite = action.payload.track
@@ -210,6 +198,18 @@ const trackSlice = createSlice({
     },
     setPlaylist(state, action) {
       state.playlist = action.payload
+    },
+    setShuffledTracks(state) {
+      state.shuffledTracks = [...state.currentPlaylist].sort(() => Math.random() - 0.5)
+    },
+    setIsShuffled(state) {
+      state.isShuffled = !state.isShuffled
+
+      if (state.isShuffled) {
+        state.shuffledTracks.sort(() => Math.random() - 0.5)
+      } else {
+        state.shuffledTracks = state.currentPlaylist
+      }
     },
     playNextTrack(state) {
       const playlist = state.isShuffled ? state.shuffledTracks : state.currentPlaylist
