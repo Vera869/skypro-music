@@ -9,6 +9,7 @@ import {
   setIsShuffled,
   setIsPlay,
   setShuffledTracks,
+  setIsFavorite,
 } from '../../Store/Slices/sliceTrack.js'
 import {
   useAddFavTrackMutation,
@@ -121,6 +122,7 @@ function AudioPlayer() {
     dispatch(setIsShuffled())
   }
   const favTrack = useSelector((state) => state.tracks.activeTrack)
+  const isFavorite = useSelector((state) => state.tracks.isFavorite)
 
   const staredUser = useSelector(
     (state) => state.tracks.activeTrack.stared_user
@@ -133,22 +135,25 @@ function AudioPlayer() {
   const user = JSON.parse(localStorage.getItem('user'))
   const userId = user.id
 
-  const [isFavourite, setFavourite] = useState(false)
+  // const [isFavourite, setFavourite] = useState(false)
+  const [isLike, setIsLike] = useState(false)
 
   useEffect(() => {
     if (isPlay) {
-      setFavourite(Boolean(staredUser.find((id) => id.id === userId)))
+      setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
     }
   }, [favTrack, dispatch])
 
   const favClick = () => {
-    if (isFavourite) {
+    if (isLike) {
       disLike({ id })
-      setFavourite(false)
+      setIsLike(false)
+      dispatch(setIsFavorite(false))
       console.log('dislike')
     } else {
       addLike({ id })
-      setFavourite(true)
+      setIsLike(true)
+      dispatch(setIsFavorite(true))
       console.log('like')
     }
   }
@@ -251,7 +256,7 @@ function AudioPlayer() {
                         favClick()
                       }}
                     >
-                      {isFavourite ? (
+                      {isLike || isFavorite ? (
                         <use
                           xlinkHref="img/icon/sprite.svg#icon-like"
                           fill="violet"

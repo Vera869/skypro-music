@@ -1,7 +1,7 @@
 import * as S from '../TrackList/StyledTrackList.js'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setActiveTrack, setCurrentPlaylist, setIsPlay} from '../../Store/Slices/sliceTrack.js'
+import { setActiveTrack, setCurrentPlaylist, setIsFavorite, setIsPlay} from '../../Store/Slices/sliceTrack.js'
 import {
   useAddFavTrackMutation,
   useDeleteFavTrackMutation,
@@ -18,8 +18,8 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
-  
-  const isFiltred = useSelector((state) => state.tracks.isFiltred)
+  const isFavorite = useSelector((state) => state.tracks.isFavorite)
+  // const isFiltred = useSelector((state) => state.tracks.isFiltred)
   
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
@@ -35,10 +35,12 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
     if (isLike) {
       disLike({id})
       setIsLike(false)
+      dispatch(setIsFavorite(false))
       console.log("dislike");
     } else {
       addLike({id})
       setIsLike(true)
+      dispatch(setIsFavorite(true))
       console.log("like");
 
     }
@@ -101,7 +103,7 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
               onClick={() => {
                 favClick({ track })
               }}
-            >{isLike ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
+            >{isLike || isFavorite ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
               <use xlinkHref="img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>
             <S.TreckTimeText>
