@@ -188,7 +188,7 @@ const trackSlice = createSlice({
       state.currentPlaylist = action.payload
     },
     setIsFavorite(state, action) {
-      state.isFavorite = action.payload.track
+      state.isFavorite = action.payload
     },
     setFavPlaylist(state, action) {
       state.favPlaylist = action.payload

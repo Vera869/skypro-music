@@ -38,22 +38,18 @@ export const GetTracks = ({ track, currentPlaylist }) => {
       disLike({ id })
       setIsLike(false)
       dispatch(setIsFavorite(false))
-      console.log('dislike')
-      if (id === activeTrackId) {
+      if(activeTrackId === id) {
         dispatch(setIsFavorite(false))
-      } else {
-        dispatch(setIsFavorite(true))
       }
+      console.log('dislike')
     } else {
       addLike({ id })
       setIsLike(true)
       dispatch(setIsFavorite(true))
-      console.log('like')
-      if (id === activeTrackId) {
+      if(activeTrackId === id) {
         dispatch(setIsFavorite(true))
-      } else {
-        dispatch(setIsFavorite(false))
       }
+      console.log('like')
     }
   }
   useEffect(() => {
@@ -73,21 +69,6 @@ export const GetTracks = ({ track, currentPlaylist }) => {
     dispatch(setIsPlay())
     return
   }
-
-  //   useEffect(() => {
-  //     if(id === activeTrackId) {
-  //      dispatch(setIsFavorite(true))
-  //     } else {
-  //       dispatch(setIsFavorite(false))
-  //     }
-  //  }, [activeTrack, dispatch])
-
-  //  useEffect(() => {
-  //   if(activeTrack) {
-  //    setIsFavorite(Boolean(id === activeTrackId))
-  //   }
-  // }, [activeTrack, dispatch])
-
   return (
     <>
       <S.PlaylistItem key={track.id}>
@@ -129,7 +110,7 @@ export const GetTracks = ({ track, currentPlaylist }) => {
                   favClick({ track })
                 }}
               >
-                {isLike || isFavorite ? (
+                {isLike ? (
                   <use
                     xlinkHref="/img/icon/sprite.svg#icon-like"
                     fill="violet"

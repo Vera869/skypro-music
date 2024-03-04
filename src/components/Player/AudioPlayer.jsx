@@ -136,12 +136,22 @@ function AudioPlayer() {
   const userId = user.id
 
   const [isLike, setIsLike] = useState(false)
+  const [isFav, setIsFav] = useState(false)
 
   useEffect(() => {
     if (isPlay) {
       setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
     }
-  }, [favTrack, dispatch])
+  
+  }, [favTrack, dispatch, isFavorite])
+
+  useEffect(() => {
+    console.log(isFavorite);
+    if (favTrack) {
+      setIsFav(Boolean(isFavorite))
+    }
+  }, [favTrack, isFavorite])
+
 
   const favClick = () => {
     if (isLike) {
@@ -255,7 +265,7 @@ function AudioPlayer() {
                         favClick()
                       }}
                     >
-                      {isLike || isFavorite ? (
+                      {isLike || isFav ? (
                         <use
                           xlinkHref="/img/icon/sprite.svg#icon-like"
                           fill="violet"
