@@ -19,7 +19,6 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
   const isFavorite = useSelector((state) => state.tracks.isFavorite)
-  // const isFiltred = useSelector((state) => state.tracks.isFiltred)
   
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
@@ -75,7 +74,7 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
               </S.TreckTitleImageActive>
             ) : (
               <S.TreckTitleSvg alt="music">
-                <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                <use xlinkHref="/img/icon/sprite.svg#icon-note"></use>
               </S.TreckTitleSvg>
             )}
           </S.TreckTitleImage>
@@ -103,8 +102,8 @@ export const GetTracks = ({ track, currentPlaylist } ) => {
               onClick={() => {
                 favClick({ track })
               }}
-            >{isLike || isFavorite ?  <use xlinkHref="img/icon/sprite.svg#icon-like" fill='violet' /> : 
-              <use xlinkHref="img/icon/sprite.svg#icon-like" />}
+            >{isLike || isFavorite ?  <use xlinkHref="/img/icon/sprite.svg#icon-like" fill='violet' /> : 
+              <use xlinkHref="/img/icon/sprite.svg#icon-like" />}
             </S.TreckTimeSvg>
             <S.TreckTimeText>
               {(Number(track.duration_in_seconds) / 60).toFixed(2)}
