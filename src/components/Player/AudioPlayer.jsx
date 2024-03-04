@@ -135,7 +135,6 @@ function AudioPlayer() {
   const user = JSON.parse(localStorage.getItem('user'))
   const userId = user.id
 
-  // const [isFavourite, setFavourite] = useState(false)
   const [isLike, setIsLike] = useState(false)
 
   useEffect(() => {
@@ -264,14 +263,8 @@ function AudioPlayer() {
                       ) : (
                         <use xlinkHref="/img/icon/sprite.svg#icon-like" />
                       )}
-                      {/* <use xlinkHref="img/icon/sprite.svg#icon-like"></use> */}
                     </S.TrackPlayLikeSvg>
                   </S.TrackPlayLike>
-                  {/* <S.TrackPlayDislike className="_btn-icon">
-                    <S.TrackPlayDislikeSvg alt="dislike">
-                      <use xlinkHref="img/icon/sprite.svg#icon-dislike"></use>
-                    </S.TrackPlayDislikeSvg>
-                  </S.TrackPlayDislike> */}
                 </S.TrackPlayLikeDis>
               </S.PlayerTrackPlay>
             </S.BarPleer>
