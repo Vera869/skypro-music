@@ -159,11 +159,13 @@ function AudioPlayer() {
       setIsLike(false)
       dispatch(setIsFavorite(false))
       console.log('dislike')
+      console.log(isFavorite)
     } else {
       addLike({ id })
       setIsLike(true)
       dispatch(setIsFavorite(true))
       console.log('like')
+      console.log(isFavorite)
     }
   }
 
