@@ -139,9 +139,7 @@ function AudioPlayer() {
   const [isFav, setIsFav] = useState(false)
 
   useEffect(() => {
-    if (isPlay) {
-      setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
-    }
+      setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
   
   }, [favTrack, dispatch, isFavorite])
 
