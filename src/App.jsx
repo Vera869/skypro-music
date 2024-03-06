@@ -1,13 +1,16 @@
 import { AppRoutes } from './routes'
 import { UserContext } from './Context/authorization'
 import { useState } from 'react'
-import { Provider } from 'react-redux'
+import { Provider, useDispatch } from 'react-redux'
 import {store} from './Store/store'
+import { useEffect } from 'react'
+import { setAccess } from './Store/Slices/authorization'
 
 export const App = () => {
+  const dispatch = useDispatch
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')))
   const [isLoginMode, setIsLoginMode] = useState(false)
-
+ 
   return (
     <div className="App">
       <Provider store={store}>

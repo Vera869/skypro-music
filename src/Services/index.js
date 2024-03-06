@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { setAccess } from '../Store/Slices/authorization'
-
 const baseQueryRefresh = async (args, api, extraOptions) => {
   const baseQuery = fetchBaseQuery({
     baseUrl: 'https://skypro-music-api.skyeng.tech',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authorization.access
-      // console.log(token);
+      console.log(token);
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }
@@ -16,7 +15,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
 
   const forceLogout = () => {
     localStorage.removeItem("user")
-    window.location.href = '/login'
+    // window.location.href = '/login'
     
   }
 
@@ -69,12 +68,31 @@ export const musicTracksApi = createApi({
   endpoints: (builder) => ({
     getAllTracks: builder.query({
       query: () => ({ url: `/catalog/track/all/` }),
+      transformResponse: (response, meta, arg) => {
+        const id = JSON.parse(localStorage.getItem("user"))?.id
+        const data = response.map((track) => {
+          const isLiked = track.stared_user.find((user) => user.id === id)
+          if(isLiked) {
+            return {...track, isLiked: true}
+          }
+          return track
+        })
+        //console.log(data);
+        return data
+      },
       providesTags: ['tracks'],
     }),
     getFavTracks: builder.query({
       query: () => ({
         url: '/catalog/track/favorite/all/',
       }),
+      transformResponse: (response) => {
+        const data = response.map((track) => {
+            return {...track, isLiked: true}
+        })
+        console.log(data);
+        return data
+      },
       providesTags: ['tracks'],
     }),
     addFavTrack: builder.mutation({

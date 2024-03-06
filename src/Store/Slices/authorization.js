@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit'
 const authorizationSlice = createSlice({
   name: 'authorization',
   initialState: {
-    access: '',
-    refresh: '',
+    access: JSON.parse(localStorage.getItem('accessToken')),
+    refresh: JSON.parse(localStorage.getItem('refreshToken')),
   },
   reducers: {
     setAccess(state, action) {

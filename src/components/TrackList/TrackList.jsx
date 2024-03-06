@@ -21,7 +21,7 @@ export const GetTracks = ({ track, currentPlaylist }) => {
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
-  const isFavorite = useSelector((state) => state.tracks.isFavorite)
+  //const isFavorite = useSelector((state) => state.tracks.isFavorite)
   const activeTrackId = useSelector((state) => state.tracks.activeTrack.id)
 
   const [addLike] = useAddFavTrackMutation()
