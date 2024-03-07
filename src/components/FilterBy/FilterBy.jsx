@@ -85,10 +85,11 @@ function FilterBy() {
             <S.List onClick={(e) => e.stopPropagation()}>
               {data.map((item) => {
                 return (
-                  <S.ListEl
+                  <S.ListEl className="activeListEl"
                     $isAuthorClick={$isAuthorClick}
                     $isAuthorSelector={filterCount.author.includes(item.author)}
                     key={item.id}
+                    // {$isAuthorClick ? className="clickListEl": className="activeListEl" }
                     onClick={() => {
                       handleFilter({
                         nameFilter: 'author',
@@ -123,7 +124,7 @@ function FilterBy() {
             <S.List onClick={(e) => e.stopPropagation()}>
               {genre.map((item) => {
                 return (
-                  <S.ListEl
+                  <S.ListEl className="activeListEl"
                     $isGenreClick={$isGenreClick}
                     $isGenreSelector={filterCount.genre.includes(item)}
                     key={item}
@@ -161,7 +162,7 @@ function FilterBy() {
             <S.List onClick={(e) => e.stopPropagation()}>
               {dataTrack.map((item) => {
                 return (
-                  <S.ListEl
+                  <S.ListEl className="activeListEl" 
                   $isYearsClick={$isYearsClick}
                   $isYearsSelector={filterCount.years.includes(item)}
                     onClick={() => {

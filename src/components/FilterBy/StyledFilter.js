@@ -14,14 +14,18 @@ export const FilterButtonList = styled.div`
   align-items: center;
   gap:  32px;
 `
-export const ListEl = styled.div`
+export const ListEl = styled.div` //#ad61ff;
 
+&.clickListEl {
+  color: red;  
+  cursor: pointer;
+}
   &:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
     cursor: pointer;
-    &.activeListEl {
+  &.activeListEl {
       border-color: #ad61ff;
       color: #ad61ff;
       cursor: pointer;
@@ -98,8 +102,8 @@ export const clearFilteredButton = styled.div`
     margin-right: 10px;
   }
   &:active {
-    // border-color: #d9b6ff;
-    // color:#d9b6ff;
+    border-color: #d9b6ff;
+    color:#d9b6ff;
     cursor: pointer;
   }
 `;

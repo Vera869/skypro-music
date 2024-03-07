@@ -37,6 +37,14 @@ export const Favorites = () => {
         </S.ErrorMassege>
       </S.ContentPlaylist>
     )
+    if (favTracks?.length === 0)
+    return (
+      <S.ContentPlaylist>
+        <S.ErrorMassege>
+          У вас ещё нет избранных треков
+        </S.ErrorMassege>
+      </S.ContentPlaylist>
+    )
   return (
     <>
       <S.MainCenterBlock>
@@ -56,10 +64,11 @@ export const Favorites = () => {
           {isLoading ? (
             <SkeletonTracks />
           ) : 
-          favoriteData.length ? (
-            favoriteData.map((track) => {
+          isFiltredFavorite ? (
+            favoriteTracksFiltered.length === 0 ? (<S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
+            favoriteTracksFiltered.map((track) => {
               return <GetTracks key={track.id} track={track} currentPlaylist={favoriteData}/>
-            })
+            }))
           ) : (
             initialFavoriteTracks.map((track) => {
               return <GetTracks key={track.id} track={track} currentPlaylist={initialFavoriteTracks}/>

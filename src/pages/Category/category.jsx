@@ -17,38 +17,38 @@ export const PlayListCategory = () => {
   const dispatch = useDispatch()
 
   dispatch(setPlaylist('categorys'))
-  
+
   const params = useParams()
   const id = params.id
-  const {
-    data,
-    isLoading,
-    isError,
-  } = useGetCatalogByIdQuery({ id })
+  const { data, isLoading, isError } = useGetCatalogByIdQuery({ id })
 
   const cathegoryPlaylistFiltered = useSelector(
     (state) => state.tracks.filtredCathegoryPlaylist
   )
-  const isFiltred = useSelector(
-    (state) => state.tracks.isFiltred
-  )
+  const isFiltred = useSelector((state) => state.tracks.isFiltred)
   useEffect(() => {
-    if(data) {
+    if (data) {
       dispatch(setCategoryPlaylist(data.items))
       dispatch(setCathegoryPlaylistFilter(data.items || []))
       dispatch(clearTheFilter())
     }
-   
-  }, [data, dispatch])    
- 
+  }, [data, dispatch])
+
   if (isError)
     return (
-      <>
-        К сожалению, при загрузке плэйлиста произошла ошибка, <br></br>
-        пожалуйста, попробуйте позже.
-      </>
+      <S.ContentPlaylist>
+        <S.ErrorMassege>
+          К сожалению, при загрузке плэйлиста произошла ошибка, <br></br>
+          пожалуйста, попробуйте позже.
+        </S.ErrorMassege>
+      </S.ContentPlaylist>
     )
-
+  // if (!isLoading && cathegoryPlaylistFiltered.length === 0)
+  //   return (
+  //     <S.ContentPlaylist>
+  //       <S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>
+  //     </S.ContentPlaylist>
+  //   )
   return (
     <>
       <S.MainCenterBlock>
@@ -67,17 +67,28 @@ export const PlayListCategory = () => {
         <S.ContentPlaylist>
           {isLoading ? (
             <SkeletonTracks />
-          ) : 
-            // (arrayCategorys.items.map((track) => {
-            //   return <GetTracks key={track.id} track={track} />
-            // })
-
-            (isFiltred ? (cathegoryPlaylistFiltered.map((track) => {
-              return <GetTracks key={track.id} track={track} currentPlaylist={cathegoryPlaylistFiltered}/>
-            })) : (data.items.map((track) => {
-                return <GetTracks key={track.id} track={track} currentPlaylist={data.items}/>
-              })))
-          }
+          ) : isFiltred ? (
+            cathegoryPlaylistFiltered.length === 0 ? ( <S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
+            cathegoryPlaylistFiltered.map((track) => {
+              return (
+                <GetTracks
+                  key={track.id}
+                  track={track}
+                  currentPlaylist={cathegoryPlaylistFiltered}
+                />
+              )
+            }))
+          ) : (
+            data.items.map((track) => {
+              return (
+                <GetTracks
+                  key={track.id}
+                  track={track}
+                  currentPlaylist={data.items}
+                />
+              )
+            })
+          )}
         </S.ContentPlaylist>
       </S.MainCenterBlock>
     </>

@@ -134,11 +134,11 @@ function AudioPlayer() {
   const [disLike] = useDeleteFavTrackMutation(id)
 
   const [isLike, setIsLike] = useState(false)
-  const [isFav, setIsFav] = useState(false)
+  // const [isFav, setIsFav] = useState(false)
 
   useEffect(() => {
     if(favTrack?.isLiked) setIsLike(true)
-    setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
+    else setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
   }, [favTrack, staredUser, isFavorite])
 
   useEffect(() => {
@@ -146,7 +146,7 @@ function AudioPlayer() {
     if (favTrack) {
       setIsLike(Boolean(isFavorite))
     }
-  }, [favTrack,  dispatch, isFavorite])
+  }, [isLike,  dispatch, isFavorite])
 
 
   const favClick = () => {

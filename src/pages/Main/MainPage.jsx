@@ -32,7 +32,7 @@ export const Main = ({}) => {
     dispatch(setFilters({ nameFilter: 'search', valueFilter: valueSearch }))
   }, [dispatch, data, isLoading, valueSearch])
 
-  if (isError && newFiltredData.length === 0)
+  if (isError)
     return (
       <S.ContentPlaylist>
         <S.ErrorMassege>
@@ -63,10 +63,11 @@ export const Main = ({}) => {
           <S.ContentPlaylist>
             {isLoading ? (
               <SkeletonTracks />
-            ) : newFiltredData.length ? (
-              newFiltredData.map((track) => {
+            ) : isFiltred ? (
+              filtredData.length === 0 ? (<S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
+                filtredData.map((track) => {
                 return <GetTracks key={track.id} track={track} currentPlaylist={filtredData}/>
-              })
+              }))
             ) : (
               initialTracks.map((track) => {
                 return <GetTracks key={track.id} track={track} currentPlaylist={initialTracks}/>
