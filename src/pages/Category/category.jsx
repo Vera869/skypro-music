@@ -43,12 +43,6 @@ export const PlayListCategory = () => {
         </S.ErrorMassege>
       </S.ContentPlaylist>
     )
-  // if (!isLoading && cathegoryPlaylistFiltered.length === 0)
-  //   return (
-  //     <S.ContentPlaylist>
-  //       <S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>
-  //     </S.ContentPlaylist>
-  //   )
   return (
     <>
       <S.MainCenterBlock>
@@ -68,16 +62,21 @@ export const PlayListCategory = () => {
           {isLoading ? (
             <SkeletonTracks />
           ) : isFiltred ? (
-            cathegoryPlaylistFiltered.length === 0 ? ( <S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
-            cathegoryPlaylistFiltered.map((track) => {
-              return (
-                <GetTracks
-                  key={track.id}
-                  track={track}
-                  currentPlaylist={cathegoryPlaylistFiltered}
-                />
-              )
-            }))
+            cathegoryPlaylistFiltered.length === 0 ? (
+              <S.ErrorMassege>
+                Не найдено треков, удовлетворяющих вашим критериям
+              </S.ErrorMassege>
+            ) : (
+              cathegoryPlaylistFiltered.map((track) => {
+                return (
+                  <GetTracks
+                    key={track.id}
+                    track={track}
+                    currentPlaylist={cathegoryPlaylistFiltered}
+                  />
+                )
+              })
+            )
           ) : (
             data.items.map((track) => {
               return (

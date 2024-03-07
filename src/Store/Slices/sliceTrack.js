@@ -132,7 +132,7 @@ const trackSlice = createSlice({
             )
           })
           .flat()
-        console.log(state.filteredTracks)
+        // console.log(state.filteredTracks)
       }
 
       if (state.filters.search) {

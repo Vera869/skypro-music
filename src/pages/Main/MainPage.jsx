@@ -24,8 +24,6 @@ export const Main = ({}) => {
   const isFiltred = useSelector((state) => state.tracks.isFiltred)
   const valueSearch = useSelector((state) => state.tracks.search)
 
-  let newFiltredData = isFiltred ? filtredData : initialTracks
-
   useEffect(() => {
     dispatch(clearTheFilter())
     dispatch(setTrackListForFilter(data || []))
@@ -64,13 +62,30 @@ export const Main = ({}) => {
             {isLoading ? (
               <SkeletonTracks />
             ) : isFiltred ? (
-              filtredData.length === 0 ? (<S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
+              filtredData.length === 0 ? (
+                <S.ErrorMassege>
+                  Не найдено треков, удовлетворяющих вашим критериям
+                </S.ErrorMassege>
+              ) : (
                 filtredData.map((track) => {
-                return <GetTracks key={track.id} track={track} currentPlaylist={filtredData}/>
-              }))
+                  return (
+                    <GetTracks
+                      key={track.id}
+                      track={track}
+                      currentPlaylist={filtredData}
+                    />
+                  )
+                })
+              )
             ) : (
               initialTracks.map((track) => {
-                return <GetTracks key={track.id} track={track} currentPlaylist={initialTracks}/>
+                return (
+                  <GetTracks
+                    key={track.id}
+                    track={track}
+                    currentPlaylist={initialTracks}
+                  />
+                )
               })
             )}
           </S.ContentPlaylist>

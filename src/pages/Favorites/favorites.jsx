@@ -3,17 +3,24 @@ import { SkeletonTracks } from '../../components/TrackList/SkeletonTracks.jsx'
 import { GetTracks } from '../../components/TrackList/TrackList.jsx'
 import { useGetFavTracksQuery } from '../../Services/index.js'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearTheFilter, setFavPlaylist, setPlaylist, setTrackListFavoriteFilter } from '../../Store/Slices/sliceTrack.js'
+import {
+  clearTheFilter,
+  setFavPlaylist,
+  setPlaylist,
+  setTrackListFavoriteFilter,
+} from '../../Store/Slices/sliceTrack.js'
 import { useEffect } from 'react'
 import SearchBlock from '../../components/FilterBy/SearchFiltered.jsx'
 
 export const Favorites = () => {
   const { data: favTracks, isLoading, isError } = useGetFavTracksQuery()
-  
+
   const favoriteTracksFiltered = useSelector(
     (state) => state.tracks.filtredFavoriteTracks
   )
-  const initialFavoriteTracks = useSelector((state) => state.tracks.tracksFavoriteForFilter)
+  const initialFavoriteTracks = useSelector(
+    (state) => state.tracks.tracksFavoriteForFilter
+  )
   const isFiltredFavorite = useSelector((state) => state.tracks.isFiltred)
 
   let favoriteData = isFiltredFavorite
@@ -37,12 +44,10 @@ export const Favorites = () => {
         </S.ErrorMassege>
       </S.ContentPlaylist>
     )
-    if (favTracks?.length === 0)
+  if (favTracks?.length === 0)
     return (
       <S.ContentPlaylist>
-        <S.ErrorMassege>
-          У вас ещё нет избранных треков
-        </S.ErrorMassege>
+        <S.ErrorMassege>У вас ещё нет избранных треков</S.ErrorMassege>
       </S.ContentPlaylist>
     )
   return (
@@ -63,15 +68,31 @@ export const Favorites = () => {
         <S.ContentPlaylist>
           {isLoading ? (
             <SkeletonTracks />
-          ) : 
-          isFiltredFavorite ? (
-            favoriteTracksFiltered.length === 0 ? (<S.ErrorMassege>Не найдено треков, удовлетворяющих вашим критериям</S.ErrorMassege>) : (
-            favoriteTracksFiltered.map((track) => {
-              return <GetTracks key={track.id} track={track} currentPlaylist={favoriteData}/>
-            }))
+          ) : isFiltredFavorite ? (
+            favoriteTracksFiltered.length === 0 ? (
+              <S.ErrorMassege>
+                Не найдено треков, удовлетворяющих вашим критериям
+              </S.ErrorMassege>
+            ) : (
+              favoriteTracksFiltered.map((track) => {
+                return (
+                  <GetTracks
+                    key={track.id}
+                    track={track}
+                    currentPlaylist={favoriteData}
+                  />
+                )
+              })
+            )
           ) : (
             initialFavoriteTracks.map((track) => {
-              return <GetTracks key={track.id} track={track} currentPlaylist={initialFavoriteTracks}/>
+              return (
+                <GetTracks
+                  key={track.id}
+                  track={track}
+                  currentPlaylist={initialFavoriteTracks}
+                />
+              )
             })
           )}
         </S.ContentPlaylist>
