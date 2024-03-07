@@ -109,6 +109,9 @@ body {
   stroke: #ffffff;
   cursor: pointer;
 }
-
+.clickListEl {
+  color: red;  
+  cursor: pointer;
+}
 `
 // export default GlobalStyle

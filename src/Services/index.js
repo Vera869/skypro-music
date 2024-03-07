@@ -66,7 +66,7 @@ export const musicTracksApi = createApi({
   endpoints: (builder) => ({
     getAllTracks: builder.query({
       query: () => ({ url: `/catalog/track/all/` }),
-      transformResponse: (response,) => {
+      transformResponse: (response, meta, arg) => {
         const id = JSON.parse(localStorage.getItem('user'))?.id
         const data = response.map((track) => {
           const isLiked = track.stared_user.find((user) => user.id === id)
@@ -117,7 +117,7 @@ export const musicTracksApi = createApi({
         url: `/catalog/selection/${id}/`,
         method: 'GET',
       }),
-      // transformResponse: (response,) => {
+      //transformResponse: (response, meta, arg) => {
       //   const id = JSON.parse(localStorage.getItem("user"))?.id
       //   const data = response.map((track) => {
       //     const isliked = track.stared_user.find((user) => user.id === id)
