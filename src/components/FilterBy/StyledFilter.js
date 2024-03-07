@@ -24,7 +24,6 @@ export const ListEl = styled.div` //#ad61ff;
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
-    cursor: pointer;
   &.activeListEl {
       border-color: #ad61ff;
       color: #ad61ff;

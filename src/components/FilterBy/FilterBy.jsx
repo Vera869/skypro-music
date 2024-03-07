@@ -60,6 +60,10 @@ function FilterBy() {
   const filteredAuthorGenreYears = useSelector(
     (state) => state.tracks.filteredAuthorGenreYears
   )
+  const nameFilterAuthor = useSelector((state) => state.tracks.filters.author)
+  const nameFilterYear = useSelector((state) => state.tracks.filters.years)
+  const nameFilterGenre = useSelector((state) => state.tracks.filters.genre)
+
   const handleFilter = ({ nameFilter, valueFilter }) => {
     dispatch(setFilters({ nameFilter, valueFilter }))
   }
@@ -85,7 +89,8 @@ function FilterBy() {
             <S.List onClick={(e) => e.stopPropagation()}>
               {data.map((item) => {
                 return (
-                  <S.ListEl className="activeListEl"
+                  <S.ListEl 
+                    {...nameFilterAuthor.includes(item.author)? className=".clickListEl" : className="activeListEl"}
                     $isAuthorClick={$isAuthorClick}
                     $isAuthorSelector={filterCount.author.includes(item.author)}
                     key={item.id}
