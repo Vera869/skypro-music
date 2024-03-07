@@ -89,7 +89,7 @@ function FilterBy() {
                     $isAuthorClick={$isAuthorClick}
                     $isAuthorSelector={filterCount.author.includes(item.author)}
                     key={item.id}
-                    {...$isAuthorClick ? className="clickListEl": className="activeListEl" }
+                    // {...$isAuthorClick ? className="clickListEl": 'className="activeListEl"' }
                     onClick={() => {
                       handleFilter({
                         nameFilter: 'author',
