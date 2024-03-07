@@ -118,8 +118,9 @@ function AudioPlayer() {
     }
   }
   const butShuffledTrack = () => {
-    dispatch(setShuffledTracks())
     dispatch(setIsShuffled())
+    dispatch(setShuffledTracks())
+    
   }
   const favTrack = useSelector((state) => state.tracks.activeTrack)
   const isFavorite = useSelector((state) => state.tracks.isFavorite)
@@ -134,17 +135,17 @@ function AudioPlayer() {
   const [disLike] = useDeleteFavTrackMutation(id)
 
   const [isLike, setIsLike] = useState(false)
-  // const [isFav, setIsFav] = useState(false)
+  const [isFav, setIsFav] = useState(false)
 
   useEffect(() => {
     if(favTrack?.isLiked) setIsLike(true)
-    else setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
+    // else setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
   }, [favTrack, staredUser, isFavorite])
 
   useEffect(() => {
     console.log(isFavorite);
     if (favTrack) {
-      setIsLike(Boolean(isFavorite))
+      setIsFav(Boolean(isFavorite))
     }
   }, [isLike,  dispatch, isFavorite])
 
@@ -263,7 +264,7 @@ function AudioPlayer() {
                         favClick()
                       }}
                     >
-                      {isLike ? (
+                      {isLike || isFav ? (
                         <use
                           xlinkHref="/img/icon/sprite.svg#icon-like"
                           fill="violet"

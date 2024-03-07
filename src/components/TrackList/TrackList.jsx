@@ -53,6 +53,7 @@ export const GetTracks = ({ track, currentPlaylist }) => {
   }
   useEffect(() => {
     if (playlist !== 'fav') {
+      setIsLike(Boolean(track.isLiked))
       setIsLike(Boolean(staredUser.find((id) => id.id === userId)))
     } else {
       setIsLike(true)

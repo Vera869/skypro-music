@@ -22,9 +22,9 @@ export const BarPlayerProgress = styled.div`
   width: 100%;
 `
 export const StyledProgressBar = styled.input`
---progress-height: 8px;
-  --progress-color: #AD61FF;
-  --progress-color: ${(props) => props.$color ? "#AD61FF" : ''};
+  --progress-height: 8px;
+  --progress-color: #ad61ff;
+  --progress-color: ${(props) => (props.$color ? '#AD61FF' : '')};
 
   --progress-bg-color: #2e2e2e;
 
@@ -101,7 +101,7 @@ export const PlayerControls = styled.div`
   padding: 0 27px 0 31px;
 `
 export const PlayerBtnPrev = styled.div`
-cursor: pointer;
+  cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -131,7 +131,7 @@ export const PlayerBtnPlaySvg = styled.svg`
   fill: #d9d9d9;
 `
 export const PlayerBtnNext = styled.div`
-cursor: pointer;
+  cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -149,7 +149,7 @@ export const PlayerBtnNextSvg = styled.svg`
   stroke: #d9d9d9;
 `
 export const PlayerBtnRepeat = styled.div`
-cursor: pointer;
+  cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -164,16 +164,16 @@ export const PlayerBtnRepeatSvg = styled.svg`
   height: 12px;
   fill: transparent;
   // stroke: #696969;
-  stroke: ${(props) => (props.isLooped ? "#fff" : "#696969")};
+  stroke: ${(props) => (props.isLooped ? '#fff' : '#696969')};
   &:hover {
-    stroke: ${(props) => (props.isLooped ? "#fff" : "#acacac")};
+    stroke: ${(props) => (props.isLooped ? '#fff' : '#acacac')};
   }
   &:active {
     stroke: #fff;
   }
 `
 export const PlayerBtnShuffle = styled.div`
-cursor: pointer;
+  cursor: pointer;
   padding: 5px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -187,16 +187,15 @@ cursor: pointer;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
- 
 `
 export const PlayerBtnShuffleSvg = styled.svg`
   width: 19px;
   height: 12px;
   fill: transparent;
   stroke: #696969;
-  stroke: ${(props) => (props.IsShuffled ? "#fff" : '#696969')};
+  stroke: ${(props) => (props.IsShuffled ? '#fff' : '#696969')};
   &:hover {
-    stroke: ${(props) => (props.IsShuffled ? "#fff" : "#acacac")};
+    stroke: ${(props) => (props.IsShuffled ? '#fff' : '#acacac')};
   }
 `
 export const PlayerTrackPlay = styled.div`
@@ -294,6 +293,7 @@ export const TrackPlayLikeDis = styled.div`
   margin-left: 26%;
 `
 export const TrackPlayLike = styled.div`
+cursor: pointer;
   padding: 5px;
 `
 export const TrackPlayDislike = styled.div`
@@ -344,10 +344,10 @@ export const VolumeProgressLine = styled.input`
   width: 109px;
 `
 export const TrackTime = styled.div`
-width: 100%;
-height: 55px;
-padding-right: 20px;
-display: flex;
-justify-content: flex-end;
-align-items: center;
+  width: 100%;
+  height: 55px;
+  padding-right: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 `

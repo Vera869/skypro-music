@@ -117,6 +117,17 @@ export const musicTracksApi = createApi({
         url: `/catalog/selection/${id}/`,
         method: 'GET',
       }),
+      // transformResponse: (response,) => {
+      //   const id = JSON.parse(localStorage.getItem("user"))?.id
+      //   const data = response.map((track) => {
+      //     const isliked = track.stared_user.find((user) => user.id === id)
+      //     if (isliked) {
+      //       return {...track, isliked: true}
+      //     }
+      //     return track
+      //   })
+      //   return data
+      // },
       providesTags: ['tracks'],
     }),
     getTrackById: builder.query({
