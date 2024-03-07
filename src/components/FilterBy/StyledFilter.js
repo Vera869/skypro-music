@@ -16,10 +16,10 @@ export const FilterButtonList = styled.div`
 `
 export const ListEl = styled.div` //#ad61ff;
 
-&.clickListEl {
-  color: red;  
-  cursor: pointer;
-}
+// &.clickListEl {
+//   color: red;  
+//   cursor: pointer;
+// }
   &:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;

@@ -89,8 +89,7 @@ function FilterBy() {
             <S.List onClick={(e) => e.stopPropagation()}>
               {data.map((item) => {
                 return (
-                  <S.ListEl 
-                    {...nameFilterAuthor.includes(item.author)? className=".clickListEl" : className="activeListEl"}
+                  <S.ListEl className={nameFilterAuthor.includes(item.author)? "clickListEl" : "activeListEl"}
                     $isAuthorClick={$isAuthorClick}
                     $isAuthorSelector={filterCount.author.includes(item.author)}
                     key={item.id}

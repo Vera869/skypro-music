@@ -140,14 +140,14 @@ function AudioPlayer() {
   useEffect(() => {
     if(favTrack?.isLiked) setIsLike(true)
      else setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
-  }, [favTrack, staredUser, isFavorite])
+  }, [favTrack, staredUser, dispatch, isFavorite])
 
   useEffect(() => {
     console.log(isFavorite);
     if (favTrack) {
       setIsFav(Boolean(isFavorite))
     }
-  }, [isLike,  dispatch, isFavorite])
+  }, [isFav,  dispatch, isFavorite])
 
 
   const favClick = () => {

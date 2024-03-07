@@ -110,8 +110,16 @@ body {
   cursor: pointer;
 }
 .clickListEl {
-  color: red;  
+  color: #ad61ff;  
   cursor: pointer;
+  text-decoration: underline;
+}
+.activeListEl {
+  :hover {
+    border-color: #ad61ff;
+    color: #ad61ff;
+    cursor: pointer;
+  }
 }
 `
 // export default GlobalStyle
