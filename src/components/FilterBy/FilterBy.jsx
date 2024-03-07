@@ -41,7 +41,6 @@ function FilterBy() {
       data.forEach((element) => {
         ganreSet.add(element.genre)
       })
-      // console.log(ganreSet)
       setGenre(Array.from(ganreSet))
     }
     if (data.length > 0) {
@@ -49,7 +48,6 @@ function FilterBy() {
       data.forEach((element) => {
         dataSet.add(element.release_date)
       })
-      // console.log(ganreSet);
       setDataTrack(['По умолчанию', 'Сначала старые', 'Сначала новые'])
     }
   }, [data])
@@ -69,7 +67,7 @@ function FilterBy() {
     dispatch(clearTheFilter())
   }
   useEffect(() => {
-    console.log(filteredAuthorGenreYears)
+    // console.log(filteredAuthorGenreYears)
   }, [filteredAuthorGenreYears])
   return (
     <>

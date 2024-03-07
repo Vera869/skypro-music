@@ -9,7 +9,7 @@ function SearchBlock() {
   const onChandeSearchValue = (value) => {
     dispatch(setFilters({ nameFilter: "search", valueFilter: value }));
 
-    console.log(value);
+    // console.log(value);
   };
   return (
     <S.CenterBlockSearch >

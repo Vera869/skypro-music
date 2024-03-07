@@ -5,7 +5,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
     baseUrl: 'https://skypro-music-api.skyeng.tech',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().authorization.access
-      console.log(token);
+      // console.log(token)
       if (token) {
         headers.set('authorization', `Bearer ${token}`)
       }
@@ -14,9 +14,8 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
   })
 
   const forceLogout = () => {
-    localStorage.removeItem("user")
-    // window.location.href = '/login'
-    
+    localStorage.removeItem('user')
+    window.location.href = '/login'
   }
 
   const authentication =
@@ -27,11 +26,10 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
   }
 
   const retryResult = await baseQuery(args, api, extraOptions)
-  // console.log(retryResult.response);
 
   if (retryResult?.error?.status === 401) {
     const token = JSON.parse(localStorage.getItem('refreshToken'))
-    console.log(token);
+    console.log(token)
     const refreshResult = await baseQuery(
       {
         url: '/user/token/refresh/',
@@ -40,7 +38,7 @@ const baseQueryRefresh = async (args, api, extraOptions) => {
           refresh: token,
         }),
         headers: {
-          "content-type": "application/json",
+          'content-type': 'application/json',
         },
       },
       api,
@@ -68,16 +66,15 @@ export const musicTracksApi = createApi({
   endpoints: (builder) => ({
     getAllTracks: builder.query({
       query: () => ({ url: `/catalog/track/all/` }),
-      transformResponse: (response, meta, arg) => {
-        const id = JSON.parse(localStorage.getItem("user"))?.id
+      transformResponse: (response,) => {
+        const id = JSON.parse(localStorage.getItem('user'))?.id
         const data = response.map((track) => {
           const isLiked = track.stared_user.find((user) => user.id === id)
-          if(isLiked) {
-            return {...track, isLiked: true}
+          if (isLiked) {
+            return { ...track, isLiked: true }
           }
           return track
         })
-        //console.log(data);
         return data
       },
       providesTags: ['tracks'],
@@ -88,9 +85,8 @@ export const musicTracksApi = createApi({
       }),
       transformResponse: (response) => {
         const data = response.map((track) => {
-            return {...track, isLiked: true}
+          return { ...track, isLiked: true }
         })
-        console.log(data);
         return data
       },
       providesTags: ['tracks'],

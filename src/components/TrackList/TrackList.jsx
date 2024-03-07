@@ -15,14 +15,13 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 
 export const GetTracks = ({ track, currentPlaylist }) => {
-  const [isLike, setIsLike] = useState(false)
-
   const dispatch = useDispatch()
   const isPlay = useSelector((state) => state.tracks.isPlay)
   const activeTrack = useSelector((state) => state.tracks.activeTrack)
   const playlist = useSelector((state) => state.tracks.playlist)
-  //const isFavorite = useSelector((state) => state.tracks.isFavorite)
   const activeTrackId = useSelector((state) => state.tracks.activeTrack.id)
+
+  const [isLike, setIsLike] = useState(false)
 
   const [addLike] = useAddFavTrackMutation()
   const [disLike] = useDeleteFavTrackMutation()
@@ -38,7 +37,7 @@ export const GetTracks = ({ track, currentPlaylist }) => {
       disLike({ id })
       setIsLike(false)
       dispatch(setIsFavorite(false))
-      if(activeTrackId === id) {
+      if (activeTrackId === id) {
         dispatch(setIsFavorite(false))
       }
       console.log('dislike')
@@ -46,7 +45,7 @@ export const GetTracks = ({ track, currentPlaylist }) => {
       addLike({ id })
       setIsLike(true)
       dispatch(setIsFavorite(true))
-      if(activeTrackId === id) {
+      if (activeTrackId === id) {
         dispatch(setIsFavorite(true))
       }
       console.log('like')

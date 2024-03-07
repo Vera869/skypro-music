@@ -123,32 +123,30 @@ function AudioPlayer() {
   }
   const favTrack = useSelector((state) => state.tracks.activeTrack)
   const isFavorite = useSelector((state) => state.tracks.isFavorite)
-
-  const staredUser = useSelector(
-    (state) => state.tracks.activeTrack.stared_user
-  )
   const trackID = useSelector((state) => state.tracks.activeTrack.id)
   const id = trackID
+
+  const staredUser = favTrack.stared_user
+  const user = JSON.parse(localStorage.getItem('user'))
+  const userId = user.id
+
   const [addLike] = useAddFavTrackMutation(id)
   const [disLike] = useDeleteFavTrackMutation(id)
-
-  const user = JSON.parse(localStorage.getItem('user'))
 
   const [isLike, setIsLike] = useState(false)
   const [isFav, setIsFav] = useState(false)
 
   useEffect(() => {
-    // const isliked = favTrack.isLiked
-    //   setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
     if(favTrack?.isLiked) setIsLike(true)
-  }, [favTrack])
+    setIsLike(Boolean(staredUser?.find((id) => id.id === userId)))
+  }, [favTrack, staredUser, isFavorite])
 
   useEffect(() => {
     console.log(isFavorite);
     if (favTrack) {
-      setIsFav(Boolean(isFavorite))
+      setIsLike(Boolean(isFavorite))
     }
-  }, [favTrack, isFavorite])
+  }, [favTrack,  dispatch, isFavorite])
 
 
   const favClick = () => {
@@ -265,7 +263,7 @@ function AudioPlayer() {
                         favClick()
                       }}
                     >
-                      {isLike || isFav ? (
+                      {isLike ? (
                         <use
                           xlinkHref="/img/icon/sprite.svg#icon-like"
                           fill="violet"
