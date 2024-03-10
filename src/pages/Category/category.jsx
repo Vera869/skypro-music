@@ -54,7 +54,7 @@ export const PlayListCategory = () => {
           <S.PlaylistTitleC0l03>АЛЬБОМ</S.PlaylistTitleC0l03>
           <S.PlaylistTitleC0l04>
             <S.PlaylistTitleSvg alt="time">
-              <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
+              <use xlinkHref="/img/icon/sprite.svg#icon-watch"></use>
             </S.PlaylistTitleSvg>
           </S.PlaylistTitleC0l04>
         </S.ContentTitle>

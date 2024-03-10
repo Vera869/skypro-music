@@ -14,7 +14,7 @@ function SideBar({ setUser, logout }) {
 
         <S.SideBarIcon onClick={logout}>
           <svg alt="logout">
-            <use xlinkHref="img/sprite.svg#logout"></use>
+            <use xlinkHref="/img/sprite.svg#logout"></use>
           </svg>
         </S.SideBarIcon>
       </S.SideBarPersonal>

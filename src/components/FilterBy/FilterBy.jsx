@@ -82,10 +82,13 @@ function FilterBy() {
           </S.filterCountAuthor>
         )}
       <S.FilterButtonList>
+        
         {filter ? (
           <>
+          <S.FilterButtonBlock>
             <S.FilterButton className="_btn-text" onClick={showFilterAuthor}>
               исполнителю
+            </S.FilterButton>
             <S.List onClick={(e) => e.stopPropagation()}>
               {data.map((item) => {
                 return (
@@ -105,11 +108,12 @@ function FilterBy() {
                 )
               })}
             </S.List>
-            </S.FilterButton>
+            </S.FilterButtonBlock>
           </>
         ) : (
           <>
-            <S.FilterButton className="_btn-text" onClick={showFilterAuthor}>
+            <S.FilterButton className="_btn-text"
+             onClick={showFilterAuthor}>
               исполнителю
             </S.FilterButton>
           </>
@@ -119,15 +123,16 @@ function FilterBy() {
             {filterCount.genre.length}
           </S.filterCountGenre>
         )}
-
         {filterGenre ? (
-          <>
+          <> 
+          <S.FilterButtonBlock>
             <S.FilterButton className="_btn-text" onClick={showFilterGenre}>
               жанру
+            </S.FilterButton>
             <S.List onClick={(e) => e.stopPropagation()}>
               {genre.map((item) => {
                 return (
-                  <S.ListEl className="activeListEl"
+                  <S.ListEl className={nameFilterGenre.includes(item)? "clickListEl" : "activeListEl"}
                     $isGenreClick={$isGenreClick}
                     $isGenreSelector={filterCount.genre.includes(item)}
                     key={item}
@@ -143,7 +148,7 @@ function FilterBy() {
                 )
               })}
             </S.List>
-            </S.FilterButton>
+            </S.FilterButtonBlock>
           </>
         ) : (
           <>
@@ -152,20 +157,19 @@ function FilterBy() {
             </S.FilterButton>
           </>
         )}
-
         {countYears === 1 && (
           <S.filterCountYears>{countYears}</S.filterCountYears>
         )}
-
         {filterYears ? (
           <>
+          <S.FilterButtonBlock>
             <S.FilterButton className="_btn-text" onClick={showFilterYears}>
             {filterCount.years}
-            
+            </S.FilterButton>
             <S.List onClick={(e) => e.stopPropagation()}>
               {dataTrack.map((item) => {
                 return (
-                  <S.ListEl className="activeListEl" 
+                  <S.ListEl className={nameFilterYear.includes(item)? "clickListEl" : "activeListEl"}
                   $isYearsClick={$isYearsClick}
                   $isYearsSelector={filterCount.years.includes(item)}
                     onClick={() => {
@@ -181,7 +185,8 @@ function FilterBy() {
                 )
               })}
             </S.List>
-            </S.FilterButton>
+            
+          </S.FilterButtonBlock>
           </>
         ) : (
           <>
@@ -190,7 +195,7 @@ function FilterBy() {
             </S.FilterButton>
           </>
         )}
-        <S.clearFilteredButton onClick={() => handlerClearFiltered()}>
+        <S.clearFilteredButton className="_btn-text" onClick={() => handlerClearFiltered()}>
           Очистить фильтр
         </S.clearFilteredButton>
       </S.FilterButtonList>

@@ -9,7 +9,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -51,7 +51,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -93,7 +93,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -135,7 +135,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -177,7 +177,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -219,7 +219,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -261,7 +261,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -303,7 +303,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>
@@ -345,7 +345,7 @@ export const SkeletonTracks = () => {
         <S.TreckTitle>
           <S.TreckTitleImage>
             <S.TreckTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note" />
+              <use xlinkHref="/img/icon/sprite.svg#icon-note" />
             </S.TreckTitleSvg>
           </S.TreckTitleImage>
           <S.TreckTitleText>

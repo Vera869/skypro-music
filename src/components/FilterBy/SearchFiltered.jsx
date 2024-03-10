@@ -14,7 +14,7 @@ function SearchBlock() {
   return (
     <S.CenterBlockSearch >
       <S.SearchSvg>
-        <use xlinkHref="img/icon/sprite.svg#icon-search"></use>
+        <use xlinkHref="/img/icon/sprite.svg#icon-search"></use>
       </S.SearchSvg>
       <S.SearchText
         type="search"

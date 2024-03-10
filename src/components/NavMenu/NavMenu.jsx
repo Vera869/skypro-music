@@ -9,7 +9,7 @@ function NavMenu({ logout }) {
   return (
     <S.MainNav>
       <S.NavLogo to="/">
-        <S.LogoImage src="img/logo.png" alt="logo" />
+        <S.LogoImage src="/img/logo.png" alt="logo" />
       </S.NavLogo>
       <S.NavBurger onClick={toggleVisibility}>
         <S.BurgerLine></S.BurgerLine>

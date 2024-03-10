@@ -9,17 +9,25 @@ export const CenterBlockFilterTitle = styled.div`
 `
 export const FilterButtonList = styled.div`
   display: flex;
-  position: relative;
+  //position: relative;
   flex-direction: row;
   align-items: center;
   gap:  32px;
 `
-export const ListEl = styled.div` //#ad61ff;
+export const FilterButtonBlock = styled.div`
+  // display: flex;
+  // position: relative;
+  // //position: absolute;
+  // flex-direction: column;
+  // align-items: center;
 
-// &.clickListEl {
-//   color: red;  
-//   cursor: pointer;
-// }
+  //z-index: 1;
+  //position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`
+export const ListEl = styled.div` //#ad61ff;
   &:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
@@ -51,6 +59,7 @@ export const List = styled.ul`
   overflow-x: hidden;
   overflow-y: auto; 
   scrollbar-width: none;
+  margin-top: 50px;
 `
 export const FilterButton = styled.div`
   font-style: normal;
@@ -60,26 +69,9 @@ export const FilterButton = styled.div`
   border: 1px solid #ffffff;
   border-radius: 60px;
   padding: 6px 20px;
-  // &:not(:last-child) {
-  //    margin-right: 10px;
-  //  }
-//   width: 140px; 
-//   height: 36px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   font-style: normal;
-//   font-weight: 400;
-//   font-size: 16px;
-//   line-height: 24px;
-//   border: 1px solid #ffffff;
-//   border-radius: 60px;
-//   padding: 6px 20px;
-//   &.activeButton {
-//     border-color: #ad61ff;
-//     color: #ad61ff;
-//     cursor: pointer;
-// }
+  width: 170px; 
+  text-align: center;
+  position: relative;
 `
 export const clearFilteredButton = styled.div`
   font-style: normal;
@@ -92,14 +84,15 @@ export const clearFilteredButton = styled.div`
   position: relative;
   border-color: #d9b6ff
 
+  // &:hover {
+  //   border-color: #d9b6ff;
+  //   color: #d9b6ff;
+  //   cursor: pointer;
+  // }
   &:hover {
     border-color: #d9b6ff;
     color: #d9b6ff;
     cursor: pointer;
-  }
-  &:not(:last-child) {
-    margin-right: 10px;
-  }
   &:active {
     border-color: #d9b6ff;
     color:#d9b6ff;
@@ -109,7 +102,7 @@ export const clearFilteredButton = styled.div`
 export const filterCountAuthor = styled.div`
   position: absolute;
   top: 227px;
-  left: 580px;
+  left: 590px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
   background: #8215f9;
@@ -122,8 +115,10 @@ export const filterCountAuthor = styled.div`
 `;
 export const filterCountGenre = styled.div`
   position: absolute;
-  top: -14px;
-  left: 240px;
+  top: 230px;
+  left: 790px;
+  // top: -14px;
+  // left: 240px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
   background: #8215f9;
@@ -137,7 +132,9 @@ export const filterCountGenre = styled.div`
 export const filterCountYears = styled.div`
   position: absolute;
   top: -14px;
-  right: 200px;
+  top: 229px;
+  right: 863px;
+  //right: 200px;
   // left: 240px;
   border: 1px solid #d9b6ff;
   border-radius: 50%;
